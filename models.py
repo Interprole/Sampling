@@ -51,7 +51,10 @@ class Group(Base):
         Indicates if the group is a genus.
     """
     __tablename__ = 'groups'
-
+    
+    # Add discriminator column for inheritance
+    type = Column(String(50))
+    
     glottocode = Column(String, primary_key=True)
     iso = Column(String)
     name = Column(String)
@@ -69,9 +72,29 @@ class Group(Base):
     
     closest_supergroup = Column(String, ForeignKey('groups.glottocode'))
     subgroups = relationship("Group", remote_side=[glottocode], backref="supergroup")
+    
+    __mapper_args__ = {
+        'polymorphic_identity': 'group',
+        'polymorphic_on': type
+    }
+
+
+class Language(Group):
+    """
+    A class representing a Language, which is a specialized Group.
+    
+    All Language instances are language nodes in Glottolog, with specific attributes
+    like ISO codes, coordinates, and genus membership.
+    """
+    
+    __mapper_args__ = {
+        'polymorphic_identity': 'language',
+    }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.is_language = True
+
 
 def create_tables(engine):
     Base.metadata.create_all(engine)
-
-
-
