@@ -98,3 +98,4 @@ class Language(Group):
 
 def create_tables(engine):
     Base.metadata.create_all(engine)
+

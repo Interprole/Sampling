@@ -1,6 +1,8 @@
 import random
-from typing import List, Dict
+from typing import List, Dict, Callable
 from models import Language, Genus, Macroarea
+from database import get_genera, global_session, calculate_macroarea_distribution, get_macroarea_by_genus
+from collections import Counter
 
 class SamplingResult:
     """
@@ -29,44 +31,83 @@ class SamplingResult:
         return {
             "num_languages": len(self.languages),
             "num_genera": len(self.included_genera),
-            "genera_coverage": {genus.name: [lang.name for lang in genus.languages] for genus in self.included_genera}
+            "genera_coverage": [genus.name for genus in self.included_genera]
         }
 
+    def extend_sample(self, sample: 'Sample', create_sample: Callable[..., 'SamplingResult'], **kwargs) -> 'SamplingResult':
+        """
+        Extended Sample (ES): Base sample plus any additional languages included in the study.
+
+        Parameters
+        ----------
+        sample : Sample
+            The sample instance to generate the base sample.
+        create_sample : Callable
+            The method to create the base sample.
+        kwargs : dict
+            Additional arguments to pass to the create_sample method.
+
+        Returns
+        -------
+        SamplingResult
+            The extended sample including additional languages.
+        """
+        new_sample = create_sample(**kwargs)
+        additional_languages = [lang for lang in new_sample.languages if lang not in self.languages]
+        additional_genera = [genus for genus in new_sample.included_genera if genus not in self.included_genera]
+
+        self.languages.extend(additional_languages)
+        self.included_genera.extend(additional_genera)
 
 class Sample:
     """
     Базовый класс для сэмплов языков.
     """
-    def __init__(self, sampling_result: SamplingResult):
-        self.sampling_result = sampling_result
-
     def __str__(self) -> str:
-        return f"{self.__class__.__name__} with {len(self.sampling_result.languages)} languages"
+        return f"{self.__class__.__name__}"
 
-    def __iter__(self):
-        return iter(self.sampling_result.languages)
-
-    def __len__(self):
-        return len(self.sampling_result.languages)
-
-    def __getitem__(self, index):
-        return self.sampling_result.languages[index]
+    def summary(self):
+        """
+        Выводит сводку о покрытии выборки.
+        """
+        raise NotImplementedError("Subclasses must implement the summary method.")
 
 
 class GenusSample(Sample):
     """
-    Базовый класс для сэмплов на уровне родов (genus).
+    Класс для сэмплов на уровне родов (genus), с поддержкой различных стратегий.
     """
-    def __init__(self, genus_list: List[Genus]):
-        self.genus_list = genus_list
-        sampling_result = self.create_sample()
-        super().__init__(sampling_result)
+    def __init__(self, genus_list: List[Genus] = None):
+        if genus_list is None:
+            self.genus_list = global_session.query(Genus).all()
+        else:
+            self.genus_list = genus_list
+        super().__init__()
 
-    def create_sample(self) -> SamplingResult:
+
+    def __str__(self) -> str:
         """
-        Метод для создания выборки. Должен быть переопределён в подклассах.
+        Возвращает строковое представление объекта GenusSample.
         """
-        raise NotImplementedError
+        return f"GenusSample with {len(self.genus_list)} genera"
+
+    def summary(self):
+        """
+        Выводит сводку о родах, доступных для сэмплинга.
+        """
+        return {
+            "num_genera": len(self.genus_list),
+            "genera_names": [genus.name for genus in self.genus_list]
+        }
+
+
+    def limit_languages(self, languages: List[Language], num_languages: int) -> List[Language]:
+        """
+        Ограничивает количество языков до указанного числа, выбирая случайно.
+        """
+        if len(languages) > num_languages:
+            return random.sample(languages, num_languages)
+        return languages
 
     def get_languages_from_genus(self, genus: Genus) -> List[Language]:
         """
@@ -74,13 +115,10 @@ class GenusSample(Sample):
         """
         return genus.languages if genus.languages else []
 
-
-# --- 1. Случайный выбор языка из каждого рода ---
-class RandomGenusSample(GenusSample):
-    """
-    Выбирает случайный язык из каждого рода.
-    """
-    def create_sample(self) -> SamplingResult:
+    def genus_sample(self) -> SamplingResult:
+        """
+        Genus Sample (GS): One language from every genus.
+        """
         selected_languages = []
         included_genera = []
         for genus in self.genus_list:
@@ -89,55 +127,78 @@ class RandomGenusSample(GenusSample):
                 included_genera.append(genus)
         return SamplingResult(selected_languages, included_genera)
 
-
-# --- 2. Выбор самого хорошо документированного языка ---
-class MostDocumentedGenusSample(GenusSample):
-    """
-    Выбирает язык с наибольшим количеством доступных источников из каждого рода.
-    """
-    def create_sample(self) -> SamplingResult:
+    def core_sample(self) -> SamplingResult:
+        """
+        Core Sample (CS): One language from every genus with usable sources of data.
+        """
         selected_languages = []
         included_genera = []
         for genus in self.genus_list:
-            if genus.languages:
-                best_language = max(genus.languages, key=lambda lang: lang.documentation_score)
-                selected_languages.append(best_language)
+            #usable_languages = [lang for lang in genus.languages if lang.usable_sources]
+            usable_languages = [lang for lang in genus.languages]
+
+            if usable_languages:
+                selected_languages.append(random.choice(usable_languages))
                 included_genera.append(genus)
         return SamplingResult(selected_languages, included_genera)
 
+    def restricted_sample(self) -> SamplingResult:
+        """
+        Restricted Sample (RS): Subsample of CS with the same genealogical diversity distribution as macroarea_distribution.
+        """
+        macroarea_distribution = calculate_macroarea_distribution()
+        total_genera = sum(macroarea_distribution.values())
+        cs_result = self.core_sample()
 
-# --- 3. Сбалансированный выбор языка с учётом ареального разнообразия ---
-class BalancedGenusSample(GenusSample):
-    """
-    Выбирает языки так, чтобы сбалансировать представительство макрообластей.
-    
-    :param macroarea_distribution: Словарь {название макрообласти: желаемое количество языков}.
-    """
-    def __init__(self, genus_list: List[Genus], macroarea_distribution: Dict[str, int]):
-        self.macroarea_distribution = macroarea_distribution
-        self.macroarea_counts = {area: 0 for area in macroarea_distribution.keys()}
-        super().__init__(genus_list)
+        # Calculate the target number of genera for each macroarea based on proportions
+        target_distribution = {
+            macroarea: int(len(cs_result.included_genera) * (count / total_genera))
+            for macroarea, count in macroarea_distribution.items()
+        }
 
-    def create_sample(self) -> SamplingResult:
+        macroarea_genera = {area: [] for area in macroarea_distribution.keys()}
+        for genus in cs_result.included_genera:
+            macroareas = get_macroarea_by_genus(genus)
+            for macroarea in macroareas:
+                macroarea_genera[macroarea].append(genus)
+
         selected_languages = []
         included_genera = []
-        
+        for macroarea, target_count in target_distribution.items():
+            selected_genera = macroarea_genera.get(macroarea, [])[:target_count]
+            for genus in selected_genera:
+                if genus.languages:
+                    selected_languages.append(random.choice(genus.languages))
+                    included_genera.append(genus)
+
+        return SamplingResult(selected_languages, included_genera)
+
+    def primary_sample(self, sample_size: int) -> SamplingResult:
+        """
+        Primary Sample (PS): Predetermined sample size with equal genealogical diversity in each macroarea.
+        """
+        macroarea_distribution = calculate_macroarea_distribution()
+        total_genera = sum(macroarea_distribution.values())
+
+        # Calculate the target number of genera for each macroarea based on proportions
+        target_distribution = {
+            macroarea: int(sample_size * (count / total_genera))
+            for macroarea, count in macroarea_distribution.items()
+        }
+
+        macroarea_genera = {area: [] for area in macroarea_distribution.keys()}
         for genus in self.genus_list:
-            if genus.languages:
-                # Отбираем языки, которые соответствуют ограничениям макрообластей
-                filtered_languages = [
-                    lang for lang in self.get_languages_from_genus(genus)
-                    if self.macroarea_counts.get(lang.macroarea, 0) < self.macroarea_distribution.get(lang.macroarea, 0)
-                ]
+            macroareas = get_macroarea_by_genus(genus)
+            for macroarea in macroareas:
+                macroarea_genera[macroarea].append(genus)
 
-                if filtered_languages:
-                    chosen_language = random.choice(filtered_languages)
-                    self.macroarea_counts[chosen_language.macroarea] += 1
-                else:
-                    # Если в макрообласти достигнут лимит, берём любой язык из рода
-                    chosen_language = random.choice(genus.languages)
-
-                selected_languages.append(chosen_language)
-                included_genera.append(genus)
+        selected_languages = []
+        included_genera = []
+        for macroarea, target_count in target_distribution.items():
+            selected_genera = random.sample(macroarea_genera.get(macroarea, []), min(target_count, len(macroarea_genera.get(macroarea, []))))
+            for genus in selected_genera:
+                if genus.languages:
+                    selected_languages.append(random.choice(genus.languages))
+                    included_genera.append(genus)
 
         return SamplingResult(selected_languages, included_genera)
