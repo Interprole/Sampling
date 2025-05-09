@@ -63,12 +63,19 @@ def load_macroareas_data(session, tsv_filepath):
                 for row in tqdm(rows, desc="Loading Macroareas Data"):
                     # Add macroarea to database
                     macroarea_name = row['macroareas']
-                    if macroarea_name not in macroarea_dict:
-                        macroarea = Macroarea(name=macroarea_name)
-                        session.add(macroarea)
-                        session.flush()  # To get the ID
-                        macroarea_dict[macroarea_name] = macroarea.id
+                    if macroarea_name:
+                        if macroarea_name not in macroarea_dict:
+                            macroarea = session.query(Macroarea).filter_by(name=macroarea_name).first()
+                            if not macroarea:
+                                # Create new macroarea
+                                macroarea = Macroarea(name=macroarea_name)
+                                session.add(macroarea)
+                                session.flush()  # To get the ID
+                            macroarea_dict[macroarea_name] = macroarea.id
+                        
                         macroarea_id = macroarea_dict[macroarea_name]
+                    else:
+                        macroarea_id = None
                     
                     # Add groups to database
                     path = row['path']
@@ -96,7 +103,7 @@ def load_macroareas_data(session, tsv_filepath):
 
                     # Update language entry
                     language = session.query(Group).filter_by(glottocode=row['glottocode'],
-                                                                is_language=True).first()
+                                                                is_language=1).first()
                     if language:
                         if not language.genus_id:
                             genus = Genus(name=row['name'])
