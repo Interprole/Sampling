@@ -1,0 +1,15 @@
+.navbar {
+	color: #296465;
+	font-family: "Charis SIL";
+}
+
+body {
+	background-color: white;
+}
+
+p {
+	color: #0F3362;
+	font-family: "Charis SIL";
+	text-align: justify;
+	margin: 50px;
+}
