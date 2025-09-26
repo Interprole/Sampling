@@ -89,6 +89,7 @@ class Language(Group):
     
     __mapper_args__ = {
         'polymorphic_identity': 'language',
+        'polymorphic_on': type
     }
     
     def __init__(self, *args, **kwargs):
