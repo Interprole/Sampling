@@ -34,30 +34,27 @@ class SamplingResult:
             "genera_coverage": [genus.name for genus in self.included_genera]
         }
 
-    def extend_sample(self, sample: 'Sample', create_sample: Callable[..., 'SamplingResult'], **kwargs) -> 'SamplingResult':
+    def extend_sample(self, another_sample: 'SamplingResult') -> 'SamplingResult':
         """
         Extended Sample (ES): Base sample plus any additional languages included in the study.
 
         Parameters
         ----------
-        sample : Sample
-            The sample instance to generate the base sample.
-        create_sample : Callable
-            The method to create the base sample.
-        kwargs : dict
-            Additional arguments to pass to the create_sample method.
+        another_sample : SamplingResult
+            The additional sample to include in the extended sample.
 
         Returns
         -------
         SamplingResult
             The extended sample including additional languages.
         """
-        new_sample = create_sample(**kwargs)
-        additional_languages = [lang for lang in new_sample.languages if lang not in self.languages]
-        additional_genera = [genus for genus in new_sample.included_genera if genus not in self.included_genera]
-
-        self.languages.extend(additional_languages)
-        self.included_genera.extend(additional_genera)
+        new_languages = self.languages + [
+            lang for lang in another_sample.languages if lang not in self.languages
+        ]
+        new_genera = self.included_genera + [
+            genus for genus in another_sample.included_genera if genus not in self.included_genera
+        ]
+        return SamplingResult(new_languages, new_genera)
 
 class Sample:
     """
@@ -152,7 +149,7 @@ class GenusSample(Sample):
 
         # Calculate the target number of genera for each macroarea based on proportions
         target_distribution = {
-            macroarea: int(len(cs_result.included_genera) * (count / total_genera))
+            macroarea: round(len(cs_result.included_genera) * (count / total_genera))
             for macroarea, count in macroarea_distribution.items()
         }
 
@@ -182,7 +179,7 @@ class GenusSample(Sample):
 
         # Calculate the target number of genera for each macroarea based on proportions
         target_distribution = {
-            macroarea: int(sample_size * (count / total_genera))
+            macroarea: round(sample_size * (count / total_genera))
             for macroarea, count in macroarea_distribution.items()
         }
 
@@ -202,3 +199,5 @@ class GenusSample(Sample):
                     included_genera.append(genus)
 
         return SamplingResult(selected_languages, included_genera)
+    
+    
