@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import bibtexparser
+import json
 
 
 def cldfDataMerge(
@@ -105,4 +106,39 @@ def sourcesMerge(
 
     data["Sources' Languages"] = sources
     data.to_csv(path_to_result)
+    return 0
+
+
+def cldfFeatureExtract(path_to_dataframe: str, path_to_result: str) -> int:
+    """
+    Merges features' values with theirs description.
+
+    Arguments:
+        path_to_dataframe : str
+            The path to the .csv file with description of features and their values.
+        path_to_result : str
+            The path to the future json-file with features and their values.
+
+    Return:
+        int: 0 in case of successful execution
+
+    """
+
+    df = pd.read_csv(path_to_dataframe)
+
+    featureInfo = {}
+
+    for index, row in df.iterrows():
+        parameter_id = row["Parameter_ID"]
+        name = row["Name"]
+        number = row["Number"]
+
+        if parameter_id not in featureInfo:
+            featureInfo[parameter_id] = {}
+
+        featureInfo[parameter_id][float(number)] = name
+
+    with open(path_to_result, "w") as f:
+        json.dump(featureInfo, f, indent=4)
+
     return 0
