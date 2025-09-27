@@ -8,9 +8,16 @@ app = Flask(__name__)
 def main():
     return render_template("main.html")
 
-@app.route("/resources")
+
+@app.route("/manual")
 def manual():
-    return render_template("resources.html")
+    return render_template("manual.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
