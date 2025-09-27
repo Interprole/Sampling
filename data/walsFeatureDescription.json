@@ -1,0 +1,1529 @@
+{
+    "1A_Consonant Inventories": {
+        "1.0": "Small",
+        "2.0": "Moderately small",
+        "3.0": "Average",
+        "4.0": "Moderately large",
+        "5.0": "Large"
+    },
+    "2A_Vowel Quality Inventories": {
+        "1.0": "Small (2-4)",
+        "2.0": "Average (5-6)",
+        "3.0": "Large (7-14)"
+    },
+    "3A_Consonant-Vowel Ratio": {
+        "1.0": "Low",
+        "2.0": "Moderately low",
+        "3.0": "Average",
+        "4.0": "Moderately high",
+        "5.0": "High"
+    },
+    "4A_Voicing in Plosives and Fricatives": {
+        "1.0": "No voicing contrast",
+        "2.0": "In plosives alone",
+        "3.0": "In fricatives alone",
+        "4.0": "In both plosives and fricatives"
+    },
+    "5A_Voicing and Gaps in Plosive Systems": {
+        "1.0": "Other",
+        "2.0": "None missing in /p t k b d g/",
+        "3.0": "Missing /p/",
+        "4.0": "Missing /g/",
+        "5.0": "Both missing"
+    },
+    "6A_Uvular Consonants": {
+        "1.0": NaN,
+        "2.0": "Uvular stops only",
+        "3.0": "Uvular continuants only",
+        "4.0": "Uvular stops and continuants"
+    },
+    "7A_Glottalized Consonants": {
+        "1.0": "No glottalized consonants",
+        "2.0": "Ejectives only",
+        "3.0": "Implosives only",
+        "4.0": "Glottalized resonants only",
+        "5.0": "Ejectives and implosives",
+        "6.0": "Ejectives and glottalized resonants",
+        "7.0": "Implosives and glottalized resonants",
+        "8.0": "Ejectives, implosives, and glottalized resonants"
+    },
+    "8A_Lateral Consonants": {
+        "1.0": "No laterals",
+        "2.0": "/l/, no obstruent laterals",
+        "3.0": "Laterals, but no /l/, no obstruent laterals",
+        "4.0": "/l/ and lateral obstruent",
+        "5.0": "No /l/, but lateral obstruents"
+    },
+    "9A_The Velar Nasal": {
+        "1.0": "Initial velar nasal",
+        "2.0": "No initial velar nasal",
+        "3.0": "No velar nasal"
+    },
+    "10A_Vowel Nasalization": {
+        "1.0": "Contrast present",
+        "2.0": "Contrast absent"
+    },
+    "10B_Nasal Vowels in West Africa": {
+        "1.0": "no nasal vs. oral vowel contrast",
+        "2.0": "two-way nasal vs. oral vowel contrast (/\u1e7d/ vs. /V/) without nasal spreading",
+        "3.0": "two-way nasal vs. oral vowel contrast (/\u1e7d/ vs. /V/) with nasal spreading",
+        "4.0": "four-way nasal vs. oral vowel contrast (/\u1e7d/ vs. /\u1e7d\u02d0/ vs. /V/ vs. /V\u02d0/) without nasal spreading",
+        "5.0": "four-way nasal vs. oral vowel contrast (/\u1e7d/ vs. /\u1e7d\u02d0/ vs. /V/ v /V\u02d0/) with nasal spreading"
+    },
+    "11A_Front Rounded Vowels": {
+        "1.0": NaN,
+        "2.0": "High and mid",
+        "3.0": "High only",
+        "4.0": "Mid only"
+    },
+    "12A_Syllable Structure": {
+        "1.0": "Simple",
+        "2.0": "Moderately complex",
+        "3.0": "Complex"
+    },
+    "13A_Tone": {
+        "1.0": "No tones",
+        "2.0": "Simple tone system",
+        "3.0": "Complex tone system"
+    },
+    "14A_Fixed Stress Locations": {
+        "1.0": "No fixed stress",
+        "2.0": "Initial",
+        "3.0": "Second",
+        "4.0": "Third",
+        "5.0": "Antepenultimate",
+        "6.0": "Penultimate",
+        "7.0": "Ultimate"
+    },
+    "15A_Weight-Sensitive Stress": {
+        "1.0": "Left-edge: First or second",
+        "2.0": "Left-oriented: One of the first three",
+        "3.0": "Right-edge: Ultimate or penultimate",
+        "4.0": "Right-oriented: One of the last three",
+        "5.0": "Unbounded: Stress can be anywhere",
+        "6.0": "Combined: Right-edge and unbounded",
+        "7.0": "Not predictable",
+        "8.0": "Fixed stress (no weight-sensitivity)"
+    },
+    "16A_Weight Factors in Weight-Sensitive Stress Systems": {
+        "1.0": "No weight",
+        "2.0": "Long vowel",
+        "3.0": "Coda consonant",
+        "4.0": "Long vowel or coda consonant",
+        "5.0": "Prominence",
+        "6.0": "Lexical stress",
+        "7.0": "Combined"
+    },
+    "17A_Rhythm Types": {
+        "1.0": "Trochaic",
+        "2.0": "Iambic",
+        "3.0": "Dual: both trochaic and iambic",
+        "4.0": "Undetermined",
+        "5.0": "No rhythmic stress"
+    },
+    "18A_Absence of Common Consonants": {
+        "1.0": "All present",
+        "2.0": "No bilabials",
+        "3.0": "No fricatives",
+        "4.0": "No nasals",
+        "5.0": "No bilabials or nasals",
+        "6.0": "No fricatives or nasals"
+    },
+    "19A_Presence of Uncommon Consonants": {
+        "1.0": NaN,
+        "2.0": "Clicks",
+        "3.0": "Labial-velars",
+        "4.0": "Pharyngeals",
+        "5.0": "'Th' sounds",
+        "6.0": "Clicks, pharyngeals, and 'th'",
+        "7.0": "Pharyngeals and \"th\""
+    },
+    "20A_Fusion of Selected Inflectional Formatives": {
+        "1.0": "Exclusively concatenative",
+        "2.0": "Exclusively isolating",
+        "3.0": "Exclusively tonal",
+        "4.0": "Tonal/isolating",
+        "5.0": "Tonal/concatenative",
+        "6.0": "Ablaut/concatenative",
+        "7.0": "Isolating/concatenative"
+    },
+    "21A_Exponence of Selected Inflectional Formatives": {
+        "1.0": "Monoexponential case",
+        "2.0": "Case + number",
+        "3.0": "Case + referentiality",
+        "4.0": "Case + TAM",
+        "5.0": "No case"
+    },
+    "21B_Exponence of Tense-Aspect-Mood Inflection": {
+        "1.0": "monoexponential TAM",
+        "2.0": "TAM+agreement",
+        "3.0": "TAM+agreement+diathesis",
+        "4.0": "TAM+agreement+construct",
+        "5.0": "TAM+polarity",
+        "6.0": "no TAM"
+    },
+    "22A_Inflectional Synthesis of the Verb": {
+        "1.0": "0-1 category per word",
+        "2.0": "2-3 categories per word",
+        "3.0": "4-5 categories per word",
+        "4.0": "6-7 categories per word",
+        "5.0": "8-9 categories per word",
+        "6.0": "10-11 categories per word",
+        "7.0": "12-13 categories per word"
+    },
+    "23A_Locus of Marking in the Clause": {
+        "1.0": "Head marking",
+        "2.0": "Dependent marking",
+        "3.0": "Double marking",
+        "4.0": "No marking",
+        "5.0": "Other"
+    },
+    "24A_Locus of Marking in Possessive Noun Phrases": {
+        "1.0": "Head marking",
+        "2.0": "Dependent marking",
+        "3.0": "Double marking",
+        "4.0": "No marking",
+        "5.0": "Other"
+    },
+    "25A_Locus of Marking: Whole-language Typology": {
+        "1.0": "Head-marking",
+        "2.0": "Dependent-marking",
+        "3.0": "Double-marking",
+        "4.0": "Zero-marking",
+        "5.0": "Inconsistent or other"
+    },
+    "25B_Zero Marking of A and P Arguments": {
+        "1.0": "Zero-marking",
+        "2.0": "Non-zero marking"
+    },
+    "26A_Prefixing vs. Suffixing in Inflectional Morphology": {
+        "1.0": "Little affixation",
+        "2.0": "Strongly suffixing",
+        "3.0": "Weakly suffixing",
+        "4.0": "Equal prefixing and suffixing",
+        "5.0": "Weakly prefixing",
+        "6.0": "Strong prefixing"
+    },
+    "27A_Reduplication": {
+        "1.0": "Productive full and partial reduplication",
+        "2.0": "Full reduplication only",
+        "3.0": "No productive reduplication"
+    },
+    "28A_Case Syncretism": {
+        "1.0": "No case marking",
+        "2.0": "Core cases only",
+        "3.0": "Core and non-core",
+        "4.0": "No syncretism"
+    },
+    "29A_Syncretism in Verbal Person/Number Marking": {
+        "1.0": "No subject person/number marking",
+        "2.0": "Syncretic",
+        "3.0": "Not syncretic"
+    },
+    "30A_Number of Genders": {
+        "1.0": NaN,
+        "2.0": "Two",
+        "3.0": "Three",
+        "4.0": "Four",
+        "5.0": "Five or more"
+    },
+    "31A_Sex-based and Non-sex-based Gender Systems": {
+        "1.0": "No gender",
+        "2.0": "Sex-based",
+        "3.0": "Non-sex-based"
+    },
+    "32A_Systems of Gender Assignment": {
+        "1.0": "No gender",
+        "2.0": "Semantic",
+        "3.0": "Semantic and formal"
+    },
+    "33A_Coding of Nominal Plurality": {
+        "1.0": "Plural prefix",
+        "2.0": "Plural suffix",
+        "3.0": "Plural stem change",
+        "4.0": "Plural tone",
+        "5.0": "Plural complete reduplication",
+        "6.0": "Mixed morphological plural",
+        "7.0": "Plural word",
+        "8.0": "Plural clitic",
+        "9.0": "No plural"
+    },
+    "34A_Occurrence of Nominal Plurality": {
+        "1.0": "No nominal plural",
+        "2.0": "Only human nouns, optional",
+        "3.0": "Only human nouns, obligatory",
+        "4.0": "All nouns, always optional",
+        "5.0": "All nouns, optional in inanimates",
+        "6.0": "All nouns, always obligatory"
+    },
+    "35A_Plurality in Independent Personal Pronouns": {
+        "1.0": "No independent subject pronouns",
+        "2.0": "Number-indifferent pronouns",
+        "3.0": "Person-number affixes",
+        "4.0": "Person-number stem",
+        "5.0": "Person-number stem + pronominal plural affix",
+        "6.0": "Person-number stem + nominal plural affix",
+        "7.0": "Person stem + pronominal plural affix",
+        "8.0": "Person stem + nominal plural affix"
+    },
+    "36A_The Associative Plural": {
+        "1.0": "Associative same as additive plural",
+        "2.0": "Unique affixal associative plural",
+        "3.0": "Unique periphrastic associative plural",
+        "4.0": "No associative plural"
+    },
+    "37A_Definite Articles": {
+        "1.0": "Definite word distinct from demonstrative",
+        "2.0": "Demonstrative word used as definite article",
+        "3.0": "Definite affix",
+        "4.0": "No definite, but indefinite article",
+        "5.0": "No definite or indefinite article"
+    },
+    "38A_Indefinite Articles": {
+        "1.0": "Indefinite word distinct from 'one'",
+        "2.0": "Indefinite word same as 'one'",
+        "3.0": "Indefinite affix",
+        "4.0": "No indefinite, but definite article",
+        "5.0": "No definite or indefinite article"
+    },
+    "39A_Inclusive/Exclusive Distinction in Independent Pronouns": {
+        "1.0": "No 'we'",
+        "2.0": "'We' the same as 'I'",
+        "3.0": "No inclusive/exclusive",
+        "4.0": "Only inclusive",
+        "5.0": "Inclusive/exclusive"
+    },
+    "39B_Inclusive/Exclusive Forms in Pama-Nyungan": {
+        "1.0": "No inclusive/exclusive opposition",
+        "2.0": "Inclusive and exclusive differentiated"
+    },
+    "40A_Inclusive/Exclusive Distinction in Verbal Inflection": {
+        "1.0": "No person marking",
+        "2.0": "'We' the same as 'I'",
+        "3.0": "No inclusive/exclusive",
+        "4.0": "Only inclusive",
+        "5.0": "Inclusive/exclusive"
+    },
+    "41A_Distance Contrasts in Demonstratives": {
+        "1.0": "No distance contrast",
+        "2.0": "Two-way contrast",
+        "3.0": "Three-way contrast",
+        "4.0": "Four-way contrast",
+        "5.0": "Five (or more)-way contrast"
+    },
+    "42A_Pronominal and Adnominal Demonstratives": {
+        "1.0": "Identical",
+        "2.0": "Different stem",
+        "3.0": "Different inflection"
+    },
+    "43A_Third Person Pronouns and Demonstratives": {
+        "1.0": "Unrelated",
+        "2.0": "Related for all demonstratives",
+        "3.0": "Related to remote demonstratives",
+        "4.0": "Related to non-remote demonstratives",
+        "5.0": "Related by gender markers",
+        "6.0": "Related for non-human reference"
+    },
+    "44A_Gender Distinctions in Independent Personal Pronouns": {
+        "1.0": "In 3rd person + 1st and/or 2nd person",
+        "2.0": "3rd person only, but also non-singular",
+        "3.0": "3rd person singular only",
+        "4.0": "1st or 2nd person but not 3rd",
+        "5.0": "3rd person non-singular only",
+        "6.0": "No gender distinctions"
+    },
+    "45A_Politeness Distinctions in Pronouns": {
+        "1.0": "No politeness distinction",
+        "2.0": "Binary politeness distinction",
+        "3.0": "Multiple politeness distinctions",
+        "4.0": "Pronouns avoided for politeness"
+    },
+    "46A_Indefinite Pronouns": {
+        "1.0": "Interrogative-based",
+        "2.0": "Generic-noun-based",
+        "3.0": "Special",
+        "4.0": "Mixed",
+        "5.0": "Existential construction"
+    },
+    "47A_Intensifiers and Reflexive Pronouns": {
+        "1.0": "Identical",
+        "2.0": "Differentiated"
+    },
+    "48A_Person Marking on Adpositions": {
+        "1.0": "No adpositions",
+        "2.0": "No person marking",
+        "3.0": "Pronouns only",
+        "4.0": "Pronouns and nouns"
+    },
+    "49A_Number of Cases": {
+        "1.0": "No morphological case-marking",
+        "2.0": "2 cases",
+        "3.0": "3 cases",
+        "4.0": "4 cases",
+        "5.0": "5 cases",
+        "6.0": "6-7 cases",
+        "7.0": "8-9 cases",
+        "8.0": "10 or more cases",
+        "9.0": "Exclusively borderline case-marking"
+    },
+    "50A_Asymmetrical Case-Marking": {
+        "1.0": "No case-marking",
+        "2.0": "Symmetrical",
+        "3.0": "Additive-quantitatively asymmetrical",
+        "4.0": "Subtractive-quantitatively asymmetrical",
+        "5.0": "Qualitatively asymmetrical",
+        "6.0": "Syncretism in relevant NP-types"
+    },
+    "51A_Position of Case Affixes": {
+        "1.0": "Case suffixes",
+        "2.0": "Case prefixes",
+        "3.0": "Case tone",
+        "4.0": "Case stem change",
+        "5.0": "Mixed morphological case",
+        "6.0": "Postpositional clitics",
+        "7.0": "Prepositional clitics",
+        "8.0": "Inpositional clitics",
+        "9.0": "No case affixes or adpositional clitics"
+    },
+    "52A_Comitatives and Instrumentals": {
+        "1.0": "Identity",
+        "2.0": "Differentiation",
+        "3.0": "Mixed"
+    },
+    "53A_Ordinal Numerals": {
+        "1.0": NaN,
+        "2.0": "One, two, three",
+        "3.0": "First, two, three",
+        "4.0": "One-th, two-th, three-th",
+        "5.0": "First/one-th, two-th, three-th",
+        "6.0": "First, two-th, three-th",
+        "7.0": "First, second, three-th",
+        "8.0": "Various"
+    },
+    "54A_Distributive Numerals": {
+        "1.0": "No distributive numerals",
+        "2.0": "Marked by reduplication",
+        "3.0": "Marked by prefix",
+        "4.0": "Marked by suffix",
+        "5.0": "Marked by preceding word",
+        "6.0": "Marked by following word",
+        "7.0": "Marked by mixed or other strategies"
+    },
+    "55A_Numeral Classifiers": {
+        "1.0": "Absent",
+        "2.0": "Optional",
+        "3.0": "Obligatory"
+    },
+    "56A_Conjunctions and Universal Quantifiers": {
+        "1.0": "Formally different",
+        "2.0": "Formally similar, without interrogative",
+        "3.0": "Formally similar, with interrogative"
+    },
+    "57A_Position of Pronominal Possessive Affixes": {
+        "1.0": "Possessive prefixes",
+        "2.0": "Possessive suffixes",
+        "3.0": "Prefixes and suffixes",
+        "4.0": "No possessive affixes"
+    },
+    "58A_Obligatory Possessive Inflection": {
+        "1.0": "Exists",
+        "2.0": "Absent"
+    },
+    "58B_Number of Possessive Nouns": {
+        "1.0": "None reported",
+        "2.0": "One",
+        "3.0": "Two to four",
+        "4.0": "Five or more"
+    },
+    "59A_Possessive Classification": {
+        "1.0": "No possessive classification",
+        "2.0": "Two classes",
+        "3.0": "Three to five classes",
+        "4.0": "More than five classes"
+    },
+    "60A_Genitives, Adjectives and Relative Clauses": {
+        "1.0": "Weakly differentiated",
+        "2.0": "Genitives and adjectives collapsed",
+        "3.0": "Genitives and relative clauses collapsed",
+        "4.0": "Adjectives and relative clauses collapsed",
+        "5.0": "Moderately differentiated in other ways",
+        "6.0": "Highly differentiated"
+    },
+    "61A_Adjectives without Nouns": {
+        "1.0": "Not without noun",
+        "2.0": "Without marking",
+        "3.0": "Marked by prefix",
+        "4.0": "Marked by suffix",
+        "5.0": "Marked by preceding word",
+        "6.0": "Marked by following word",
+        "7.0": "Marked by mixed or other strategies"
+    },
+    "62A_Action Nominal Constructions": {
+        "1.0": "Sentential",
+        "2.0": "Possessive-Accusative",
+        "3.0": "Ergative-Possessive",
+        "4.0": "Double-Possessive",
+        "5.0": "Other",
+        "6.0": "Mixed",
+        "7.0": "Restricted",
+        "8.0": "No action nominals"
+    },
+    "63A_Noun Phrase Conjunction": {
+        "1.0": "'And' different from 'with'",
+        "2.0": "'And' identical to 'with'"
+    },
+    "64A_Nominal and Verbal Conjunction": {
+        "1.0": "Identity",
+        "2.0": "Differentiation",
+        "3.0": "Both expressed by juxtaposition"
+    },
+    "65A_Perfective/Imperfective Aspect": {
+        "1.0": "Grammatical marking",
+        "2.0": "No grammatical marking"
+    },
+    "66A_The Past Tense": {
+        "1.0": "Present, no remoteness distinctions",
+        "2.0": "Present, 2-3 remoteness distinctions",
+        "3.0": "Present, 4 or more remoteness distinctions",
+        "4.0": "No past tense"
+    },
+    "67A_The Future Tense": {
+        "1.0": "Inflectional future exists",
+        "2.0": "No inflectional future"
+    },
+    "68A_The Perfect": {
+        "1.0": "From possessive",
+        "2.0": "From 'finish', 'already'",
+        "3.0": "Other perfect",
+        "4.0": "No perfect"
+    },
+    "69A_Position of Tense-Aspect Affixes": {
+        "1.0": "Tense-aspect prefixes",
+        "2.0": "Tense-aspect suffixes",
+        "3.0": "Tense-aspect tone",
+        "4.0": "Mixed type",
+        "5.0": "No tense-aspect inflection"
+    },
+    "70A_The Morphological Imperative": {
+        "1.0": "Second singular and second plural",
+        "2.0": "Second singular",
+        "3.0": "Second plural",
+        "4.0": "Second person number-neutral",
+        "5.0": "No second-person imperatives"
+    },
+    "71A_The Prohibitive": {
+        "1.0": "Normal imperative + normal negative",
+        "2.0": "Normal imperative + special negative",
+        "3.0": "Special imperative + normal negative",
+        "4.0": "Special imperative + special negative"
+    },
+    "72A_Imperative-Hortative Systems": {
+        "1.0": "Maximal system",
+        "2.0": "Minimal system",
+        "3.0": "Both types of system",
+        "4.0": "Neither type of system"
+    },
+    "73A_The Optative": {
+        "1.0": "Inflectional optative present",
+        "2.0": "Inflectional optative absent"
+    },
+    "74A_Situational Possibility": {
+        "1.0": "Affixes on verbs",
+        "2.0": "Verbal constructions",
+        "3.0": "Other kinds of markers"
+    },
+    "75A_Epistemic Possibility": {
+        "1.0": "Verbal constructions",
+        "2.0": "Affixes on verbs",
+        "3.0": "Other"
+    },
+    "76A_Overlap between Situational and Epistemic Modal Marking": {
+        "1.0": "Overlap for both possibility and necessity",
+        "2.0": "Overlap for either possibility or necessity",
+        "3.0": "No overlap"
+    },
+    "77A_Semantic Distinctions of Evidentiality": {
+        "1.0": "No grammatical evidentials",
+        "2.0": "Indirect only",
+        "3.0": "Direct and indirect"
+    },
+    "78A_Coding of Evidentiality": {
+        "1.0": "No grammatical evidentials",
+        "2.0": "Verbal affix or clitic",
+        "3.0": "Part of the tense system",
+        "4.0": "Separate particle",
+        "5.0": "Modal morpheme",
+        "6.0": "Mixed"
+    },
+    "79A_Suppletion According to Tense and Aspect": {
+        "1.0": "Tense",
+        "2.0": "Aspect",
+        "3.0": "Tense and aspect",
+        "4.0": NaN
+    },
+    "79B_Suppletion in Imperatives and Hortatives": {
+        "1.0": "A regular and a suppletive form alternate",
+        "2.0": "Imperative",
+        "3.0": "Hortative",
+        "4.0": "Imperative and Hortative",
+        "5.0": "None (= no suppletive imperatives reported in the reference material)"
+    },
+    "80A_Verbal Number and Suppletion": {
+        "1.0": NaN,
+        "2.0": "Singular-plural pairs, no suppletion",
+        "3.0": "Singular-plural pairs, suppletion",
+        "4.0": "Singular-dual-plural triples, no suppletion",
+        "5.0": "Singular-dual-plural triples, suppletion"
+    },
+    "81A_Order of Subject, Object and Verb": {
+        "1.0": "SOV",
+        "2.0": "SVO",
+        "3.0": "VSO",
+        "4.0": "VOS",
+        "5.0": "OVS",
+        "6.0": "OSV",
+        "7.0": "No dominant order"
+    },
+    "81B_Languages with two Dominant Orders of Subject, Object, and Verb": {
+        "1.0": "SOV or SVO",
+        "2.0": "VSO or VOS",
+        "3.0": "SVO or VSO",
+        "4.0": "SVO or VOS",
+        "5.0": "SOV or OVS"
+    },
+    "82A_Order of Subject and Verb": {
+        "1.0": "SV",
+        "2.0": "VS",
+        "3.0": "No dominant order"
+    },
+    "83A_Order of Object and Verb": {
+        "1.0": "OV",
+        "2.0": "VO",
+        "3.0": "No dominant order"
+    },
+    "84A_Order of Object, Oblique, and Verb": {
+        "1.0": "VOX",
+        "2.0": "XVO",
+        "3.0": "XOV",
+        "4.0": "OXV",
+        "5.0": "OVX",
+        "6.0": "No dominant order"
+    },
+    "85A_Order of Adposition and Noun Phrase": {
+        "1.0": "Postpositions",
+        "2.0": "Prepositions",
+        "3.0": "Inpositions",
+        "4.0": "No dominant order",
+        "5.0": "No adpositions"
+    },
+    "86A_Order of Genitive and Noun": {
+        "1.0": "Genitive-Noun",
+        "2.0": "Noun-Genitive",
+        "3.0": "No dominant order"
+    },
+    "87A_Order of Adjective and Noun": {
+        "1.0": "Adjective-Noun",
+        "2.0": "Noun-Adjective",
+        "3.0": "No dominant order",
+        "4.0": "Only internally-headed relative clauses"
+    },
+    "88A_Order of Demonstrative and Noun": {
+        "1.0": "Demonstrative-Noun",
+        "2.0": "Noun-Demonstrative",
+        "3.0": "Demonstrative prefix",
+        "4.0": "Demonstrative suffix",
+        "5.0": "Demonstrative before and after Noun",
+        "6.0": "Mixed"
+    },
+    "89A_Order of Numeral and Noun": {
+        "1.0": "Numeral-Noun",
+        "2.0": "Noun-Numeral",
+        "3.0": "No dominant order",
+        "4.0": "Numeral only modifies verb"
+    },
+    "90A_Order of Relative Clause and Noun": {
+        "1.0": "Noun-Relative clause",
+        "2.0": "Relative clause-Noun",
+        "3.0": "Internally headed",
+        "4.0": "Correlative",
+        "5.0": "Adjoined",
+        "6.0": "Doubly headed",
+        "7.0": "Mixed"
+    },
+    "90B_Prenominal relative clauses": {
+        "1.0": "Relative clause-Noun (RelN) dominant",
+        "2.0": "RelN or NRel",
+        "3.0": "RelN or internally-headed",
+        "4.0": "RelN or correlative",
+        "5.0": "RelN or double-headed"
+    },
+    "90C_Postnominal relative clauses": {
+        "1.0": "Noun-Relative clause (NRel) dominant",
+        "2.0": "NRel or RelN",
+        "3.0": "NRel or internally-headed",
+        "4.0": "NRel or correlative"
+    },
+    "90D_Internally-headed relative clauses": {
+        "1.0": "Internally-headed relative clause dominant",
+        "2.0": "Internally-headed or RelN",
+        "3.0": "Internally-headed or NRel",
+        "4.0": "Internally-headed or correlative",
+        "5.0": "Internally-headed or double-headed",
+        "6.0": "Internally-headed occurs as nondominant type",
+        "7.0": "Internally-headed exists"
+    },
+    "90E_Correlative relative clauses": {
+        "1.0": "Correlative relative clause dominant",
+        "2.0": "Correlative or RelN",
+        "3.0": "Correlative or NRel",
+        "4.0": "Correlative or internally-headed",
+        "5.0": "Correlative or adjoined",
+        "6.0": "Correlative as nondominant type",
+        "7.0": "Correlative exists"
+    },
+    "90F_Adjoined relative clauses": {
+        "1.0": "Adjoined relative clause dominant",
+        "2.0": "Adjoined or correlative"
+    },
+    "90G_Double-headed relative clauses": {
+        "1.0": "Double-headed dominant",
+        "2.0": "Double-headed or RelN",
+        "3.0": "Double-headed or internally-headed",
+        "4.0": "Double-headed as nondominant type"
+    },
+    "91A_Order of Degree Word and Adjective": {
+        "1.0": "Degree word-Adjective",
+        "2.0": "Adjective-Degree word",
+        "3.0": "No dominant order"
+    },
+    "92A_Position of Polar Question Particles": {
+        "1.0": "Initial",
+        "2.0": "Final",
+        "3.0": "Second position",
+        "4.0": "Other position",
+        "5.0": "In either of two positions",
+        "6.0": "No question particle"
+    },
+    "93A_Position of Interrogative Phrases in Content Questions": {
+        "1.0": "Initial interrogative phrase",
+        "2.0": "Not initial interrogative phrase",
+        "3.0": "Mixed"
+    },
+    "94A_Order of Adverbial Subordinator and Clause": {
+        "1.0": "Initial subordinator word",
+        "2.0": "Final subordinator word",
+        "3.0": "Internal subordinator word",
+        "4.0": "Subordinating suffix",
+        "5.0": "Mixed"
+    },
+    "95A_Relationship between the Order of Object and Verb and the Order of Adposition and Noun Phrase": {
+        "1.0": "OV and Postpositions",
+        "2.0": "OV and Prepositions",
+        "3.0": "VO and Postpositions",
+        "4.0": "VO and Prepositions",
+        "5.0": "Other"
+    },
+    "96A_Relationship between the Order of Object and Verb and the Order of Relative Clause and Noun": {
+        "1.0": "OV and RelN",
+        "2.0": "OV and NRel",
+        "3.0": "VO and RelN",
+        "4.0": "VO and NRel",
+        "5.0": "Other"
+    },
+    "97A_Relationship between the Order of Object and Verb and the Order of Adjective and Noun": {
+        "1.0": "OV and AdjN",
+        "2.0": "OV and NAdj",
+        "3.0": "VO and AdjN",
+        "4.0": "VO and NAdj",
+        "5.0": "Other"
+    },
+    "98A_Alignment of Case Marking of Full Noun Phrases": {
+        "1.0": "Neutral",
+        "2.0": "Nominative - accusative (standard)",
+        "3.0": "Nominative - accusative (marked nominative)",
+        "4.0": "Ergative - absolutive",
+        "5.0": "Tripartite",
+        "6.0": "Active-inactive"
+    },
+    "99A_Alignment of Case Marking of Pronouns": {
+        "1.0": "Neutral",
+        "2.0": "Nominative - accusative (standard)",
+        "3.0": "Nominative - accusative (marked nominative)",
+        "4.0": "Ergative - absolutive",
+        "5.0": "Tripartite",
+        "6.0": "Active - inactive",
+        "7.0": NaN
+    },
+    "100A_Alignment of Verbal Person Marking": {
+        "1.0": "Neutral",
+        "2.0": "Accusative",
+        "3.0": "Ergative",
+        "4.0": "Active",
+        "5.0": "Hierarchical",
+        "6.0": "Split"
+    },
+    "101A_Expression of Pronominal Subjects": {
+        "1.0": "Obligatory pronouns in subject position",
+        "2.0": "Subject affixes on verb",
+        "3.0": "Subject clitics on variable host",
+        "4.0": "Subject pronouns in different position",
+        "5.0": "Optional pronouns in subject position",
+        "6.0": "Mixed"
+    },
+    "102A_Verbal Person Marking": {
+        "1.0": "No person marking",
+        "2.0": "Only the A argument",
+        "3.0": "Only the P argument",
+        "4.0": "A or P argument",
+        "5.0": "Both the A and P arguments"
+    },
+    "103A_Third Person Zero of Verbal Person Marking": {
+        "1.0": "No person marking",
+        "2.0": "No zero realization",
+        "3.0": "Zero in some 3sg forms",
+        "4.0": "Zero in all 3sg forms",
+        "5.0": "Zero in all 3rd person forms",
+        "6.0": "Zero only in 3rd nonsingular"
+    },
+    "104A_Order of Person Markers on the Verb": {
+        "1.0": "A and P do not or do not both occur on the verb",
+        "2.0": "A precedes P",
+        "3.0": "P precedes A",
+        "4.0": "Both orders of A and P occur",
+        "5.0": "A and P are fused"
+    },
+    "105A_Ditransitive Constructions: The Verb 'Give'": {
+        "1.0": "Indirect-object construction",
+        "2.0": "Double-object construction",
+        "3.0": "Secondary-object construction",
+        "4.0": "Mixed"
+    },
+    "106A_Reciprocal Constructions": {
+        "1.0": "No reciprocals",
+        "2.0": "Distinct from reflexive",
+        "3.0": "Mixed",
+        "4.0": "Identical to reflexive"
+    },
+    "107A_Passive Constructions": {
+        "1.0": "Present",
+        "2.0": "Absent"
+    },
+    "108A_Antipassive Constructions": {
+        "1.0": "Implicit patient",
+        "2.0": "Oblique patient",
+        "3.0": "No antipassive"
+    },
+    "108B_Productivity of the Antipassive Construction": {
+        "1.0": "productive",
+        "2.0": "partially productive",
+        "3.0": "not productive",
+        "4.0": "no antipassive"
+    },
+    "109A_Applicative Constructions": {
+        "1.0": "Benefactive object; both bases",
+        "2.0": "Benefactive object; only transitive",
+        "3.0": "Benefactive and other; both bases",
+        "4.0": "Benefactive and other; only transitive",
+        "5.0": "Non-benefactive object; both bases",
+        "6.0": "Non-benefactive object; only transitive",
+        "7.0": "Non-benefactive object; only intransitive",
+        "8.0": "No applicative construction"
+    },
+    "109B_Other Roles of Applied Objects": {
+        "1.0": "Instrument",
+        "2.0": "Locative",
+        "3.0": "Instrument and locative",
+        "4.0": "No other roles (= Only benefactive)",
+        "5.0": "No applicative construction"
+    },
+    "110A_Periphrastic Causative Constructions": {
+        "1.0": "Sequential but no purposive",
+        "2.0": "Purposive but no sequential",
+        "3.0": "Both"
+    },
+    "111A_Nonperiphrastic Causative Constructions": {
+        "1.0": "Neither",
+        "2.0": "Morphological but no compound",
+        "3.0": "Compound but no morphological",
+        "4.0": "Both"
+    },
+    "112A_Negative Morphemes": {
+        "1.0": "Negative affix",
+        "2.0": "Negative particle",
+        "3.0": "Negative auxiliary verb",
+        "4.0": "Negative word, unclear if verb or particle",
+        "5.0": "Variation between negative word and affix",
+        "6.0": "Double negation"
+    },
+    "113A_Symmetric and Asymmetric Standard Negation": {
+        "1.0": "Symmetric",
+        "2.0": "Asymmetric",
+        "3.0": "Both"
+    },
+    "114A_Subtypes of Asymmetric Standard Negation": {
+        "1.0": "A/Fin",
+        "2.0": "A/NonReal",
+        "3.0": "A/Cat",
+        "4.0": "A/Fin and A/NonReal",
+        "5.0": "A/Fin and A/Cat",
+        "6.0": "A/NonReal and A/Cat",
+        "7.0": "Non-assignable"
+    },
+    "115A_Negative Indefinite Pronouns and Predicate Negation": {
+        "1.0": "Predicate negation also present",
+        "2.0": "No predicate negation",
+        "3.0": "Mixed behaviour",
+        "4.0": "Negative existential construction"
+    },
+    "116A_Polar Questions": {
+        "1.0": "Question particle",
+        "2.0": "Interrogative verb morphology",
+        "3.0": "Mixture of previous two types",
+        "4.0": "Interrogative word order",
+        "5.0": "Absence of declarative morphemes",
+        "6.0": "Interrogative intonation only",
+        "7.0": "No interrogative-declarative distinction"
+    },
+    "117A_Predicative Possession": {
+        "1.0": "Locational",
+        "2.0": "Genitive",
+        "3.0": "Topic",
+        "4.0": "Conjunctional",
+        "5.0": "'Have'"
+    },
+    "118A_Predicative Adjectives": {
+        "1.0": "Verbal encoding",
+        "2.0": "Nonverbal encoding",
+        "3.0": "Mixed"
+    },
+    "119A_Nominal and Locational Predication": {
+        "1.0": "Different",
+        "2.0": "Identical"
+    },
+    "120A_Zero Copula for Predicate Nominals": {
+        "1.0": "Impossible",
+        "2.0": "Possible"
+    },
+    "121A_Comparative Constructions": {
+        "1.0": "Locational",
+        "2.0": "Exceed",
+        "3.0": "Conjoined",
+        "4.0": "Particle"
+    },
+    "122A_Relativization on Subjects": {
+        "1.0": "Relative pronoun",
+        "2.0": "Non-reduction",
+        "3.0": "Pronoun-retention",
+        "4.0": "Gap"
+    },
+    "123A_Relativization on Obliques": {
+        "1.0": "Relative pronoun",
+        "2.0": "Non-reduction",
+        "3.0": "Pronoun-retention",
+        "4.0": "Gap",
+        "5.0": "Not possible"
+    },
+    "124A_'Want' Complement Subjects": {
+        "1.0": "Subject is left implicit",
+        "2.0": "Subject is expressed overtly",
+        "3.0": "Both construction types exist",
+        "4.0": "Desiderative verbal affix",
+        "5.0": "Desiderative particle"
+    },
+    "125A_Purpose Clauses": {
+        "1.0": "Balanced",
+        "2.0": "Balanced/deranked",
+        "3.0": "Deranked"
+    },
+    "126A_'When' Clauses": {
+        "1.0": "Balanced",
+        "2.0": "Balanced/deranked",
+        "3.0": "Deranked"
+    },
+    "127A_Reason Clauses": {
+        "1.0": "Balanced",
+        "2.0": "Balanced/deranked",
+        "3.0": "Deranked"
+    },
+    "128A_Utterance Complement Clauses": {
+        "1.0": "Balanced",
+        "2.0": "Balanced/deranked",
+        "3.0": "Deranked"
+    },
+    "129A_Hand and Arm": {
+        "1.0": "Identical",
+        "2.0": "Different"
+    },
+    "130A_Finger and Hand": {
+        "1.0": "Identical",
+        "2.0": "Different"
+    },
+    "130B_Cultural Categories of Languages with Identity of 'Finger' and 'Hand'": {
+        "1.0": "Hunter-gatherers",
+        "2.0": "Farmer-foragers",
+        "3.0": "Full-fledged farmers"
+    },
+    "131A_Numeral Bases": {
+        "1.0": "Decimal",
+        "2.0": "Hybrid vigesimal-decimal",
+        "3.0": "Pure vigesimal",
+        "4.0": "Other base",
+        "5.0": "Extended body-part system",
+        "6.0": "Restricted"
+    },
+    "132A_Number of Non-Derived Basic Colour Categories": {
+        "1.0": "3",
+        "2.0": "3.5",
+        "3.0": "4",
+        "4.0": "4.5",
+        "5.0": "5",
+        "6.0": "5.5",
+        "7.0": "6"
+    },
+    "133A_Number of Basic Colour Categories": {
+        "1.0": "3-4",
+        "2.0": "4.5-5.5",
+        "3.0": "6-6.5",
+        "4.0": "7-7.5",
+        "5.0": "8-8.5",
+        "6.0": "9-10",
+        "7.0": "11"
+    },
+    "134A_Green and Blue": {
+        "1.0": "Green vs. blue",
+        "2.0": "Green/blue",
+        "3.0": "Black/green/blue",
+        "4.0": "Black/blue vs. green",
+        "5.0": "Yellow/green/blue",
+        "6.0": "Yellow/green vs. blue",
+        "7.0": NaN
+    },
+    "135A_Red and Yellow": {
+        "1.0": "Red vs. yellow",
+        "2.0": "Red/yellow",
+        "3.0": "Yellow/green/blue vs. red",
+        "4.0": "Yellow/green vs. red",
+        "5.0": NaN
+    },
+    "136A_M-T Pronouns": {
+        "1.0": "No M-T pronouns",
+        "2.0": "M-T pronouns, paradigmatic",
+        "3.0": "M-T pronouns, non-paradigmatic"
+    },
+    "136B_M in First Person Singular": {
+        "1.0": "No m in first person singular",
+        "2.0": "m in first person singular"
+    },
+    "137A_N-M Pronouns": {
+        "1.0": "No N-M pronouns",
+        "2.0": "N-M pronouns, paradigmatic",
+        "3.0": "N-M pronouns, non-paradigmatic"
+    },
+    "137B_M in Second Person Singular": {
+        "1.0": "No m in second person singular",
+        "2.0": "m in second person singular"
+    },
+    "138A_Tea": {
+        "1.0": "Words derived from Sinitic cha",
+        "2.0": "Words derived from Min Nan Chinese te",
+        "3.0": "Others"
+    },
+    "139A_Irregular Negatives in Sign Languages": {
+        "1.0": NaN,
+        "2.0": "One",
+        "3.0": "Some (2-5)",
+        "4.0": "Many (more than 5)"
+    },
+    "140A_Question Particles in Sign Languages": {
+        "1.0": NaN,
+        "2.0": "One",
+        "3.0": "More than one"
+    },
+    "141A_Writing Systems": {
+        "1.0": "Alphabetic",
+        "2.0": "Consonantal",
+        "3.0": "Alphasyllabic",
+        "4.0": "Syllabic",
+        "5.0": "Logographic",
+        "6.0": "Mixed logographic\u2013syllabic"
+    },
+    "142A_Para-Linguistic Usages of Clicks": {
+        "1.0": "Logical meanings",
+        "2.0": "Affective meanings",
+        "3.0": "Other or none"
+    },
+    "143A_Order of Negative Morpheme and Verb": {
+        "1.0": "NegV",
+        "2.0": "VNeg",
+        "3.0": "[Neg-V]",
+        "4.0": "[V-Neg]",
+        "5.0": "Negative Tone",
+        "6.0": "Type 1 / Type 2",
+        "7.0": "Type 1 / Type 3",
+        "8.0": "Type 1 / Type 4",
+        "9.0": "Type 2 / Type 3",
+        "10.0": "Type 2 / Type 4",
+        "11.0": "Type 3 / Type 4",
+        "12.0": "Type 3 / Negative Infix",
+        "13.0": "OptSingleNeg",
+        "14.0": "ObligDoubleNeg",
+        "15.0": "OptDoubleNeg",
+        "16.0": "OptTripleNeg&ObligDoubleNeg",
+        "17.0": "OptTripleNeg&OptDoubleNeg"
+    },
+    "143B_Obligatory Double Negation": {
+        "1.0": "NegVNeg",
+        "2.0": "Neg[V-Neg]",
+        "3.0": "[Neg-V]Neg",
+        "4.0": "[Neg-V-Neg]",
+        "5.0": "Negative tone & VNeg",
+        "6.0": "Negative tone & [Neg-V]",
+        "7.0": "NegNegV",
+        "8.0": "Neg[Neg-V]",
+        "9.0": "VNegNeg",
+        "10.0": "Type 1 / Type 2",
+        "11.0": "Type 1 / Type 3",
+        "12.0": "Type 1 / Type 5",
+        "13.0": "Type 1 / Type 7",
+        "14.0": "Type 1 / Type 9",
+        "15.0": "Type 2 / Type 4",
+        "16.0": "ObligDoubleNeg&OptTripleNeg"
+    },
+    "143C_Optional Double Negation": {
+        "1.0": "NegV(Neg)",
+        "2.0": "(Neg)VNeg",
+        "3.0": "Neg[V(-Neg)]",
+        "4.0": "(Neg)[V-Neg]",
+        "5.0": "[Neg-V](Neg)",
+        "6.0": "[(Neg-)V]Neg",
+        "7.0": "[Neg-V(-Neg)]",
+        "8.0": "[(Neg-)V-Neg]",
+        "9.0": "V(Neg)Neg",
+        "10.0": "[V-Neg](Neg)",
+        "11.0": "Neg(Neg)V",
+        "12.0": "Neg[(Neg-)]V",
+        "13.0": "NegV&OptChangeVerbStem",
+        "14.0": "NegV/[Neg-V-Neg]",
+        "15.0": "VNeg/[Neg-V-Neg]",
+        "16.0": "[Neg-V]/NegVNeg",
+        "17.0": "NegV or NegativeTone&VNeg",
+        "18.0": "NegV/[V-Neg]/Neg[V-Neg]",
+        "19.0": "NegV/VNeg/NegVNeg",
+        "20.0": "NegV/[V-Neg]/[Neg-V-Neg]",
+        "21.0": "[Neg-V]/VNeg/[Neg-V-Neg]",
+        "22.0": "NegV/[Neg-V]/Neg[Neg-V]",
+        "23.0": "OptDoubleNeg&OptTripleNeg"
+    },
+    "143D_Optional Triple Negation": {
+        "1.0": "(Neg)[Neg-V-Neg]",
+        "2.0": "[V-Neg]Neg&OptNegInfix or Pref",
+        "3.0": "NegVNeg/NegNegVNeg",
+        "4.0": "Neg[V-Neg]/NegVNeg&NegTone",
+        "5.0": "Neg[V(-Neg)]Neg/[Neg-V(-Neg)]Neg",
+        "6.0": "Neg[V-(Neg)](Neg)"
+    },
+    "143E_Preverbal Negative Morphemes": {
+        "1.0": "NegV",
+        "2.0": "[Neg-V]",
+        "3.0": "NegV&[Neg-V]",
+        "4.0": NaN
+    },
+    "143F_Postverbal Negative Morphemes": {
+        "1.0": "VNeg",
+        "2.0": "[V-Neg]",
+        "3.0": "VNeg&[V-Neg]",
+        "4.0": NaN
+    },
+    "143G_Minor morphological means of signaling negation": {
+        "1.0": "NegTone",
+        "2.0": "NegInfix",
+        "3.0": "NegStemChange",
+        "4.0": NaN
+    },
+    "144A_Position of Negative Word With Respect to Subject, Object, and Verb": {
+        "1.0": "NegSVO",
+        "2.0": "SNegVO",
+        "3.0": "SVNegO",
+        "4.0": "SVONeg",
+        "5.0": "NegSOV",
+        "6.0": "SNegOV",
+        "7.0": "SONegV",
+        "8.0": "SOVNeg",
+        "9.0": "NegVSO",
+        "10.0": "VSNegO",
+        "11.0": "VSONeg",
+        "12.0": "NegVOS",
+        "13.0": "ONegVS",
+        "14.0": "OVNegS",
+        "15.0": "OSVNeg",
+        "16.0": "More than one position",
+        "17.0": "OptSingleNeg",
+        "18.0": "ObligDoubleNeg",
+        "19.0": "OptDoubleNeg",
+        "20.0": "MorphNeg",
+        "21.0": "Other"
+    },
+    "144B_Position of negative words relative to beginning and end of clause and with respect to adjacency to verb": {
+        "1.0": "Beginning, not immed preverbal",
+        "2.0": "Preverbal, not beginning or immed",
+        "3.0": "Immed preverbal",
+        "4.0": "Immed postverbal",
+        "5.0": "Postverbal, not immed or end",
+        "6.0": "End, not immed postverbal"
+    },
+    "144C_Languages with different word order in negative clauses": {
+        "1.0": "VSO, but NegSVO",
+        "2.0": "SVO, but SNegOV",
+        "3.0": "SVO, but SONegV",
+        "4.0": "SVO, but SOVNeg",
+        "5.0": "SVO, but NegVSO",
+        "6.0": "SVO but SO[V-Neg]",
+        "7.0": "SVO but SO[Neg-V]",
+        "8.0": "OSV but NegSVO/O[Neg-V]S",
+        "9.0": "SVO, but NegSNegOV",
+        "10.0": "SVO, but SONeg[V-Neg]/SO[Neg-V-Neg]",
+        "11.0": "SOV but  SONeg[V-Neg]/S[Neg-V-Neg] O",
+        "12.0": "SVO/VSO, but NegSVONeg",
+        "13.0": "SVO/VSO, but [Neg-V]SO(Neg)",
+        "14.0": "SVO/SOV, but SVONeg",
+        "15.0": "SVO/SOV, but SNegVO",
+        "16.0": "SVO/SOV, but SNegOV",
+        "17.0": "SVO/SOV, but SOVNeg"
+    },
+    "144D_The Position of Negative Morphemes in SVO Languages": {
+        "1.0": "NegSVO",
+        "2.0": "SNegVO",
+        "3.0": "SVNegO",
+        "4.0": "SVONeg",
+        "5.0": "S[Neg-V]O",
+        "6.0": "S[V-Neg]O",
+        "7.0": "SVO&Tone",
+        "8.0": "VSO but NegSVO",
+        "9.0": "SVO/SOV but SVONeg",
+        "10.0": "SOV/SOV but SNegVO",
+        "11.0": "Other NegV",
+        "12.0": "Other VNeg",
+        "13.0": "More than one construction",
+        "14.0": "ObligNeg",
+        "15.0": "OptNeg"
+    },
+    "144E_Multiple Negative Constructions in SVO Languages": {
+        "1.0": "SNegVO/SVNegO",
+        "2.0": "NegSVO/SNegVO",
+        "3.0": "NegSVO/SVNegO",
+        "4.0": "SNegVO/SVONeg",
+        "5.0": "SVNegO/SVONeg",
+        "6.0": "SVO & Flexible Neg",
+        "7.0": "SNegVO/S[V-Neg]O",
+        "8.0": "S[Neg-V]O/SVNegO",
+        "9.0": "NegSVO/SNegVO/S[V-Neg]O",
+        "10.0": "SNegVO/NegVSO",
+        "11.0": "SVONeg/VSONeg",
+        "12.0": "NegSVO/NegVOS",
+        "13.0": "SNegVO/NegVOS",
+        "14.0": "S[Neg-V]O/[Neg-V]OS",
+        "15.0": "SVONeg/SONegV",
+        "16.0": "SVNegO/SOVNeg",
+        "17.0": "SVONeg/SNegOV/SOVNeg",
+        "18.0": "NegSVO/SVNegO/NegSOV/SNegOV",
+        "19.0": "SNegVO/SONegV/SVONeg/SOVNeg",
+        "20.0": "S[Neg-V]O/SO[Neg-V]",
+        "21.0": "S[V-Neg]O/SO[V-Neg]",
+        "22.0": "SNegVO/SONegV/S[Neg-V]O/SO[Neg-V]",
+        "23.0": "NegSVO/O[Neg-V]S",
+        "24.0": "SVO & NegV/VNeg",
+        "25.0": "SVO & NegV/[V-Neg]",
+        "26.0": "SVO/VSO & NegV",
+        "27.0": "SVO/VOS & NegV",
+        "28.0": "SVO/SOV & NegV/VNeg"
+    },
+    "144F_Obligatory Double Negation in SVO languages": {
+        "1.0": "SNegVONeg",
+        "2.0": "SNegVNegO",
+        "3.0": "SVNegONeg",
+        "4.0": "SVO/VSO but NegSVONeg",
+        "5.0": "S[Neg-V]ONeg",
+        "6.0": "SNeg[V-Neg]O",
+        "7.0": "S[Neg-V]NegO",
+        "8.0": "NegS[V-Neg]O",
+        "9.0": "S[Neg-V-Neg]O",
+        "10.0": "SVNegO&NegTone",
+        "11.0": "S[Neg-V]O&NegTone",
+        "12.0": "SNegNegVO/SNegVNegO",
+        "13.0": "SNegVNegO/SNegVONeg",
+        "14.0": "SNegVONeg/S[Neg-V]ONeg",
+        "15.0": "(Neg)S(Neg)VONeg",
+        "16.0": "SNeg[V-Neg]O&NegTone/SNegVNegO",
+        "17.0": "S(Neg)[Neg-V-Neg]O",
+        "18.0": "SNeg[V(-Neg)]ONeg/S[Neg-V(-Neg)]ONeg",
+        "19.0": "SNegVONeg/SNegOVNeg",
+        "20.0": "SVONeg&NegTone/SNegOVNeg",
+        "21.0": "SNegVONeg/SVNegONeg/NegVOSNeg/VNegOSNeg",
+        "22.0": "SVO & NegVNeg",
+        "23.0": "S[Neg-V]O & NegV"
+    },
+    "144G_Optional Double Negation in SVO languages": {
+        "1.0": "SNegVO(Neg)",
+        "2.0": "S(Neg)VONeg",
+        "3.0": "S(Neg)VNegO",
+        "4.0": "SNegV(Neg)O",
+        "5.0": "(Neg)SVONeg",
+        "6.0": "SVNegO(Neg)",
+        "7.0": "NegS[V(-Neg)]O",
+        "8.0": "S[(Neg-)V]NegO",
+        "9.0": "S[Neg-V]O(Neg)",
+        "10.0": "SNegVO/SVNegO&NegTone",
+        "11.0": "S(Neg)[V(-Neg)]O",
+        "12.0": "S[Neg-V(-Neg)]O",
+        "13.0": "(Neg)SVONeg/S(Neg)VONeg",
+        "14.0": "S[Neg-V]O/NegSVNegO",
+        "15.0": "SNeg[V-Neg]O/S[Neg-V-Neg]O",
+        "16.0": "S[V(-Neg)]O & NegV",
+        "17.0": "SVO/SOV & (Neg)[V-Neg]",
+        "18.0": "SVO/VSO & NegV/VNeg/NegVNeg"
+    },
+    "144H_NegSVO Order": {
+        "1.0": "NoDoubleNeg",
+        "2.0": "OptDoubleNeg",
+        "3.0": "OnlyWithAnotherNeg",
+        "4.0": "No NegSVO"
+    },
+    "144I_SNegVO Order": {
+        "1.0": "Word&NoDoubleNeg",
+        "2.0": "Prefix&NoDoubleNeg",
+        "3.0": "Word&OptDoubleNeg",
+        "4.0": "Prefix&OptDoubleNeg",
+        "5.0": "Word&OnlyWithAnotherNeg",
+        "6.0": "Prefix&OnlyWithAnotherNeg",
+        "7.0": "Type 1 / Type 2",
+        "8.0": "No SNegVO"
+    },
+    "144J_SVNegO Order": {
+        "1.0": "Word&NoDoubleNeg",
+        "2.0": "Suffix&NoDoubleNeg",
+        "3.0": "Word&OptDoubleNeg",
+        "4.0": "Suffix&OptDoubleNeg",
+        "5.0": "Word&OnlyWithAnotherNeg",
+        "6.0": "Suffix&OnlyWithAnotherNeg",
+        "7.0": "No SVNegO"
+    },
+    "144K_SVONeg Order": {
+        "1.0": "NoDoubleNeg",
+        "2.0": "OptDoubleNeg",
+        "3.0": "OnlyWithAnotherNeg",
+        "4.0": "No SVONeg"
+    },
+    "144L_The Position of Negative Morphemes in SOV Languages": {
+        "1.0": "NegSOV",
+        "2.0": "SNegOV",
+        "3.0": "SONegV",
+        "4.0": "SOVNeg",
+        "5.0": "SO[Neg-V]",
+        "6.0": "SO[V-Neg]",
+        "7.0": "SVO but SNegOV",
+        "8.0": "SVO but SONegV",
+        "9.0": "SVO but SOVNeg",
+        "10.0": "SVO but SO[V-Neg]",
+        "11.0": "SVO but SO[Neg-V]",
+        "12.0": "SVO/SOV but SNegOV",
+        "13.0": "SVO/SOV but SOVNeg",
+        "14.0": "Other NegV",
+        "15.0": "More than one construction",
+        "16.0": "ObligDoubleNeg",
+        "17.0": "OptDoubleNeg",
+        "18.0": "SV&OV&NegV",
+        "19.0": "SV&OV&VNeg",
+        "20.0": "SV&OV&[Neg-V]",
+        "21.0": "SV&OV&[V-Neg]",
+        "22.0": "SV&OV&ImmedPreverbal",
+        "23.0": "SV&OV&InitialNeg"
+    },
+    "144M_Multiple Negative Constructions in SOV Languages": {
+        "1.0": "SONegV/SOVNeg",
+        "2.0": "SNegOV/SONegV",
+        "3.0": "NegSOV/SNegOV/SONegV",
+        "4.0": "NegSOV/2ndPos",
+        "5.0": "SOVNeg/SO[V-Neg]",
+        "6.0": "SO[Neg-V]/SO[V-Neg]",
+        "7.0": "SO[Neg-V]/SOVwithNegInfix",
+        "8.0": "SNegOV/SONegV/SO[V-Neg]",
+        "9.0": "SONegV/SVONeg",
+        "10.0": "SOVNeg/SVNegO",
+        "11.0": "SNegOV/SOVNeg/SVONeg",
+        "12.0": "NegSOV/SNegOV/NegSVO/SVNegO",
+        "13.0": "SONegV/SOVNeg/SNegVO/SVONeg",
+        "14.0": "SO[Neg-V]/S[Neg-V]O",
+        "15.0": "SO[V-Neg]/S[V-Neg]O/",
+        "16.0": "SONegV/SO[Neg-V]/SNegVO/S[Neg-V]O",
+        "17.0": "NegSOV/NegOVS",
+        "18.0": "SOVNeg/OVNegS",
+        "19.0": "SO[V-Neg]/O[V-Neg]S",
+        "20.0": "SOV & NegV/VNeg (a)",
+        "21.0": "SOV & NegV/[Neg-V]",
+        "22.0": "SOV & NegV/[V-Neg]",
+        "23.0": "SOV & NegV/VNeg (b)",
+        "24.0": "SV & OV & NegV/VNeg",
+        "25.0": "SV & OV & NegV/[V-Neg]",
+        "26.0": "SV & OV & [Neg-V]/[V-Neg]",
+        "27.0": "SV & OV & VNeg/[V-Neg]"
+    },
+    "144N_Obligatory Double Negation in SOV languages": {
+        "1.0": "SONegVNeg",
+        "2.0": "SVO but NegSNegOV",
+        "3.0": "NegSO[V-Neg]",
+        "4.0": "SONeg[V-Neg]",
+        "5.0": "SO[Neg-V]Neg",
+        "6.0": "SO[Neg-V-Neg]",
+        "7.0": "SO[Neg-V] with negative tone on verb  SO[Neg-V]&NegTone",
+        "8.0": "SONegVNeg/SONeg[V-Neg]",
+        "9.0": "SVO but SONeg[V-Neg]/SO[Neg-V-Neg]",
+        "10.0": "SNegO[V-Neg]/SONeg[V-Neg]",
+        "11.0": "SO[V-Neg]Neg & OptNegPref/Infix",
+        "12.0": "SNegOVNeg/SNegVONeg",
+        "13.0": "SNegOVNeg/SVONeg&NegTone",
+        "14.0": "SOV & NegVNeg",
+        "15.0": "SOV & Neg[V-Neg]",
+        "16.0": "SOV & Neg[Neg-V]",
+        "17.0": "SV & OV & Neg[V-Neg]",
+        "18.0": "SV & OV & [Neg-V-Neg]"
+    },
+    "144O_Optional Double Negation in SOV languages": {
+        "1.0": "NegSOV(Neg)",
+        "2.0": "S(Neg)OVNeg",
+        "3.0": "SNegOV(Neg)",
+        "4.0": "SNegO[V(-Neg)]",
+        "5.0": "SO[(Neg-)V]Neg",
+        "6.0": "SO[Neg-V(-Neg)]",
+        "7.0": "SO[(Neg-)V-Neg]",
+        "8.0": "SO[V-Neg](Neg)",
+        "9.0": "SOVNeg/SO[Neg-V-Neg]",
+        "10.0": "SNegO[V(-Neg)](Neg)",
+        "11.0": "SOV but S[Neg-V-Neg]O/SO[V-Neg]",
+        "12.0": "SO[Neg-V-(Neg)]/SOVNeg",
+        "13.0": "(Neg)SOVNeg/S(Neg)OVNeg/SO(Neg)VNeg",
+        "14.0": "S(Neg)O[V(-Neg)]/SO(Neg)[V(-Neg)]",
+        "15.0": "SOV & (Neg)[V-Neg]",
+        "16.0": "SOV & (Neg)[V(-Neg)]",
+        "17.0": "SOV/SVO & Neg[V-(Neg)]",
+        "18.0": "SV & OV & (Neg)V(Neg)",
+        "19.0": "SV & OV &  (Neg)[V-Neg]",
+        "20.0": "SV & OV &  [Neg-V(-Neg)]",
+        "21.0": "SV & OV &  [(Neg-)V-Neg]"
+    },
+    "144P_NegSOV Order": {
+        "1.0": "NoDoubleNeg",
+        "2.0": "OptDoubleNeg",
+        "3.0": "OnlyWithAnotherNeg",
+        "4.0": "No NegSOV"
+    },
+    "144Q_SNegOV Order": {
+        "1.0": "NoDoubleNeg",
+        "2.0": "OptDoubleNeg",
+        "3.0": "OnlyWithAnotherNeg",
+        "4.0": "No SNegOV"
+    },
+    "144R_SONegV Order": {
+        "1.0": "Word&NoDoubleNeg",
+        "2.0": "Prefix&NoDoubleNeg",
+        "3.0": "Word&OptDoubleNeg",
+        "4.0": "Prefix&OptDoubleNeg",
+        "5.0": "Word&OnlyWithAnotherNeg",
+        "6.0": "Prefix&OnlyWithAnotherNeg",
+        "7.0": "Type 1 / Type 2",
+        "8.0": "No SONegV"
+    },
+    "144S_SOVNeg Order": {
+        "1.0": "Word&NoDoubleNeg",
+        "2.0": "Suffix&NoDoubleNeg",
+        "3.0": "Word&OptDoubleNeg",
+        "4.0": "Suffix&OptDoubleNeg",
+        "5.0": "Word&OnlyWithAnotherNeg",
+        "6.0": "Suffix&OnlyWithAnotherNeg",
+        "7.0": "Type 1 / Type 2",
+        "8.0": "Type 1 / Type 6",
+        "9.0": "Type 5 / Type 4",
+        "10.0": "Type 5 / Type 6",
+        "11.0": "NoSOVNeg"
+    },
+    "144T_The Position of Negative Morphemes in Verb-Initial Languages": {
+        "1.0": "NegVSO",
+        "2.0": "VSNegO",
+        "3.0": "VSONeg",
+        "4.0": "NegVOS",
+        "5.0": "NegVSO/NegVOS",
+        "6.0": "NegV & VS & VO",
+        "7.0": "SVO but NegVSO",
+        "8.0": "[Neg-V]SO",
+        "9.0": "[Neg-V]OS",
+        "10.0": "[V-Neg]OS",
+        "11.0": "[V-Neg] & VS &VO",
+        "12.0": "NegVSO/[Neg-V]SO",
+        "13.0": "NegVOS/[Neg-V]OS",
+        "14.0": "NegVSO/SNegVO",
+        "15.0": "VSONeg/SVONeg",
+        "16.0": "NegVOS/NegSVO",
+        "17.0": "NegVOS/SNegVO",
+        "18.0": "[Neg-V]OS/S[Neg-V]O",
+        "19.0": "NegV & VSO/SVO",
+        "20.0": "NegV & VOS/SVO",
+        "21.0": "OptSingleNeg",
+        "22.0": "ObligDoubleNeg",
+        "23.0": "OptDoubleNeg"
+    },
+    "144U_Double negation in verb-initial languages": {
+        "1.0": "NegVNegSO",
+        "2.0": "NegVNegOS",
+        "3.0": "NegVSONeg",
+        "4.0": "NegNegVSO",
+        "5.0": "VNegSONeg",
+        "6.0": "VS & VO & [Neg-V-Neg]",
+        "7.0": "NegVOSNeg/VNegOSNeg/SNegVONeg/SVNegONeg",
+        "8.0": "V(Neg)SONeg",
+        "9.0": "Neg(Neg)VSO",
+        "10.0": "NegVSO/[Neg-V-Neg]SO",
+        "11.0": "NegVSO&OptStemChange",
+        "12.0": "SVO/VSO but [Neg-V]SO(Neg)",
+        "13.0": "VS&VO&Neg[(Neg-)V]",
+        "14.0": "VS&VO&NegV/[(Neg-)V-Neg]",
+        "15.0": "VOS & NegVNeg",
+        "16.0": "VSO/SVO & (Neg)V(Neg)"
+    },
+    "144V_Verb-Initial with Preverbal Negative": {
+        "1.0": "Separate word, no double negation  Word&NoDoubleNeg",
+        "2.0": "Prefix, no double negation  Prefix&NoDoubleNeg",
+        "3.0": "Word&Opt",
+        "4.0": "Prefix&OptDoubleNeg",
+        "5.0": "Word&OnlyWithAnotherNeg",
+        "6.0": "Prefix&OnlyWithAnotherNeg",
+        "7.0": "Type 1 / Type 2",
+        "8.0": "Type 3 / Type 6",
+        "9.0": "No preverbal neg"
+    },
+    "144W_Verb-Initial with Negative that is Immediately Postverbal or between Subject and Object": {
+        "1.0": "Suffix&NoDoubleNeg",
+        "2.0": "Word&OnlyWithAnotherNeg",
+        "3.0": "Suffix&OptDoubleNeg",
+        "4.0": "Suffix&OnlyWithAnotherNeg",
+        "5.0": "WordBetweenSAndO",
+        "6.0": NaN
+    },
+    "144X_Verb-Initial with Clause-Final Negative": {
+        "1.0": "NoDoubleNeg",
+        "2.0": "OptDoubleNeg",
+        "3.0": "OnlyWithAnotherNeg",
+        "4.0": "No clause-final neg"
+    },
+    "144Y_The Position of Negative Morphemes in Object-Initial Languages": {
+        "1.0": "ONegVS",
+        "2.0": "OVNegS",
+        "3.0": "OSVNeg",
+        "4.0": "O[V-Neg]S",
+        "5.0": "OS(Neg)[V(-Neg)]",
+        "6.0": "O[Neg-V-Neg]S",
+        "7.0": "OVNegS/SOVNeg",
+        "8.0": "NegOVS/NegSOV",
+        "9.0": "O[V-Neg]S/SO[V-Neg]",
+        "10.0": "O[Neg-V]S/NegSVO",
+        "11.0": "OVS & NegV"
+    }
+}

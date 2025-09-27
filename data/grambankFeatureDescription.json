@@ -1,0 +1,790 @@
+{
+    "GB020_Are there definite or specific articles?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB021_Do indefinite nominals commonly have indefinite articles?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB022_Are there prenominal articles?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB023_Are there postnominal articles?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB024_What is the order of numeral and noun in the NP?": {
+        "1": "Num-N",
+        "2": "N-Num",
+        "3": "both."
+    },
+    "GB025_What is the order of adnominal demonstrative and noun?": {
+        "1": "Dem-N",
+        "2": "N-Dem",
+        "3": "both."
+    },
+    "GB026_Can adnominal property words occur discontinuously?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB027_Are nominal conjunction and comitative expressed by different elements?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB028_Is there a distinction between inclusive and exclusive?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB030_Is there a gender distinction in independent 3rd person pronouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB031_Is there a dual or unit augmented form (in addition to plural or augmented) for all person categories in the pronoun system?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB035_Are there three or more distance contrasts in demonstratives?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB036_Do demonstratives show an elevation distinction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB037_Do demonstratives show a visible-nonvisible distinction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB038_Are there demonstrative classifiers?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB039_Is there nonphonological allomorphy of noun number markers?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB041_Are there several nouns (more than three) which are suppletive for number?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB042_Is there productive overt morphological singular marking on nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB043_Is there productive morphological dual marking on nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB044_Is there productive morphological plural marking on nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB046_Is there an associative plural marker for nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB047_Is there a productive morphological pattern for deriving an action/state noun from a verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB048_Is there a productive morphological pattern for deriving an agent noun from a verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB049_Is there a productive morphological pattern for deriving an object noun from a verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB051_Is there a gender/noun class system where sex is a factor in class assignment?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB052_Is there a gender/noun class system where shape is a factor in class assignment?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB053_Is there a gender/noun class system where animacy is a factor in class assignment?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB054_Is there a gender/noun class system where plant status is a factor in class assignment?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB057_Are there numeral classifiers?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB058_Are there possessive classifiers?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB059_Is the adnominal possessive construction different for alienable and inalienable nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB065_What is the pragmatically unmarked order of adnominal possessor noun and possessed noun?": {
+        "1": "Possessor-Possessed",
+        "2": "Possessed-Possessor",
+        "3": "both"
+    },
+    "GB068_Do core adjectives (defined semantically as property concepts such as value, shape, age, dimension) act like verbs in predicative position?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB069_Do core adjectives (defined semantically as property concepts; value, shape, age, dimension) used attributively require the same morphological treatment as verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB070_Are there morphological cases for non-pronominal core arguments (i.e. S/A/P)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB071_Are there morphological cases for pronominal core arguments (i.e. S/A/P)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB072_Are there morphological cases for oblique non-pronominal NPs (i.e. not S/A/P)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB073_Are there morphological cases for independent oblique personal pronominal arguments (i.e. not S/A/P)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB074_Are there prepositions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB075_Are there postpositions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB079_Do verbs have prefixes/proclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB080_Do verbs have suffixes/enclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB081_Is there productive infixation in verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB082_Is there overt morphological marking of present tense on verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB083_Is there overt morphological marking on the verb dedicated to past tense?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB084_Is there overt morphological marking on the verb dedicated to future tense?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB086_Is a morphological distinction between perfective and imperfective aspect available on verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB089_Can the S argument be indexed by a suffix/enclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB090_Can the S argument be indexed by a prefix/proclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB091_Can the A argument be indexed by a suffix/enclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB092_Can the A argument be indexed by a prefix/proclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB093_Can the P argument be indexed by a suffix/enclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB094_Can the P argument be indexed by a prefix/proclitic on the verb in the simple main clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB095_Are variations in marking strategies of core participants based on TAM distinctions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB096_Are variations in marking strategies of core participants based on verb classes?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB098_Are variations in marking strategies of core participants based on person distinctions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB099_Can verb stems alter according to the person of a core participant?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB103_Is there a benefactive applicative marker on the verb (including indexing)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB104_Is there an instrumental applicative marker on the verb (including indexing)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB105_Can the recipient in a ditransitive construction be marked like the monotransitive patient?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB107_Can standard negation be marked by an affix, clitic or modification of the verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB108_Is there directional or locative morphological marking on verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB109_Is there verb suppletion for participant number?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB110_Is there verb suppletion for tense or aspect?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB111_Are there conjugation classes?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB113_Are there verbal affixes or clitics that turn intransitive verbs into transitive ones?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB114_Is there a phonologically bound reflexive marker on the verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB115_Is there a phonologically bound reciprocal marker on the verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB116_Do verbs classify the shape, size or consistency of absolutive arguments by means of incorporated nouns, verbal affixes or suppletive verb stems?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB117_Is there a copula for predicate nominals?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB118_Are there serial verb constructions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB119_Can mood be marked by an inflecting word (\"auxiliary verb\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB120_Can aspect be marked by an inflecting word (\"auxiliary verb\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB121_Can tense be marked by an inflecting word (\"auxiliary verb\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB122_Is verb compounding a regular process?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB123_Are there verb-adjunct (aka light-verb) constructions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB124_Is incorporation of nouns into verbs a productive intransitivizing process?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB126_Is there an existential verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB127_Are different posture verbs used obligatorily depending on an inanimate locatum's shape or position (e.g. 'to lie' vs. 'to stand')?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB129_Is there a notably small number, i.e. about 100 or less, of verb roots in the language?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB130_What is the pragmatically unmarked order of S and V in intransitive clauses?": {
+        "1": "SV",
+        "2": "VS",
+        "3": "both"
+    },
+    "GB131_Is a pragmatically unmarked constituent order verb-initial for transitive clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB132_Is a pragmatically unmarked constituent order verb-medial for transitive clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB133_Is a pragmatically unmarked constituent order verb-final for transitive clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB134_Is the order of constituents the same in main and subordinate clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB135_Do clausal objects usually occur in the same position as nominal objects?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB136_Is the order of core argument (i.e. S/A/P) constituents fixed?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB137_Can standard negation be marked clause-finally?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB138_Can standard negation be marked clause-initially?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB139_Is there a difference between imperative (prohibitive) and declarative negation constructions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB140_Is verbal predication marked by the same negator as all of the following types of predication: locational, existential and nominal?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB146_Is there a morpho-syntactic distinction between predicates expressing controlled versus uncontrolled events or states?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB147_Is there a morphological passive marked on the lexical verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB148_Is there a morphological antipassive marked on the lexical verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB149_Is there a morphologically marked inverse on verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB150_Is there clause chaining?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB151_Is there an overt verb marker dedicated to signalling coreference or noncoreference between the subject of one clause and an argument of an adjacent clause (\"switch reference\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB152_Is there a morphologically marked distinction between simultaneous and sequential clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB155_Are causatives formed by affixes or clitics on verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB156_Is there a causative construction involving an element that is unmistakably grammaticalized from a verb for 'to say'?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB158_Are verbs reduplicated?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB159_Are nouns reduplicated?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB160_Are elements apart from verbs or nouns reduplicated?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB165_Is there productive morphological trial marking on nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB166_Is there productive morphological paucal marking on nouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB167_Is there a logophoric pronoun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB170_Can an adnominal property word agree with the noun in gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB171_Can an adnominal demonstrative agree with the noun in gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB172_Can an article agree with the noun in gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB177_Can the verb carry a marker of animacy of argument, unrelated to any gender/noun class of the argument visible in the NP domain?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB184_Can an adnominal property word agree with the noun in number?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB185_Can an adnominal demonstrative agree with the noun in number?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB186_Can an article agree with the noun in number?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB187_Is there any productive diminutive marking on the noun (exclude marking by system of nominal classification only)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB188_Is there any productive augmentative marking on the noun (exclude marking by system of nominal classification only)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB192_Is there a gender system where a noun's phonological properties are a factor in class assignment?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB193_What is the order of adnominal property word and noun?": {
+        "0": "they cannot be used attributively",
+        "1": "ANM - N",
+        "2": "N - ANM",
+        "3": "both"
+    },
+    "GB196_Is there a male/female distinction in 2nd person independent pronouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB197_Is there a male/female distinction in 1st person independent pronouns?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB198_Can an adnominal numeral agree with the noun in gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun?": {
+        "0": "no UQ",
+        "1": "UQ-N",
+        "2": "N-UQ",
+        "3": "both"
+    },
+    "GB204_Do collective ('all') and distributive ('every') universal quantifiers differ in their forms or their syntactic positions?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB250_Can predicative possession be expressed with a transitive 'habeo' verb?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB252_Can predicative possession be expressed with an S-like possessum and a locative-coded possessor?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB253_Can predicative possession be expressed with an S-like possessum and a dative-coded possessor?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB254_Can predicative possession be expressed with an S-like possessum and a possessor that is coded like an adnominal possessor?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB256_Can predicative possession be expressed with an S-like possessor and a possessum that is coded like a comitative argument?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB257_Can polar interrogation be marked by intonation only?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB260_Can polar interrogation be indicated by a special word order?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB262_Is there a clause-initial polar interrogative particle?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB263_Is there a clause-final polar interrogative particle?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB264_Is there a polar interrogative particle that most commonly occurs neither clause-initially nor clause-finally?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB265_Is there a comparative construction that includes a form that elsewhere means 'surpass, exceed'?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB266_Is there a comparative construction that employs a marker of the standard which elsewhere has a locational meaning?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB270_Can comparatives be expressed using two conjoined clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB273_Is there a comparative construction with a standard marker that elsewhere has neither a locational meaning nor a 'surpass/exceed' meaning?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB275_Is there a bound comparative degree marker on the property word in a comparative construction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB276_Is there a non-bound comparative degree marker modifying the property word in a comparative construction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB285_Can polar interrogation be marked by a question particle and verbal morphology?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB286_Can polar interrogation be indicated by overt verbal morphology only?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB291_Can polar interrogation be marked by tone?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB296_Is there a phonologically or morphosyntactically definable class of ideophones that includes ideophones depicting imagery beyond sound?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB297_Can polar interrogation be indicated by a V-not-V construction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB298_Can standard negation be marked by an inflecting word (\"auxiliary verb\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB299_Can standard negation be marked by a non-inflecting word (\"auxiliary particle\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB300_Does the verb for 'give' have suppletive verb forms?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB301_Is there an inclusory construction?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB302_Is there a phonologically free passive marker (\"particle\" or \"auxiliary\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB303_Is there a phonologically free antipassive marker (\"particle\" or \"auxiliary\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB304_Can the agent be expressed overtly in a passive clause?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB305_Is there a phonologically independent reflexive pronoun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB306_Is there a phonologically independent non-bipartite reciprocal pronoun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB309_Are there multiple past or multiple future tenses, distinguishing distance from Time of Reference?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB312_Is there overt morphological marking on the verb dedicated to mood?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB313_Are there special adnominal possessive pronouns that are not formed by an otherwise regular process?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB314_Can augmentative meaning be expressed productively by a shift of gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB315_Can diminutive meaning be expressed productively by a shift of gender/noun class?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB316_Is singular number regularly marked in the noun phrase by a dedicated phonologically free element?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB317_Is dual number regularly marked in the noun phrase by a dedicated phonologically free element?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB318_Is plural number regularly marked in the noun phrase by a dedicated phonologically free element?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB319_Is trial number regularly marked in the noun phrase by a dedicated phonologically free element?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB320_Is paucal number regularly marked in the noun phrase by a dedicated phonologically free element?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB321_Is there a large class of nouns whose gender/noun class is not phonologically or semantically predictable?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB322_Is there grammatical marking of direct evidence (perceived with the senses)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB323_Is there grammatical marking of indirect evidence (hearsay, inference, etc.)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB324_Is there an interrogative verb for content interrogatives (who?, what?, etc.)?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB325_Is there a count/mass distinction in interrogative quantifiers?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB326_Do (nominal) content interrogatives normally or frequently occur in situ?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB327_Can the relative clause follow the noun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB328_Can the relative clause precede the noun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB329_Are there internally-headed relative clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB330_Are there correlative relative clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB331_Are there non-adjacent relative clauses?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB333_Is there a decimal numeral system?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB334_Is there synchronic evidence for any element of a quinary numeral system?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB335_Is there synchronic evidence for any element of a vigesimal numeral system?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB336_Is there a body-part tallying system?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB400_Are all person categories neutralized in some voice, tense, aspect, mood and/or negation?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB401_Is there a class of patient-labile verbs?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB402_Does the verb for 'see' have suppletive verb forms?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB403_Does the verb for 'come' have suppletive verb forms?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB408_Is there any accusative alignment of flagging?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB409_Is there any ergative alignment of flagging?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB410_Is there any neutral alignment of flagging?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB415_Is there a politeness distinction in 2nd person forms?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB421_Is there a preposed complementizer in complements of verbs of thinking and/or knowing?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB422_Is there a postposed complementizer in complements of verbs of thinking and/or knowing?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB430_Can adnominal possession be marked by a prefix on the possessor?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB431_Can adnominal possession be marked by a prefix on the possessed noun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB432_Can adnominal possession be marked by a suffix on the possessor?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB433_Can adnominal possession be marked by a suffix on the possessed noun?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB519_Can mood be marked by a non-inflecting word (\"auxiliary particle\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB520_Can aspect be marked by a non-inflecting word (\"auxiliary particle\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB521_Can tense be marked by a non-inflecting word (\"auxiliary particle\")?": {
+        "0": "absent",
+        "1": "present"
+    },
+    "GB522_Can the S or A argument be omitted from a pragmatically unmarked clause when the referent is inferrable from context (\"pro-drop\" or \"null anaphora\")?": {
+        "0": "absent",
+        "1": "present"
+    }
+}
