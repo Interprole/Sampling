@@ -1,0 +1,76 @@
+{
+    "results": [
+        {
+            "id": 1,
+            "text": "cmn"
+        },
+        {
+            "id": 2,
+            "text": "deu"
+        },
+        {
+            "id": 3,
+            "text": "eng"
+        },
+        {
+            "id": 4,
+            "text": "fra"
+        },
+        {
+            "id": 5,
+            "text": "glg"
+        },
+        {
+            "id": 6,
+            "text": "ind"
+        },
+        {
+            "id": 7,
+            "text": "isl"
+        },
+        {
+            "id": 8,
+            "text": "ita"
+        },
+        {
+            "id": 9,
+            "text": "jpn"
+        },
+        {
+            "id": 10,
+            "text": "nld"
+        },
+        {
+            "id": 11,
+            "text": "nor"
+        },
+        {
+            "id": 12,
+            "text": "oci"
+        },
+        {
+            "id": 13,
+            "text": "por"
+        },
+        {
+            "id": 14,
+            "text": "roh"
+        },
+        {
+            "id": 15,
+            "text": "rus"
+        },
+        {
+            "id": 16,
+            "text": "spa"
+        },
+        {
+            "id": 17,
+            "text": "swe"
+        },
+        {
+            "id": 18,
+            "text": "ukr"
+        }
+    ]
+}
