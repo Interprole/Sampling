@@ -27,4 +27,12 @@ $(document).ready(function() {
         }
     });
 
+    $('.wals-js').select2({
+        closeOnSelect: false,
+        ajax: {
+            url: 'static/walsFeatures.json',
+            dataType: 'json'
+        }
+    });
+
 });
