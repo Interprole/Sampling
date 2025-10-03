@@ -1,0 +1,2571 @@
+{
+    "results": [
+        {
+            "text": "GB020_Are there definite or specific articles?",
+            "children": [
+                {
+                    "id": "GB020-0",
+                    "text": "GB020_Are there definite or specific articles? | absent"
+                },
+                {
+                    "id": "GB020-1",
+                    "text": "GB020_Are there definite or specific articles? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB021_Do indefinite nominals commonly have indefinite articles?",
+            "children": [
+                {
+                    "id": "GB021-0",
+                    "text": "GB021_Do indefinite nominals commonly have indefinite articles? | absent"
+                },
+                {
+                    "id": "GB021-1",
+                    "text": "GB021_Do indefinite nominals commonly have indefinite articles? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB022_Are there prenominal articles?",
+            "children": [
+                {
+                    "id": "GB022-0",
+                    "text": "GB022_Are there prenominal articles? | absent"
+                },
+                {
+                    "id": "GB022-1",
+                    "text": "GB022_Are there prenominal articles? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB023_Are there postnominal articles?",
+            "children": [
+                {
+                    "id": "GB023-0",
+                    "text": "GB023_Are there postnominal articles? | absent"
+                },
+                {
+                    "id": "GB023-1",
+                    "text": "GB023_Are there postnominal articles? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB024_What is the order of numeral and noun in the NP?",
+            "children": [
+                {
+                    "id": "GB024-1",
+                    "text": "GB024_What is the order of numeral and noun in the NP? | Num-N"
+                },
+                {
+                    "id": "GB024-2",
+                    "text": "GB024_What is the order of numeral and noun in the NP? | N-Num"
+                },
+                {
+                    "id": "GB024-3",
+                    "text": "GB024_What is the order of numeral and noun in the NP? | both."
+                }
+            ]
+        },
+        {
+            "text": "GB025_What is the order of adnominal demonstrative and noun?",
+            "children": [
+                {
+                    "id": "GB025-1",
+                    "text": "GB025_What is the order of adnominal demonstrative and noun? | Dem-N"
+                },
+                {
+                    "id": "GB025-2",
+                    "text": "GB025_What is the order of adnominal demonstrative and noun? | N-Dem"
+                },
+                {
+                    "id": "GB025-3",
+                    "text": "GB025_What is the order of adnominal demonstrative and noun? | both."
+                }
+            ]
+        },
+        {
+            "text": "GB026_Can adnominal property words occur discontinuously?",
+            "children": [
+                {
+                    "id": "GB026-0",
+                    "text": "GB026_Can adnominal property words occur discontinuously? | absent"
+                },
+                {
+                    "id": "GB026-1",
+                    "text": "GB026_Can adnominal property words occur discontinuously? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB027_Are nominal conjunction and comitative expressed by different elements?",
+            "children": [
+                {
+                    "id": "GB027-0",
+                    "text": "GB027_Are nominal conjunction and comitative expressed by different elements? | absent"
+                },
+                {
+                    "id": "GB027-1",
+                    "text": "GB027_Are nominal conjunction and comitative expressed by different elements? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB028_Is there a distinction between inclusive and exclusive?",
+            "children": [
+                {
+                    "id": "GB028-0",
+                    "text": "GB028_Is there a distinction between inclusive and exclusive? | absent"
+                },
+                {
+                    "id": "GB028-1",
+                    "text": "GB028_Is there a distinction between inclusive and exclusive? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB030_Is there a gender distinction in independent 3rd person pronouns?",
+            "children": [
+                {
+                    "id": "GB030-0",
+                    "text": "GB030_Is there a gender distinction in independent 3rd person pronouns? | absent"
+                },
+                {
+                    "id": "GB030-1",
+                    "text": "GB030_Is there a gender distinction in independent 3rd person pronouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB031_Is there a dual or unit augmented form (in addition to plural or augmented) for all person categories in the pronoun system?",
+            "children": [
+                {
+                    "id": "GB031-0",
+                    "text": "GB031_Is there a dual or unit augmented form (in addition to plural or augmented) for all person categories in the pronoun system? | absent"
+                },
+                {
+                    "id": "GB031-1",
+                    "text": "GB031_Is there a dual or unit augmented form (in addition to plural or augmented) for all person categories in the pronoun system? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB035_Are there three or more distance contrasts in demonstratives?",
+            "children": [
+                {
+                    "id": "GB035-0",
+                    "text": "GB035_Are there three or more distance contrasts in demonstratives? | absent"
+                },
+                {
+                    "id": "GB035-1",
+                    "text": "GB035_Are there three or more distance contrasts in demonstratives? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB036_Do demonstratives show an elevation distinction?",
+            "children": [
+                {
+                    "id": "GB036-0",
+                    "text": "GB036_Do demonstratives show an elevation distinction? | absent"
+                },
+                {
+                    "id": "GB036-1",
+                    "text": "GB036_Do demonstratives show an elevation distinction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB037_Do demonstratives show a visible-nonvisible distinction?",
+            "children": [
+                {
+                    "id": "GB037-0",
+                    "text": "GB037_Do demonstratives show a visible-nonvisible distinction? | absent"
+                },
+                {
+                    "id": "GB037-1",
+                    "text": "GB037_Do demonstratives show a visible-nonvisible distinction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB038_Are there demonstrative classifiers?",
+            "children": [
+                {
+                    "id": "GB038-0",
+                    "text": "GB038_Are there demonstrative classifiers? | absent"
+                },
+                {
+                    "id": "GB038-1",
+                    "text": "GB038_Are there demonstrative classifiers? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB039_Is there nonphonological allomorphy of noun number markers?",
+            "children": [
+                {
+                    "id": "GB039-0",
+                    "text": "GB039_Is there nonphonological allomorphy of noun number markers? | absent"
+                },
+                {
+                    "id": "GB039-1",
+                    "text": "GB039_Is there nonphonological allomorphy of noun number markers? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB041_Are there several nouns (more than three) which are suppletive for number?",
+            "children": [
+                {
+                    "id": "GB041-0",
+                    "text": "GB041_Are there several nouns (more than three) which are suppletive for number? | absent"
+                },
+                {
+                    "id": "GB041-1",
+                    "text": "GB041_Are there several nouns (more than three) which are suppletive for number? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB042_Is there productive overt morphological singular marking on nouns?",
+            "children": [
+                {
+                    "id": "GB042-0",
+                    "text": "GB042_Is there productive overt morphological singular marking on nouns? | absent"
+                },
+                {
+                    "id": "GB042-1",
+                    "text": "GB042_Is there productive overt morphological singular marking on nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB043_Is there productive morphological dual marking on nouns?",
+            "children": [
+                {
+                    "id": "GB043-0",
+                    "text": "GB043_Is there productive morphological dual marking on nouns? | absent"
+                },
+                {
+                    "id": "GB043-1",
+                    "text": "GB043_Is there productive morphological dual marking on nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB044_Is there productive morphological plural marking on nouns?",
+            "children": [
+                {
+                    "id": "GB044-0",
+                    "text": "GB044_Is there productive morphological plural marking on nouns? | absent"
+                },
+                {
+                    "id": "GB044-1",
+                    "text": "GB044_Is there productive morphological plural marking on nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB046_Is there an associative plural marker for nouns?",
+            "children": [
+                {
+                    "id": "GB046-0",
+                    "text": "GB046_Is there an associative plural marker for nouns? | absent"
+                },
+                {
+                    "id": "GB046-1",
+                    "text": "GB046_Is there an associative plural marker for nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB047_Is there a productive morphological pattern for deriving an action/state noun from a verb?",
+            "children": [
+                {
+                    "id": "GB047-0",
+                    "text": "GB047_Is there a productive morphological pattern for deriving an action/state noun from a verb? | absent"
+                },
+                {
+                    "id": "GB047-1",
+                    "text": "GB047_Is there a productive morphological pattern for deriving an action/state noun from a verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB048_Is there a productive morphological pattern for deriving an agent noun from a verb?",
+            "children": [
+                {
+                    "id": "GB048-0",
+                    "text": "GB048_Is there a productive morphological pattern for deriving an agent noun from a verb? | absent"
+                },
+                {
+                    "id": "GB048-1",
+                    "text": "GB048_Is there a productive morphological pattern for deriving an agent noun from a verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB049_Is there a productive morphological pattern for deriving an object noun from a verb?",
+            "children": [
+                {
+                    "id": "GB049-0",
+                    "text": "GB049_Is there a productive morphological pattern for deriving an object noun from a verb? | absent"
+                },
+                {
+                    "id": "GB049-1",
+                    "text": "GB049_Is there a productive morphological pattern for deriving an object noun from a verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB051_Is there a gender/noun class system where sex is a factor in class assignment?",
+            "children": [
+                {
+                    "id": "GB051-0",
+                    "text": "GB051_Is there a gender/noun class system where sex is a factor in class assignment? | absent"
+                },
+                {
+                    "id": "GB051-1",
+                    "text": "GB051_Is there a gender/noun class system where sex is a factor in class assignment? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB052_Is there a gender/noun class system where shape is a factor in class assignment?",
+            "children": [
+                {
+                    "id": "GB052-0",
+                    "text": "GB052_Is there a gender/noun class system where shape is a factor in class assignment? | absent"
+                },
+                {
+                    "id": "GB052-1",
+                    "text": "GB052_Is there a gender/noun class system where shape is a factor in class assignment? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB053_Is there a gender/noun class system where animacy is a factor in class assignment?",
+            "children": [
+                {
+                    "id": "GB053-0",
+                    "text": "GB053_Is there a gender/noun class system where animacy is a factor in class assignment? | absent"
+                },
+                {
+                    "id": "GB053-1",
+                    "text": "GB053_Is there a gender/noun class system where animacy is a factor in class assignment? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB054_Is there a gender/noun class system where plant status is a factor in class assignment?",
+            "children": [
+                {
+                    "id": "GB054-0",
+                    "text": "GB054_Is there a gender/noun class system where plant status is a factor in class assignment? | absent"
+                },
+                {
+                    "id": "GB054-1",
+                    "text": "GB054_Is there a gender/noun class system where plant status is a factor in class assignment? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB057_Are there numeral classifiers?",
+            "children": [
+                {
+                    "id": "GB057-0",
+                    "text": "GB057_Are there numeral classifiers? | absent"
+                },
+                {
+                    "id": "GB057-1",
+                    "text": "GB057_Are there numeral classifiers? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB058_Are there possessive classifiers?",
+            "children": [
+                {
+                    "id": "GB058-0",
+                    "text": "GB058_Are there possessive classifiers? | absent"
+                },
+                {
+                    "id": "GB058-1",
+                    "text": "GB058_Are there possessive classifiers? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB059_Is the adnominal possessive construction different for alienable and inalienable nouns?",
+            "children": [
+                {
+                    "id": "GB059-0",
+                    "text": "GB059_Is the adnominal possessive construction different for alienable and inalienable nouns? | absent"
+                },
+                {
+                    "id": "GB059-1",
+                    "text": "GB059_Is the adnominal possessive construction different for alienable and inalienable nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB065_What is the pragmatically unmarked order of adnominal possessor noun and possessed noun?",
+            "children": [
+                {
+                    "id": "GB065-1",
+                    "text": "GB065_What is the pragmatically unmarked order of adnominal possessor noun and possessed noun? | Possessor-Possessed"
+                },
+                {
+                    "id": "GB065-2",
+                    "text": "GB065_What is the pragmatically unmarked order of adnominal possessor noun and possessed noun? | Possessed-Possessor"
+                },
+                {
+                    "id": "GB065-3",
+                    "text": "GB065_What is the pragmatically unmarked order of adnominal possessor noun and possessed noun? | both"
+                }
+            ]
+        },
+        {
+            "text": "GB068_Do core adjectives (defined semantically as property concepts such as value, shape, age, dimension) act like verbs in predicative position?",
+            "children": [
+                {
+                    "id": "GB068-0",
+                    "text": "GB068_Do core adjectives (defined semantically as property concepts such as value, shape, age, dimension) act like verbs in predicative position? | absent"
+                },
+                {
+                    "id": "GB068-1",
+                    "text": "GB068_Do core adjectives (defined semantically as property concepts such as value, shape, age, dimension) act like verbs in predicative position? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB069_Do core adjectives (defined semantically as property concepts; value, shape, age, dimension) used attributively require the same morphological treatment as verbs?",
+            "children": [
+                {
+                    "id": "GB069-0",
+                    "text": "GB069_Do core adjectives (defined semantically as property concepts; value, shape, age, dimension) used attributively require the same morphological treatment as verbs? | absent"
+                },
+                {
+                    "id": "GB069-1",
+                    "text": "GB069_Do core adjectives (defined semantically as property concepts; value, shape, age, dimension) used attributively require the same morphological treatment as verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB070_Are there morphological cases for non-pronominal core arguments (i.e. S/A/P)?",
+            "children": [
+                {
+                    "id": "GB070-0",
+                    "text": "GB070_Are there morphological cases for non-pronominal core arguments (i.e. S/A/P)? | absent"
+                },
+                {
+                    "id": "GB070-1",
+                    "text": "GB070_Are there morphological cases for non-pronominal core arguments (i.e. S/A/P)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB071_Are there morphological cases for pronominal core arguments (i.e. S/A/P)?",
+            "children": [
+                {
+                    "id": "GB071-0",
+                    "text": "GB071_Are there morphological cases for pronominal core arguments (i.e. S/A/P)? | absent"
+                },
+                {
+                    "id": "GB071-1",
+                    "text": "GB071_Are there morphological cases for pronominal core arguments (i.e. S/A/P)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB072_Are there morphological cases for oblique non-pronominal NPs (i.e. not S/A/P)?",
+            "children": [
+                {
+                    "id": "GB072-0",
+                    "text": "GB072_Are there morphological cases for oblique non-pronominal NPs (i.e. not S/A/P)? | absent"
+                },
+                {
+                    "id": "GB072-1",
+                    "text": "GB072_Are there morphological cases for oblique non-pronominal NPs (i.e. not S/A/P)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB073_Are there morphological cases for independent oblique personal pronominal arguments (i.e. not S/A/P)?",
+            "children": [
+                {
+                    "id": "GB073-0",
+                    "text": "GB073_Are there morphological cases for independent oblique personal pronominal arguments (i.e. not S/A/P)? | absent"
+                },
+                {
+                    "id": "GB073-1",
+                    "text": "GB073_Are there morphological cases for independent oblique personal pronominal arguments (i.e. not S/A/P)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB074_Are there prepositions?",
+            "children": [
+                {
+                    "id": "GB074-0",
+                    "text": "GB074_Are there prepositions? | absent"
+                },
+                {
+                    "id": "GB074-1",
+                    "text": "GB074_Are there prepositions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB075_Are there postpositions?",
+            "children": [
+                {
+                    "id": "GB075-0",
+                    "text": "GB075_Are there postpositions? | absent"
+                },
+                {
+                    "id": "GB075-1",
+                    "text": "GB075_Are there postpositions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB079_Do verbs have prefixes/proclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)?",
+            "children": [
+                {
+                    "id": "GB079-0",
+                    "text": "GB079_Do verbs have prefixes/proclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)? | absent"
+                },
+                {
+                    "id": "GB079-1",
+                    "text": "GB079_Do verbs have prefixes/proclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB080_Do verbs have suffixes/enclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)?",
+            "children": [
+                {
+                    "id": "GB080-0",
+                    "text": "GB080_Do verbs have suffixes/enclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)? | absent"
+                },
+                {
+                    "id": "GB080-1",
+                    "text": "GB080_Do verbs have suffixes/enclitics, other than those that only mark A, S or P (do include portmanteau: A & S + TAM)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB081_Is there productive infixation in verbs?",
+            "children": [
+                {
+                    "id": "GB081-0",
+                    "text": "GB081_Is there productive infixation in verbs? | absent"
+                },
+                {
+                    "id": "GB081-1",
+                    "text": "GB081_Is there productive infixation in verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB082_Is there overt morphological marking of present tense on verbs?",
+            "children": [
+                {
+                    "id": "GB082-0",
+                    "text": "GB082_Is there overt morphological marking of present tense on verbs? | absent"
+                },
+                {
+                    "id": "GB082-1",
+                    "text": "GB082_Is there overt morphological marking of present tense on verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB083_Is there overt morphological marking on the verb dedicated to past tense?",
+            "children": [
+                {
+                    "id": "GB083-0",
+                    "text": "GB083_Is there overt morphological marking on the verb dedicated to past tense? | absent"
+                },
+                {
+                    "id": "GB083-1",
+                    "text": "GB083_Is there overt morphological marking on the verb dedicated to past tense? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB084_Is there overt morphological marking on the verb dedicated to future tense?",
+            "children": [
+                {
+                    "id": "GB084-0",
+                    "text": "GB084_Is there overt morphological marking on the verb dedicated to future tense? | absent"
+                },
+                {
+                    "id": "GB084-1",
+                    "text": "GB084_Is there overt morphological marking on the verb dedicated to future tense? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB086_Is a morphological distinction between perfective and imperfective aspect available on verbs?",
+            "children": [
+                {
+                    "id": "GB086-0",
+                    "text": "GB086_Is a morphological distinction between perfective and imperfective aspect available on verbs? | absent"
+                },
+                {
+                    "id": "GB086-1",
+                    "text": "GB086_Is a morphological distinction between perfective and imperfective aspect available on verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB089_Can the S argument be indexed by a suffix/enclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB089-0",
+                    "text": "GB089_Can the S argument be indexed by a suffix/enclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB089-1",
+                    "text": "GB089_Can the S argument be indexed by a suffix/enclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB090_Can the S argument be indexed by a prefix/proclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB090-0",
+                    "text": "GB090_Can the S argument be indexed by a prefix/proclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB090-1",
+                    "text": "GB090_Can the S argument be indexed by a prefix/proclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB091_Can the A argument be indexed by a suffix/enclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB091-0",
+                    "text": "GB091_Can the A argument be indexed by a suffix/enclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB091-1",
+                    "text": "GB091_Can the A argument be indexed by a suffix/enclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB092_Can the A argument be indexed by a prefix/proclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB092-0",
+                    "text": "GB092_Can the A argument be indexed by a prefix/proclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB092-1",
+                    "text": "GB092_Can the A argument be indexed by a prefix/proclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB093_Can the P argument be indexed by a suffix/enclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB093-0",
+                    "text": "GB093_Can the P argument be indexed by a suffix/enclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB093-1",
+                    "text": "GB093_Can the P argument be indexed by a suffix/enclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB094_Can the P argument be indexed by a prefix/proclitic on the verb in the simple main clause?",
+            "children": [
+                {
+                    "id": "GB094-0",
+                    "text": "GB094_Can the P argument be indexed by a prefix/proclitic on the verb in the simple main clause? | absent"
+                },
+                {
+                    "id": "GB094-1",
+                    "text": "GB094_Can the P argument be indexed by a prefix/proclitic on the verb in the simple main clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB095_Are variations in marking strategies of core participants based on TAM distinctions?",
+            "children": [
+                {
+                    "id": "GB095-0",
+                    "text": "GB095_Are variations in marking strategies of core participants based on TAM distinctions? | absent"
+                },
+                {
+                    "id": "GB095-1",
+                    "text": "GB095_Are variations in marking strategies of core participants based on TAM distinctions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB096_Are variations in marking strategies of core participants based on verb classes?",
+            "children": [
+                {
+                    "id": "GB096-0",
+                    "text": "GB096_Are variations in marking strategies of core participants based on verb classes? | absent"
+                },
+                {
+                    "id": "GB096-1",
+                    "text": "GB096_Are variations in marking strategies of core participants based on verb classes? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB098_Are variations in marking strategies of core participants based on person distinctions?",
+            "children": [
+                {
+                    "id": "GB098-0",
+                    "text": "GB098_Are variations in marking strategies of core participants based on person distinctions? | absent"
+                },
+                {
+                    "id": "GB098-1",
+                    "text": "GB098_Are variations in marking strategies of core participants based on person distinctions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB099_Can verb stems alter according to the person of a core participant?",
+            "children": [
+                {
+                    "id": "GB099-0",
+                    "text": "GB099_Can verb stems alter according to the person of a core participant? | absent"
+                },
+                {
+                    "id": "GB099-1",
+                    "text": "GB099_Can verb stems alter according to the person of a core participant? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB103_Is there a benefactive applicative marker on the verb (including indexing)?",
+            "children": [
+                {
+                    "id": "GB103-0",
+                    "text": "GB103_Is there a benefactive applicative marker on the verb (including indexing)? | absent"
+                },
+                {
+                    "id": "GB103-1",
+                    "text": "GB103_Is there a benefactive applicative marker on the verb (including indexing)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB104_Is there an instrumental applicative marker on the verb (including indexing)?",
+            "children": [
+                {
+                    "id": "GB104-0",
+                    "text": "GB104_Is there an instrumental applicative marker on the verb (including indexing)? | absent"
+                },
+                {
+                    "id": "GB104-1",
+                    "text": "GB104_Is there an instrumental applicative marker on the verb (including indexing)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB105_Can the recipient in a ditransitive construction be marked like the monotransitive patient?",
+            "children": [
+                {
+                    "id": "GB105-0",
+                    "text": "GB105_Can the recipient in a ditransitive construction be marked like the monotransitive patient? | absent"
+                },
+                {
+                    "id": "GB105-1",
+                    "text": "GB105_Can the recipient in a ditransitive construction be marked like the monotransitive patient? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB107_Can standard negation be marked by an affix, clitic or modification of the verb?",
+            "children": [
+                {
+                    "id": "GB107-0",
+                    "text": "GB107_Can standard negation be marked by an affix, clitic or modification of the verb? | absent"
+                },
+                {
+                    "id": "GB107-1",
+                    "text": "GB107_Can standard negation be marked by an affix, clitic or modification of the verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB108_Is there directional or locative morphological marking on verbs?",
+            "children": [
+                {
+                    "id": "GB108-0",
+                    "text": "GB108_Is there directional or locative morphological marking on verbs? | absent"
+                },
+                {
+                    "id": "GB108-1",
+                    "text": "GB108_Is there directional or locative morphological marking on verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB109_Is there verb suppletion for participant number?",
+            "children": [
+                {
+                    "id": "GB109-0",
+                    "text": "GB109_Is there verb suppletion for participant number? | absent"
+                },
+                {
+                    "id": "GB109-1",
+                    "text": "GB109_Is there verb suppletion for participant number? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB110_Is there verb suppletion for tense or aspect?",
+            "children": [
+                {
+                    "id": "GB110-0",
+                    "text": "GB110_Is there verb suppletion for tense or aspect? | absent"
+                },
+                {
+                    "id": "GB110-1",
+                    "text": "GB110_Is there verb suppletion for tense or aspect? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB111_Are there conjugation classes?",
+            "children": [
+                {
+                    "id": "GB111-0",
+                    "text": "GB111_Are there conjugation classes? | absent"
+                },
+                {
+                    "id": "GB111-1",
+                    "text": "GB111_Are there conjugation classes? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB113_Are there verbal affixes or clitics that turn intransitive verbs into transitive ones?",
+            "children": [
+                {
+                    "id": "GB113-0",
+                    "text": "GB113_Are there verbal affixes or clitics that turn intransitive verbs into transitive ones? | absent"
+                },
+                {
+                    "id": "GB113-1",
+                    "text": "GB113_Are there verbal affixes or clitics that turn intransitive verbs into transitive ones? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB114_Is there a phonologically bound reflexive marker on the verb?",
+            "children": [
+                {
+                    "id": "GB114-0",
+                    "text": "GB114_Is there a phonologically bound reflexive marker on the verb? | absent"
+                },
+                {
+                    "id": "GB114-1",
+                    "text": "GB114_Is there a phonologically bound reflexive marker on the verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB115_Is there a phonologically bound reciprocal marker on the verb?",
+            "children": [
+                {
+                    "id": "GB115-0",
+                    "text": "GB115_Is there a phonologically bound reciprocal marker on the verb? | absent"
+                },
+                {
+                    "id": "GB115-1",
+                    "text": "GB115_Is there a phonologically bound reciprocal marker on the verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB116_Do verbs classify the shape, size or consistency of absolutive arguments by means of incorporated nouns, verbal affixes or suppletive verb stems?",
+            "children": [
+                {
+                    "id": "GB116-0",
+                    "text": "GB116_Do verbs classify the shape, size or consistency of absolutive arguments by means of incorporated nouns, verbal affixes or suppletive verb stems? | absent"
+                },
+                {
+                    "id": "GB116-1",
+                    "text": "GB116_Do verbs classify the shape, size or consistency of absolutive arguments by means of incorporated nouns, verbal affixes or suppletive verb stems? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB117_Is there a copula for predicate nominals?",
+            "children": [
+                {
+                    "id": "GB117-0",
+                    "text": "GB117_Is there a copula for predicate nominals? | absent"
+                },
+                {
+                    "id": "GB117-1",
+                    "text": "GB117_Is there a copula for predicate nominals? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB118_Are there serial verb constructions?",
+            "children": [
+                {
+                    "id": "GB118-0",
+                    "text": "GB118_Are there serial verb constructions? | absent"
+                },
+                {
+                    "id": "GB118-1",
+                    "text": "GB118_Are there serial verb constructions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB119_Can mood be marked by an inflecting word (\"auxiliary verb\")?",
+            "children": [
+                {
+                    "id": "GB119-0",
+                    "text": "GB119_Can mood be marked by an inflecting word (\"auxiliary verb\")? | absent"
+                },
+                {
+                    "id": "GB119-1",
+                    "text": "GB119_Can mood be marked by an inflecting word (\"auxiliary verb\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB120_Can aspect be marked by an inflecting word (\"auxiliary verb\")?",
+            "children": [
+                {
+                    "id": "GB120-0",
+                    "text": "GB120_Can aspect be marked by an inflecting word (\"auxiliary verb\")? | absent"
+                },
+                {
+                    "id": "GB120-1",
+                    "text": "GB120_Can aspect be marked by an inflecting word (\"auxiliary verb\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB121_Can tense be marked by an inflecting word (\"auxiliary verb\")?",
+            "children": [
+                {
+                    "id": "GB121-0",
+                    "text": "GB121_Can tense be marked by an inflecting word (\"auxiliary verb\")? | absent"
+                },
+                {
+                    "id": "GB121-1",
+                    "text": "GB121_Can tense be marked by an inflecting word (\"auxiliary verb\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB122_Is verb compounding a regular process?",
+            "children": [
+                {
+                    "id": "GB122-0",
+                    "text": "GB122_Is verb compounding a regular process? | absent"
+                },
+                {
+                    "id": "GB122-1",
+                    "text": "GB122_Is verb compounding a regular process? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB123_Are there verb-adjunct (aka light-verb) constructions?",
+            "children": [
+                {
+                    "id": "GB123-0",
+                    "text": "GB123_Are there verb-adjunct (aka light-verb) constructions? | absent"
+                },
+                {
+                    "id": "GB123-1",
+                    "text": "GB123_Are there verb-adjunct (aka light-verb) constructions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB124_Is incorporation of nouns into verbs a productive intransitivizing process?",
+            "children": [
+                {
+                    "id": "GB124-0",
+                    "text": "GB124_Is incorporation of nouns into verbs a productive intransitivizing process? | absent"
+                },
+                {
+                    "id": "GB124-1",
+                    "text": "GB124_Is incorporation of nouns into verbs a productive intransitivizing process? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB126_Is there an existential verb?",
+            "children": [
+                {
+                    "id": "GB126-0",
+                    "text": "GB126_Is there an existential verb? | absent"
+                },
+                {
+                    "id": "GB126-1",
+                    "text": "GB126_Is there an existential verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB127_Are different posture verbs used obligatorily depending on an inanimate locatum's shape or position (e.g. 'to lie' vs. 'to stand')?",
+            "children": [
+                {
+                    "id": "GB127-0",
+                    "text": "GB127_Are different posture verbs used obligatorily depending on an inanimate locatum's shape or position (e.g. 'to lie' vs. 'to stand')? | absent"
+                },
+                {
+                    "id": "GB127-1",
+                    "text": "GB127_Are different posture verbs used obligatorily depending on an inanimate locatum's shape or position (e.g. 'to lie' vs. 'to stand')? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB129_Is there a notably small number, i.e. about 100 or less, of verb roots in the language?",
+            "children": [
+                {
+                    "id": "GB129-0",
+                    "text": "GB129_Is there a notably small number, i.e. about 100 or less, of verb roots in the language? | absent"
+                },
+                {
+                    "id": "GB129-1",
+                    "text": "GB129_Is there a notably small number, i.e. about 100 or less, of verb roots in the language? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB130_What is the pragmatically unmarked order of S and V in intransitive clauses?",
+            "children": [
+                {
+                    "id": "GB130-1",
+                    "text": "GB130_What is the pragmatically unmarked order of S and V in intransitive clauses? | SV"
+                },
+                {
+                    "id": "GB130-2",
+                    "text": "GB130_What is the pragmatically unmarked order of S and V in intransitive clauses? | VS"
+                },
+                {
+                    "id": "GB130-3",
+                    "text": "GB130_What is the pragmatically unmarked order of S and V in intransitive clauses? | both"
+                }
+            ]
+        },
+        {
+            "text": "GB131_Is a pragmatically unmarked constituent order verb-initial for transitive clauses?",
+            "children": [
+                {
+                    "id": "GB131-0",
+                    "text": "GB131_Is a pragmatically unmarked constituent order verb-initial for transitive clauses? | absent"
+                },
+                {
+                    "id": "GB131-1",
+                    "text": "GB131_Is a pragmatically unmarked constituent order verb-initial for transitive clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB132_Is a pragmatically unmarked constituent order verb-medial for transitive clauses?",
+            "children": [
+                {
+                    "id": "GB132-0",
+                    "text": "GB132_Is a pragmatically unmarked constituent order verb-medial for transitive clauses? | absent"
+                },
+                {
+                    "id": "GB132-1",
+                    "text": "GB132_Is a pragmatically unmarked constituent order verb-medial for transitive clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB133_Is a pragmatically unmarked constituent order verb-final for transitive clauses?",
+            "children": [
+                {
+                    "id": "GB133-0",
+                    "text": "GB133_Is a pragmatically unmarked constituent order verb-final for transitive clauses? | absent"
+                },
+                {
+                    "id": "GB133-1",
+                    "text": "GB133_Is a pragmatically unmarked constituent order verb-final for transitive clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB134_Is the order of constituents the same in main and subordinate clauses?",
+            "children": [
+                {
+                    "id": "GB134-0",
+                    "text": "GB134_Is the order of constituents the same in main and subordinate clauses? | absent"
+                },
+                {
+                    "id": "GB134-1",
+                    "text": "GB134_Is the order of constituents the same in main and subordinate clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB135_Do clausal objects usually occur in the same position as nominal objects?",
+            "children": [
+                {
+                    "id": "GB135-0",
+                    "text": "GB135_Do clausal objects usually occur in the same position as nominal objects? | absent"
+                },
+                {
+                    "id": "GB135-1",
+                    "text": "GB135_Do clausal objects usually occur in the same position as nominal objects? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB136_Is the order of core argument (i.e. S/A/P) constituents fixed?",
+            "children": [
+                {
+                    "id": "GB136-0",
+                    "text": "GB136_Is the order of core argument (i.e. S/A/P) constituents fixed? | absent"
+                },
+                {
+                    "id": "GB136-1",
+                    "text": "GB136_Is the order of core argument (i.e. S/A/P) constituents fixed? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB137_Can standard negation be marked clause-finally?",
+            "children": [
+                {
+                    "id": "GB137-0",
+                    "text": "GB137_Can standard negation be marked clause-finally? | absent"
+                },
+                {
+                    "id": "GB137-1",
+                    "text": "GB137_Can standard negation be marked clause-finally? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB138_Can standard negation be marked clause-initially?",
+            "children": [
+                {
+                    "id": "GB138-0",
+                    "text": "GB138_Can standard negation be marked clause-initially? | absent"
+                },
+                {
+                    "id": "GB138-1",
+                    "text": "GB138_Can standard negation be marked clause-initially? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB139_Is there a difference between imperative (prohibitive) and declarative negation constructions?",
+            "children": [
+                {
+                    "id": "GB139-0",
+                    "text": "GB139_Is there a difference between imperative (prohibitive) and declarative negation constructions? | absent"
+                },
+                {
+                    "id": "GB139-1",
+                    "text": "GB139_Is there a difference between imperative (prohibitive) and declarative negation constructions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB140_Is verbal predication marked by the same negator as all of the following types of predication: locational, existential and nominal?",
+            "children": [
+                {
+                    "id": "GB140-0",
+                    "text": "GB140_Is verbal predication marked by the same negator as all of the following types of predication: locational, existential and nominal? | absent"
+                },
+                {
+                    "id": "GB140-1",
+                    "text": "GB140_Is verbal predication marked by the same negator as all of the following types of predication: locational, existential and nominal? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB146_Is there a morpho-syntactic distinction between predicates expressing controlled versus uncontrolled events or states?",
+            "children": [
+                {
+                    "id": "GB146-0",
+                    "text": "GB146_Is there a morpho-syntactic distinction between predicates expressing controlled versus uncontrolled events or states? | absent"
+                },
+                {
+                    "id": "GB146-1",
+                    "text": "GB146_Is there a morpho-syntactic distinction between predicates expressing controlled versus uncontrolled events or states? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB147_Is there a morphological passive marked on the lexical verb?",
+            "children": [
+                {
+                    "id": "GB147-0",
+                    "text": "GB147_Is there a morphological passive marked on the lexical verb? | absent"
+                },
+                {
+                    "id": "GB147-1",
+                    "text": "GB147_Is there a morphological passive marked on the lexical verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB148_Is there a morphological antipassive marked on the lexical verb?",
+            "children": [
+                {
+                    "id": "GB148-0",
+                    "text": "GB148_Is there a morphological antipassive marked on the lexical verb? | absent"
+                },
+                {
+                    "id": "GB148-1",
+                    "text": "GB148_Is there a morphological antipassive marked on the lexical verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB149_Is there a morphologically marked inverse on verbs?",
+            "children": [
+                {
+                    "id": "GB149-0",
+                    "text": "GB149_Is there a morphologically marked inverse on verbs? | absent"
+                },
+                {
+                    "id": "GB149-1",
+                    "text": "GB149_Is there a morphologically marked inverse on verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB150_Is there clause chaining?",
+            "children": [
+                {
+                    "id": "GB150-0",
+                    "text": "GB150_Is there clause chaining? | absent"
+                },
+                {
+                    "id": "GB150-1",
+                    "text": "GB150_Is there clause chaining? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB151_Is there an overt verb marker dedicated to signalling coreference or noncoreference between the subject of one clause and an argument of an adjacent clause (\"switch reference\")?",
+            "children": [
+                {
+                    "id": "GB151-0",
+                    "text": "GB151_Is there an overt verb marker dedicated to signalling coreference or noncoreference between the subject of one clause and an argument of an adjacent clause (\"switch reference\")? | absent"
+                },
+                {
+                    "id": "GB151-1",
+                    "text": "GB151_Is there an overt verb marker dedicated to signalling coreference or noncoreference between the subject of one clause and an argument of an adjacent clause (\"switch reference\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB152_Is there a morphologically marked distinction between simultaneous and sequential clauses?",
+            "children": [
+                {
+                    "id": "GB152-0",
+                    "text": "GB152_Is there a morphologically marked distinction between simultaneous and sequential clauses? | absent"
+                },
+                {
+                    "id": "GB152-1",
+                    "text": "GB152_Is there a morphologically marked distinction between simultaneous and sequential clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB155_Are causatives formed by affixes or clitics on verbs?",
+            "children": [
+                {
+                    "id": "GB155-0",
+                    "text": "GB155_Are causatives formed by affixes or clitics on verbs? | absent"
+                },
+                {
+                    "id": "GB155-1",
+                    "text": "GB155_Are causatives formed by affixes or clitics on verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB156_Is there a causative construction involving an element that is unmistakably grammaticalized from a verb for 'to say'?",
+            "children": [
+                {
+                    "id": "GB156-0",
+                    "text": "GB156_Is there a causative construction involving an element that is unmistakably grammaticalized from a verb for 'to say'? | absent"
+                },
+                {
+                    "id": "GB156-1",
+                    "text": "GB156_Is there a causative construction involving an element that is unmistakably grammaticalized from a verb for 'to say'? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB158_Are verbs reduplicated?",
+            "children": [
+                {
+                    "id": "GB158-0",
+                    "text": "GB158_Are verbs reduplicated? | absent"
+                },
+                {
+                    "id": "GB158-1",
+                    "text": "GB158_Are verbs reduplicated? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB159_Are nouns reduplicated?",
+            "children": [
+                {
+                    "id": "GB159-0",
+                    "text": "GB159_Are nouns reduplicated? | absent"
+                },
+                {
+                    "id": "GB159-1",
+                    "text": "GB159_Are nouns reduplicated? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB160_Are elements apart from verbs or nouns reduplicated?",
+            "children": [
+                {
+                    "id": "GB160-0",
+                    "text": "GB160_Are elements apart from verbs or nouns reduplicated? | absent"
+                },
+                {
+                    "id": "GB160-1",
+                    "text": "GB160_Are elements apart from verbs or nouns reduplicated? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB165_Is there productive morphological trial marking on nouns?",
+            "children": [
+                {
+                    "id": "GB165-0",
+                    "text": "GB165_Is there productive morphological trial marking on nouns? | absent"
+                },
+                {
+                    "id": "GB165-1",
+                    "text": "GB165_Is there productive morphological trial marking on nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB166_Is there productive morphological paucal marking on nouns?",
+            "children": [
+                {
+                    "id": "GB166-0",
+                    "text": "GB166_Is there productive morphological paucal marking on nouns? | absent"
+                },
+                {
+                    "id": "GB166-1",
+                    "text": "GB166_Is there productive morphological paucal marking on nouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB167_Is there a logophoric pronoun?",
+            "children": [
+                {
+                    "id": "GB167-0",
+                    "text": "GB167_Is there a logophoric pronoun? | absent"
+                },
+                {
+                    "id": "GB167-1",
+                    "text": "GB167_Is there a logophoric pronoun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB170_Can an adnominal property word agree with the noun in gender/noun class?",
+            "children": [
+                {
+                    "id": "GB170-0",
+                    "text": "GB170_Can an adnominal property word agree with the noun in gender/noun class? | absent"
+                },
+                {
+                    "id": "GB170-1",
+                    "text": "GB170_Can an adnominal property word agree with the noun in gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB171_Can an adnominal demonstrative agree with the noun in gender/noun class?",
+            "children": [
+                {
+                    "id": "GB171-0",
+                    "text": "GB171_Can an adnominal demonstrative agree with the noun in gender/noun class? | absent"
+                },
+                {
+                    "id": "GB171-1",
+                    "text": "GB171_Can an adnominal demonstrative agree with the noun in gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB172_Can an article agree with the noun in gender/noun class?",
+            "children": [
+                {
+                    "id": "GB172-0",
+                    "text": "GB172_Can an article agree with the noun in gender/noun class? | absent"
+                },
+                {
+                    "id": "GB172-1",
+                    "text": "GB172_Can an article agree with the noun in gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB177_Can the verb carry a marker of animacy of argument, unrelated to any gender/noun class of the argument visible in the NP domain?",
+            "children": [
+                {
+                    "id": "GB177-0",
+                    "text": "GB177_Can the verb carry a marker of animacy of argument, unrelated to any gender/noun class of the argument visible in the NP domain? | absent"
+                },
+                {
+                    "id": "GB177-1",
+                    "text": "GB177_Can the verb carry a marker of animacy of argument, unrelated to any gender/noun class of the argument visible in the NP domain? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB184_Can an adnominal property word agree with the noun in number?",
+            "children": [
+                {
+                    "id": "GB184-0",
+                    "text": "GB184_Can an adnominal property word agree with the noun in number? | absent"
+                },
+                {
+                    "id": "GB184-1",
+                    "text": "GB184_Can an adnominal property word agree with the noun in number? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB185_Can an adnominal demonstrative agree with the noun in number?",
+            "children": [
+                {
+                    "id": "GB185-0",
+                    "text": "GB185_Can an adnominal demonstrative agree with the noun in number? | absent"
+                },
+                {
+                    "id": "GB185-1",
+                    "text": "GB185_Can an adnominal demonstrative agree with the noun in number? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB186_Can an article agree with the noun in number?",
+            "children": [
+                {
+                    "id": "GB186-0",
+                    "text": "GB186_Can an article agree with the noun in number? | absent"
+                },
+                {
+                    "id": "GB186-1",
+                    "text": "GB186_Can an article agree with the noun in number? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB187_Is there any productive diminutive marking on the noun (exclude marking by system of nominal classification only)?",
+            "children": [
+                {
+                    "id": "GB187-0",
+                    "text": "GB187_Is there any productive diminutive marking on the noun (exclude marking by system of nominal classification only)? | absent"
+                },
+                {
+                    "id": "GB187-1",
+                    "text": "GB187_Is there any productive diminutive marking on the noun (exclude marking by system of nominal classification only)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB188_Is there any productive augmentative marking on the noun (exclude marking by system of nominal classification only)?",
+            "children": [
+                {
+                    "id": "GB188-0",
+                    "text": "GB188_Is there any productive augmentative marking on the noun (exclude marking by system of nominal classification only)? | absent"
+                },
+                {
+                    "id": "GB188-1",
+                    "text": "GB188_Is there any productive augmentative marking on the noun (exclude marking by system of nominal classification only)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB192_Is there a gender system where a noun's phonological properties are a factor in class assignment?",
+            "children": [
+                {
+                    "id": "GB192-0",
+                    "text": "GB192_Is there a gender system where a noun's phonological properties are a factor in class assignment? | absent"
+                },
+                {
+                    "id": "GB192-1",
+                    "text": "GB192_Is there a gender system where a noun's phonological properties are a factor in class assignment? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB193_What is the order of adnominal property word and noun?",
+            "children": [
+                {
+                    "id": "GB193-0",
+                    "text": "GB193_What is the order of adnominal property word and noun? | they cannot be used attributively"
+                },
+                {
+                    "id": "GB193-1",
+                    "text": "GB193_What is the order of adnominal property word and noun? | ANM - N"
+                },
+                {
+                    "id": "GB193-2",
+                    "text": "GB193_What is the order of adnominal property word and noun? | N - ANM"
+                },
+                {
+                    "id": "GB193-3",
+                    "text": "GB193_What is the order of adnominal property word and noun? | both"
+                }
+            ]
+        },
+        {
+            "text": "GB196_Is there a male/female distinction in 2nd person independent pronouns?",
+            "children": [
+                {
+                    "id": "GB196-0",
+                    "text": "GB196_Is there a male/female distinction in 2nd person independent pronouns? | absent"
+                },
+                {
+                    "id": "GB196-1",
+                    "text": "GB196_Is there a male/female distinction in 2nd person independent pronouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB197_Is there a male/female distinction in 1st person independent pronouns?",
+            "children": [
+                {
+                    "id": "GB197-0",
+                    "text": "GB197_Is there a male/female distinction in 1st person independent pronouns? | absent"
+                },
+                {
+                    "id": "GB197-1",
+                    "text": "GB197_Is there a male/female distinction in 1st person independent pronouns? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB198_Can an adnominal numeral agree with the noun in gender/noun class?",
+            "children": [
+                {
+                    "id": "GB198-0",
+                    "text": "GB198_Can an adnominal numeral agree with the noun in gender/noun class? | absent"
+                },
+                {
+                    "id": "GB198-1",
+                    "text": "GB198_Can an adnominal numeral agree with the noun in gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun?",
+            "children": [
+                {
+                    "id": "GB203-0",
+                    "text": "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun? | no UQ"
+                },
+                {
+                    "id": "GB203-1",
+                    "text": "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun? | UQ-N"
+                },
+                {
+                    "id": "GB203-2",
+                    "text": "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun? | N-UQ"
+                },
+                {
+                    "id": "GB203-3",
+                    "text": "GB203_What is the order of the adnominal collective universal quantifier ('all') and the noun? | both"
+                }
+            ]
+        },
+        {
+            "text": "GB204_Do collective ('all') and distributive ('every') universal quantifiers differ in their forms or their syntactic positions?",
+            "children": [
+                {
+                    "id": "GB204-0",
+                    "text": "GB204_Do collective ('all') and distributive ('every') universal quantifiers differ in their forms or their syntactic positions? | absent"
+                },
+                {
+                    "id": "GB204-1",
+                    "text": "GB204_Do collective ('all') and distributive ('every') universal quantifiers differ in their forms or their syntactic positions? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB250_Can predicative possession be expressed with a transitive 'habeo' verb?",
+            "children": [
+                {
+                    "id": "GB250-0",
+                    "text": "GB250_Can predicative possession be expressed with a transitive 'habeo' verb? | absent"
+                },
+                {
+                    "id": "GB250-1",
+                    "text": "GB250_Can predicative possession be expressed with a transitive 'habeo' verb? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB252_Can predicative possession be expressed with an S-like possessum and a locative-coded possessor?",
+            "children": [
+                {
+                    "id": "GB252-0",
+                    "text": "GB252_Can predicative possession be expressed with an S-like possessum and a locative-coded possessor? | absent"
+                },
+                {
+                    "id": "GB252-1",
+                    "text": "GB252_Can predicative possession be expressed with an S-like possessum and a locative-coded possessor? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB253_Can predicative possession be expressed with an S-like possessum and a dative-coded possessor?",
+            "children": [
+                {
+                    "id": "GB253-0",
+                    "text": "GB253_Can predicative possession be expressed with an S-like possessum and a dative-coded possessor? | absent"
+                },
+                {
+                    "id": "GB253-1",
+                    "text": "GB253_Can predicative possession be expressed with an S-like possessum and a dative-coded possessor? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB254_Can predicative possession be expressed with an S-like possessum and a possessor that is coded like an adnominal possessor?",
+            "children": [
+                {
+                    "id": "GB254-0",
+                    "text": "GB254_Can predicative possession be expressed with an S-like possessum and a possessor that is coded like an adnominal possessor? | absent"
+                },
+                {
+                    "id": "GB254-1",
+                    "text": "GB254_Can predicative possession be expressed with an S-like possessum and a possessor that is coded like an adnominal possessor? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB256_Can predicative possession be expressed with an S-like possessor and a possessum that is coded like a comitative argument?",
+            "children": [
+                {
+                    "id": "GB256-0",
+                    "text": "GB256_Can predicative possession be expressed with an S-like possessor and a possessum that is coded like a comitative argument? | absent"
+                },
+                {
+                    "id": "GB256-1",
+                    "text": "GB256_Can predicative possession be expressed with an S-like possessor and a possessum that is coded like a comitative argument? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB257_Can polar interrogation be marked by intonation only?",
+            "children": [
+                {
+                    "id": "GB257-0",
+                    "text": "GB257_Can polar interrogation be marked by intonation only? | absent"
+                },
+                {
+                    "id": "GB257-1",
+                    "text": "GB257_Can polar interrogation be marked by intonation only? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB260_Can polar interrogation be indicated by a special word order?",
+            "children": [
+                {
+                    "id": "GB260-0",
+                    "text": "GB260_Can polar interrogation be indicated by a special word order? | absent"
+                },
+                {
+                    "id": "GB260-1",
+                    "text": "GB260_Can polar interrogation be indicated by a special word order? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB262_Is there a clause-initial polar interrogative particle?",
+            "children": [
+                {
+                    "id": "GB262-0",
+                    "text": "GB262_Is there a clause-initial polar interrogative particle? | absent"
+                },
+                {
+                    "id": "GB262-1",
+                    "text": "GB262_Is there a clause-initial polar interrogative particle? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB263_Is there a clause-final polar interrogative particle?",
+            "children": [
+                {
+                    "id": "GB263-0",
+                    "text": "GB263_Is there a clause-final polar interrogative particle? | absent"
+                },
+                {
+                    "id": "GB263-1",
+                    "text": "GB263_Is there a clause-final polar interrogative particle? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB264_Is there a polar interrogative particle that most commonly occurs neither clause-initially nor clause-finally?",
+            "children": [
+                {
+                    "id": "GB264-0",
+                    "text": "GB264_Is there a polar interrogative particle that most commonly occurs neither clause-initially nor clause-finally? | absent"
+                },
+                {
+                    "id": "GB264-1",
+                    "text": "GB264_Is there a polar interrogative particle that most commonly occurs neither clause-initially nor clause-finally? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB265_Is there a comparative construction that includes a form that elsewhere means 'surpass, exceed'?",
+            "children": [
+                {
+                    "id": "GB265-0",
+                    "text": "GB265_Is there a comparative construction that includes a form that elsewhere means 'surpass, exceed'? | absent"
+                },
+                {
+                    "id": "GB265-1",
+                    "text": "GB265_Is there a comparative construction that includes a form that elsewhere means 'surpass, exceed'? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB266_Is there a comparative construction that employs a marker of the standard which elsewhere has a locational meaning?",
+            "children": [
+                {
+                    "id": "GB266-0",
+                    "text": "GB266_Is there a comparative construction that employs a marker of the standard which elsewhere has a locational meaning? | absent"
+                },
+                {
+                    "id": "GB266-1",
+                    "text": "GB266_Is there a comparative construction that employs a marker of the standard which elsewhere has a locational meaning? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB270_Can comparatives be expressed using two conjoined clauses?",
+            "children": [
+                {
+                    "id": "GB270-0",
+                    "text": "GB270_Can comparatives be expressed using two conjoined clauses? | absent"
+                },
+                {
+                    "id": "GB270-1",
+                    "text": "GB270_Can comparatives be expressed using two conjoined clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB273_Is there a comparative construction with a standard marker that elsewhere has neither a locational meaning nor a 'surpass/exceed' meaning?",
+            "children": [
+                {
+                    "id": "GB273-0",
+                    "text": "GB273_Is there a comparative construction with a standard marker that elsewhere has neither a locational meaning nor a 'surpass/exceed' meaning? | absent"
+                },
+                {
+                    "id": "GB273-1",
+                    "text": "GB273_Is there a comparative construction with a standard marker that elsewhere has neither a locational meaning nor a 'surpass/exceed' meaning? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB275_Is there a bound comparative degree marker on the property word in a comparative construction?",
+            "children": [
+                {
+                    "id": "GB275-0",
+                    "text": "GB275_Is there a bound comparative degree marker on the property word in a comparative construction? | absent"
+                },
+                {
+                    "id": "GB275-1",
+                    "text": "GB275_Is there a bound comparative degree marker on the property word in a comparative construction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB276_Is there a non-bound comparative degree marker modifying the property word in a comparative construction?",
+            "children": [
+                {
+                    "id": "GB276-0",
+                    "text": "GB276_Is there a non-bound comparative degree marker modifying the property word in a comparative construction? | absent"
+                },
+                {
+                    "id": "GB276-1",
+                    "text": "GB276_Is there a non-bound comparative degree marker modifying the property word in a comparative construction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB285_Can polar interrogation be marked by a question particle and verbal morphology?",
+            "children": [
+                {
+                    "id": "GB285-0",
+                    "text": "GB285_Can polar interrogation be marked by a question particle and verbal morphology? | absent"
+                },
+                {
+                    "id": "GB285-1",
+                    "text": "GB285_Can polar interrogation be marked by a question particle and verbal morphology? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB286_Can polar interrogation be indicated by overt verbal morphology only?",
+            "children": [
+                {
+                    "id": "GB286-0",
+                    "text": "GB286_Can polar interrogation be indicated by overt verbal morphology only? | absent"
+                },
+                {
+                    "id": "GB286-1",
+                    "text": "GB286_Can polar interrogation be indicated by overt verbal morphology only? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB291_Can polar interrogation be marked by tone?",
+            "children": [
+                {
+                    "id": "GB291-0",
+                    "text": "GB291_Can polar interrogation be marked by tone? | absent"
+                },
+                {
+                    "id": "GB291-1",
+                    "text": "GB291_Can polar interrogation be marked by tone? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB296_Is there a phonologically or morphosyntactically definable class of ideophones that includes ideophones depicting imagery beyond sound?",
+            "children": [
+                {
+                    "id": "GB296-0",
+                    "text": "GB296_Is there a phonologically or morphosyntactically definable class of ideophones that includes ideophones depicting imagery beyond sound? | absent"
+                },
+                {
+                    "id": "GB296-1",
+                    "text": "GB296_Is there a phonologically or morphosyntactically definable class of ideophones that includes ideophones depicting imagery beyond sound? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB297_Can polar interrogation be indicated by a V-not-V construction?",
+            "children": [
+                {
+                    "id": "GB297-0",
+                    "text": "GB297_Can polar interrogation be indicated by a V-not-V construction? | absent"
+                },
+                {
+                    "id": "GB297-1",
+                    "text": "GB297_Can polar interrogation be indicated by a V-not-V construction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB298_Can standard negation be marked by an inflecting word (\"auxiliary verb\")?",
+            "children": [
+                {
+                    "id": "GB298-0",
+                    "text": "GB298_Can standard negation be marked by an inflecting word (\"auxiliary verb\")? | absent"
+                },
+                {
+                    "id": "GB298-1",
+                    "text": "GB298_Can standard negation be marked by an inflecting word (\"auxiliary verb\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB299_Can standard negation be marked by a non-inflecting word (\"auxiliary particle\")?",
+            "children": [
+                {
+                    "id": "GB299-0",
+                    "text": "GB299_Can standard negation be marked by a non-inflecting word (\"auxiliary particle\")? | absent"
+                },
+                {
+                    "id": "GB299-1",
+                    "text": "GB299_Can standard negation be marked by a non-inflecting word (\"auxiliary particle\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB300_Does the verb for 'give' have suppletive verb forms?",
+            "children": [
+                {
+                    "id": "GB300-0",
+                    "text": "GB300_Does the verb for 'give' have suppletive verb forms? | absent"
+                },
+                {
+                    "id": "GB300-1",
+                    "text": "GB300_Does the verb for 'give' have suppletive verb forms? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB301_Is there an inclusory construction?",
+            "children": [
+                {
+                    "id": "GB301-0",
+                    "text": "GB301_Is there an inclusory construction? | absent"
+                },
+                {
+                    "id": "GB301-1",
+                    "text": "GB301_Is there an inclusory construction? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB302_Is there a phonologically free passive marker (\"particle\" or \"auxiliary\")?",
+            "children": [
+                {
+                    "id": "GB302-0",
+                    "text": "GB302_Is there a phonologically free passive marker (\"particle\" or \"auxiliary\")? | absent"
+                },
+                {
+                    "id": "GB302-1",
+                    "text": "GB302_Is there a phonologically free passive marker (\"particle\" or \"auxiliary\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB303_Is there a phonologically free antipassive marker (\"particle\" or \"auxiliary\")?",
+            "children": [
+                {
+                    "id": "GB303-0",
+                    "text": "GB303_Is there a phonologically free antipassive marker (\"particle\" or \"auxiliary\")? | absent"
+                },
+                {
+                    "id": "GB303-1",
+                    "text": "GB303_Is there a phonologically free antipassive marker (\"particle\" or \"auxiliary\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB304_Can the agent be expressed overtly in a passive clause?",
+            "children": [
+                {
+                    "id": "GB304-0",
+                    "text": "GB304_Can the agent be expressed overtly in a passive clause? | absent"
+                },
+                {
+                    "id": "GB304-1",
+                    "text": "GB304_Can the agent be expressed overtly in a passive clause? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB305_Is there a phonologically independent reflexive pronoun?",
+            "children": [
+                {
+                    "id": "GB305-0",
+                    "text": "GB305_Is there a phonologically independent reflexive pronoun? | absent"
+                },
+                {
+                    "id": "GB305-1",
+                    "text": "GB305_Is there a phonologically independent reflexive pronoun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB306_Is there a phonologically independent non-bipartite reciprocal pronoun?",
+            "children": [
+                {
+                    "id": "GB306-0",
+                    "text": "GB306_Is there a phonologically independent non-bipartite reciprocal pronoun? | absent"
+                },
+                {
+                    "id": "GB306-1",
+                    "text": "GB306_Is there a phonologically independent non-bipartite reciprocal pronoun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB309_Are there multiple past or multiple future tenses, distinguishing distance from Time of Reference?",
+            "children": [
+                {
+                    "id": "GB309-0",
+                    "text": "GB309_Are there multiple past or multiple future tenses, distinguishing distance from Time of Reference? | absent"
+                },
+                {
+                    "id": "GB309-1",
+                    "text": "GB309_Are there multiple past or multiple future tenses, distinguishing distance from Time of Reference? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB312_Is there overt morphological marking on the verb dedicated to mood?",
+            "children": [
+                {
+                    "id": "GB312-0",
+                    "text": "GB312_Is there overt morphological marking on the verb dedicated to mood? | absent"
+                },
+                {
+                    "id": "GB312-1",
+                    "text": "GB312_Is there overt morphological marking on the verb dedicated to mood? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB313_Are there special adnominal possessive pronouns that are not formed by an otherwise regular process?",
+            "children": [
+                {
+                    "id": "GB313-0",
+                    "text": "GB313_Are there special adnominal possessive pronouns that are not formed by an otherwise regular process? | absent"
+                },
+                {
+                    "id": "GB313-1",
+                    "text": "GB313_Are there special adnominal possessive pronouns that are not formed by an otherwise regular process? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB314_Can augmentative meaning be expressed productively by a shift of gender/noun class?",
+            "children": [
+                {
+                    "id": "GB314-0",
+                    "text": "GB314_Can augmentative meaning be expressed productively by a shift of gender/noun class? | absent"
+                },
+                {
+                    "id": "GB314-1",
+                    "text": "GB314_Can augmentative meaning be expressed productively by a shift of gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB315_Can diminutive meaning be expressed productively by a shift of gender/noun class?",
+            "children": [
+                {
+                    "id": "GB315-0",
+                    "text": "GB315_Can diminutive meaning be expressed productively by a shift of gender/noun class? | absent"
+                },
+                {
+                    "id": "GB315-1",
+                    "text": "GB315_Can diminutive meaning be expressed productively by a shift of gender/noun class? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB316_Is singular number regularly marked in the noun phrase by a dedicated phonologically free element?",
+            "children": [
+                {
+                    "id": "GB316-0",
+                    "text": "GB316_Is singular number regularly marked in the noun phrase by a dedicated phonologically free element? | absent"
+                },
+                {
+                    "id": "GB316-1",
+                    "text": "GB316_Is singular number regularly marked in the noun phrase by a dedicated phonologically free element? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB317_Is dual number regularly marked in the noun phrase by a dedicated phonologically free element?",
+            "children": [
+                {
+                    "id": "GB317-0",
+                    "text": "GB317_Is dual number regularly marked in the noun phrase by a dedicated phonologically free element? | absent"
+                },
+                {
+                    "id": "GB317-1",
+                    "text": "GB317_Is dual number regularly marked in the noun phrase by a dedicated phonologically free element? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB318_Is plural number regularly marked in the noun phrase by a dedicated phonologically free element?",
+            "children": [
+                {
+                    "id": "GB318-0",
+                    "text": "GB318_Is plural number regularly marked in the noun phrase by a dedicated phonologically free element? | absent"
+                },
+                {
+                    "id": "GB318-1",
+                    "text": "GB318_Is plural number regularly marked in the noun phrase by a dedicated phonologically free element? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB319_Is trial number regularly marked in the noun phrase by a dedicated phonologically free element?",
+            "children": [
+                {
+                    "id": "GB319-0",
+                    "text": "GB319_Is trial number regularly marked in the noun phrase by a dedicated phonologically free element? | absent"
+                },
+                {
+                    "id": "GB319-1",
+                    "text": "GB319_Is trial number regularly marked in the noun phrase by a dedicated phonologically free element? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB320_Is paucal number regularly marked in the noun phrase by a dedicated phonologically free element?",
+            "children": [
+                {
+                    "id": "GB320-0",
+                    "text": "GB320_Is paucal number regularly marked in the noun phrase by a dedicated phonologically free element? | absent"
+                },
+                {
+                    "id": "GB320-1",
+                    "text": "GB320_Is paucal number regularly marked in the noun phrase by a dedicated phonologically free element? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB321_Is there a large class of nouns whose gender/noun class is not phonologically or semantically predictable?",
+            "children": [
+                {
+                    "id": "GB321-0",
+                    "text": "GB321_Is there a large class of nouns whose gender/noun class is not phonologically or semantically predictable? | absent"
+                },
+                {
+                    "id": "GB321-1",
+                    "text": "GB321_Is there a large class of nouns whose gender/noun class is not phonologically or semantically predictable? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB322_Is there grammatical marking of direct evidence (perceived with the senses)?",
+            "children": [
+                {
+                    "id": "GB322-0",
+                    "text": "GB322_Is there grammatical marking of direct evidence (perceived with the senses)? | absent"
+                },
+                {
+                    "id": "GB322-1",
+                    "text": "GB322_Is there grammatical marking of direct evidence (perceived with the senses)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB323_Is there grammatical marking of indirect evidence (hearsay, inference, etc.)?",
+            "children": [
+                {
+                    "id": "GB323-0",
+                    "text": "GB323_Is there grammatical marking of indirect evidence (hearsay, inference, etc.)? | absent"
+                },
+                {
+                    "id": "GB323-1",
+                    "text": "GB323_Is there grammatical marking of indirect evidence (hearsay, inference, etc.)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB324_Is there an interrogative verb for content interrogatives (who?, what?, etc.)?",
+            "children": [
+                {
+                    "id": "GB324-0",
+                    "text": "GB324_Is there an interrogative verb for content interrogatives (who?, what?, etc.)? | absent"
+                },
+                {
+                    "id": "GB324-1",
+                    "text": "GB324_Is there an interrogative verb for content interrogatives (who?, what?, etc.)? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB325_Is there a count/mass distinction in interrogative quantifiers?",
+            "children": [
+                {
+                    "id": "GB325-0",
+                    "text": "GB325_Is there a count/mass distinction in interrogative quantifiers? | absent"
+                },
+                {
+                    "id": "GB325-1",
+                    "text": "GB325_Is there a count/mass distinction in interrogative quantifiers? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB326_Do (nominal) content interrogatives normally or frequently occur in situ?",
+            "children": [
+                {
+                    "id": "GB326-0",
+                    "text": "GB326_Do (nominal) content interrogatives normally or frequently occur in situ? | absent"
+                },
+                {
+                    "id": "GB326-1",
+                    "text": "GB326_Do (nominal) content interrogatives normally or frequently occur in situ? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB327_Can the relative clause follow the noun?",
+            "children": [
+                {
+                    "id": "GB327-0",
+                    "text": "GB327_Can the relative clause follow the noun? | absent"
+                },
+                {
+                    "id": "GB327-1",
+                    "text": "GB327_Can the relative clause follow the noun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB328_Can the relative clause precede the noun?",
+            "children": [
+                {
+                    "id": "GB328-0",
+                    "text": "GB328_Can the relative clause precede the noun? | absent"
+                },
+                {
+                    "id": "GB328-1",
+                    "text": "GB328_Can the relative clause precede the noun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB329_Are there internally-headed relative clauses?",
+            "children": [
+                {
+                    "id": "GB329-0",
+                    "text": "GB329_Are there internally-headed relative clauses? | absent"
+                },
+                {
+                    "id": "GB329-1",
+                    "text": "GB329_Are there internally-headed relative clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB330_Are there correlative relative clauses?",
+            "children": [
+                {
+                    "id": "GB330-0",
+                    "text": "GB330_Are there correlative relative clauses? | absent"
+                },
+                {
+                    "id": "GB330-1",
+                    "text": "GB330_Are there correlative relative clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB331_Are there non-adjacent relative clauses?",
+            "children": [
+                {
+                    "id": "GB331-0",
+                    "text": "GB331_Are there non-adjacent relative clauses? | absent"
+                },
+                {
+                    "id": "GB331-1",
+                    "text": "GB331_Are there non-adjacent relative clauses? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB333_Is there a decimal numeral system?",
+            "children": [
+                {
+                    "id": "GB333-0",
+                    "text": "GB333_Is there a decimal numeral system? | absent"
+                },
+                {
+                    "id": "GB333-1",
+                    "text": "GB333_Is there a decimal numeral system? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB334_Is there synchronic evidence for any element of a quinary numeral system?",
+            "children": [
+                {
+                    "id": "GB334-0",
+                    "text": "GB334_Is there synchronic evidence for any element of a quinary numeral system? | absent"
+                },
+                {
+                    "id": "GB334-1",
+                    "text": "GB334_Is there synchronic evidence for any element of a quinary numeral system? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB335_Is there synchronic evidence for any element of a vigesimal numeral system?",
+            "children": [
+                {
+                    "id": "GB335-0",
+                    "text": "GB335_Is there synchronic evidence for any element of a vigesimal numeral system? | absent"
+                },
+                {
+                    "id": "GB335-1",
+                    "text": "GB335_Is there synchronic evidence for any element of a vigesimal numeral system? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB336_Is there a body-part tallying system?",
+            "children": [
+                {
+                    "id": "GB336-0",
+                    "text": "GB336_Is there a body-part tallying system? | absent"
+                },
+                {
+                    "id": "GB336-1",
+                    "text": "GB336_Is there a body-part tallying system? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB400_Are all person categories neutralized in some voice, tense, aspect, mood and/or negation?",
+            "children": [
+                {
+                    "id": "GB400-0",
+                    "text": "GB400_Are all person categories neutralized in some voice, tense, aspect, mood and/or negation? | absent"
+                },
+                {
+                    "id": "GB400-1",
+                    "text": "GB400_Are all person categories neutralized in some voice, tense, aspect, mood and/or negation? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB401_Is there a class of patient-labile verbs?",
+            "children": [
+                {
+                    "id": "GB401-0",
+                    "text": "GB401_Is there a class of patient-labile verbs? | absent"
+                },
+                {
+                    "id": "GB401-1",
+                    "text": "GB401_Is there a class of patient-labile verbs? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB402_Does the verb for 'see' have suppletive verb forms?",
+            "children": [
+                {
+                    "id": "GB402-0",
+                    "text": "GB402_Does the verb for 'see' have suppletive verb forms? | absent"
+                },
+                {
+                    "id": "GB402-1",
+                    "text": "GB402_Does the verb for 'see' have suppletive verb forms? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB403_Does the verb for 'come' have suppletive verb forms?",
+            "children": [
+                {
+                    "id": "GB403-0",
+                    "text": "GB403_Does the verb for 'come' have suppletive verb forms? | absent"
+                },
+                {
+                    "id": "GB403-1",
+                    "text": "GB403_Does the verb for 'come' have suppletive verb forms? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB408_Is there any accusative alignment of flagging?",
+            "children": [
+                {
+                    "id": "GB408-0",
+                    "text": "GB408_Is there any accusative alignment of flagging? | absent"
+                },
+                {
+                    "id": "GB408-1",
+                    "text": "GB408_Is there any accusative alignment of flagging? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB409_Is there any ergative alignment of flagging?",
+            "children": [
+                {
+                    "id": "GB409-0",
+                    "text": "GB409_Is there any ergative alignment of flagging? | absent"
+                },
+                {
+                    "id": "GB409-1",
+                    "text": "GB409_Is there any ergative alignment of flagging? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB410_Is there any neutral alignment of flagging?",
+            "children": [
+                {
+                    "id": "GB410-0",
+                    "text": "GB410_Is there any neutral alignment of flagging? | absent"
+                },
+                {
+                    "id": "GB410-1",
+                    "text": "GB410_Is there any neutral alignment of flagging? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB415_Is there a politeness distinction in 2nd person forms?",
+            "children": [
+                {
+                    "id": "GB415-0",
+                    "text": "GB415_Is there a politeness distinction in 2nd person forms? | absent"
+                },
+                {
+                    "id": "GB415-1",
+                    "text": "GB415_Is there a politeness distinction in 2nd person forms? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB421_Is there a preposed complementizer in complements of verbs of thinking and/or knowing?",
+            "children": [
+                {
+                    "id": "GB421-0",
+                    "text": "GB421_Is there a preposed complementizer in complements of verbs of thinking and/or knowing? | absent"
+                },
+                {
+                    "id": "GB421-1",
+                    "text": "GB421_Is there a preposed complementizer in complements of verbs of thinking and/or knowing? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB422_Is there a postposed complementizer in complements of verbs of thinking and/or knowing?",
+            "children": [
+                {
+                    "id": "GB422-0",
+                    "text": "GB422_Is there a postposed complementizer in complements of verbs of thinking and/or knowing? | absent"
+                },
+                {
+                    "id": "GB422-1",
+                    "text": "GB422_Is there a postposed complementizer in complements of verbs of thinking and/or knowing? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB430_Can adnominal possession be marked by a prefix on the possessor?",
+            "children": [
+                {
+                    "id": "GB430-0",
+                    "text": "GB430_Can adnominal possession be marked by a prefix on the possessor? | absent"
+                },
+                {
+                    "id": "GB430-1",
+                    "text": "GB430_Can adnominal possession be marked by a prefix on the possessor? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB431_Can adnominal possession be marked by a prefix on the possessed noun?",
+            "children": [
+                {
+                    "id": "GB431-0",
+                    "text": "GB431_Can adnominal possession be marked by a prefix on the possessed noun? | absent"
+                },
+                {
+                    "id": "GB431-1",
+                    "text": "GB431_Can adnominal possession be marked by a prefix on the possessed noun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB432_Can adnominal possession be marked by a suffix on the possessor?",
+            "children": [
+                {
+                    "id": "GB432-0",
+                    "text": "GB432_Can adnominal possession be marked by a suffix on the possessor? | absent"
+                },
+                {
+                    "id": "GB432-1",
+                    "text": "GB432_Can adnominal possession be marked by a suffix on the possessor? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB433_Can adnominal possession be marked by a suffix on the possessed noun?",
+            "children": [
+                {
+                    "id": "GB433-0",
+                    "text": "GB433_Can adnominal possession be marked by a suffix on the possessed noun? | absent"
+                },
+                {
+                    "id": "GB433-1",
+                    "text": "GB433_Can adnominal possession be marked by a suffix on the possessed noun? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB519_Can mood be marked by a non-inflecting word (\"auxiliary particle\")?",
+            "children": [
+                {
+                    "id": "GB519-0",
+                    "text": "GB519_Can mood be marked by a non-inflecting word (\"auxiliary particle\")? | absent"
+                },
+                {
+                    "id": "GB519-1",
+                    "text": "GB519_Can mood be marked by a non-inflecting word (\"auxiliary particle\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB520_Can aspect be marked by a non-inflecting word (\"auxiliary particle\")?",
+            "children": [
+                {
+                    "id": "GB520-0",
+                    "text": "GB520_Can aspect be marked by a non-inflecting word (\"auxiliary particle\")? | absent"
+                },
+                {
+                    "id": "GB520-1",
+                    "text": "GB520_Can aspect be marked by a non-inflecting word (\"auxiliary particle\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB521_Can tense be marked by a non-inflecting word (\"auxiliary particle\")?",
+            "children": [
+                {
+                    "id": "GB521-0",
+                    "text": "GB521_Can tense be marked by a non-inflecting word (\"auxiliary particle\")? | absent"
+                },
+                {
+                    "id": "GB521-1",
+                    "text": "GB521_Can tense be marked by a non-inflecting word (\"auxiliary particle\")? | present"
+                }
+            ]
+        },
+        {
+            "text": "GB522_Can the S or A argument be omitted from a pragmatically unmarked clause when the referent is inferrable from context (\"pro-drop\" or \"null anaphora\")?",
+            "children": [
+                {
+                    "id": "GB522-0",
+                    "text": "GB522_Can the S or A argument be omitted from a pragmatically unmarked clause when the referent is inferrable from context (\"pro-drop\" or \"null anaphora\")? | absent"
+                },
+                {
+                    "id": "GB522-1",
+                    "text": "GB522_Can the S or A argument be omitted from a pragmatically unmarked clause when the referent is inferrable from context (\"pro-drop\" or \"null anaphora\")? | present"
+                }
+            ]
+        }
+    ]
+}

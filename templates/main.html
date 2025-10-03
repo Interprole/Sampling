@@ -1,8 +1,75 @@
 {% extends 'base.html' %}
-{% block title %} Main {% endblock %}
+{% block title %} Make A Sample! {% endblock %}
 {% block content %}
-<h3> <b>Let's make a sample!</b></h3>
-<p>
-   Some intro text, I guess. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-</p>
+<h3 style="text-align: center;"><b>Let's make a sample!</b></h3>
+<form action="/sample" method="post">
+    <div class="grid-container">
+        <div class="filter-title">
+            <p><b>Obligatory Filters</b></p>
+        </div>
+        <div class="filter-title">
+            <p><b>Extra Filters</b></p>
+        </div>
+        <div>
+            <p class="text-form">
+                <label for="name"><b>Name a sample</b></label>
+                <input type="text" name="name" id="name">
+            </p>
+            <p class="text-form">
+                <label for="sampling-algorithm"><b>Sampling algorithm</b></label>
+                <select id="sampling-algorithm" name="sampling-algorithm">
+                    <option value="genus-macroarea">Genus-macroarea method</option>
+                    <option value="diversity-value">The Diversity value method</option>
+                    <option value="random">Random sample</option>
+                </select>
+            </p>
+            <p class="text-form">
+                <label for="sample-size"><b>Sample size</b></label>
+                <input class="range-input" type="range" min="0" max="100" value="50" step="1" name="sample-size" id="sample-size" min="1" max="100" value="1" step="1">
+            </p>
+            <p class="text-form">
+                <label for="macroareas"><b>Macroareas</b></label>
+                <select class="js-example-basic-multiple" name="macroareas[]" multiple="multiple">
+                  <option value="Africa">Africa</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Eurasia">Eurasia</option>
+                  <option value="North America">North America</option>
+                  <option value="Papunesia">Papunesia</option>
+                  <option value="South America">South America</option>
+                </select>
+            </p>
+            <p class="text-form">
+                <label for="doc-lang"><b>Documents' Languages</b></label>
+                <select class="doc-lang-js" name="docLanguages[]" multiple="multiple">
+                </select>
+            </p>
+            <p class="text-form">
+                <label for="ranking"><b>Rank Documents By</b></label>
+                <select id="ranking" name="ranking">
+                    <option value="item1">Any</option>
+                </select>
+            </p>
+        </div>
+        <div>
+            <p class="text-form">
+                <label for="include"><b>Include Languages</b></label>
+                <select class="include-lang-js"  style="width: 50%" name="include[]" multiple="multiple">
+                </select>
+            </p>
+            <p class="text-form">
+                <label for="exclude"><b>Exclude Languages</b></label>
+                <select class="exclude-lang-js" style="width: 50%" name="exclude[]" multiple="multiple">
+                </select>
+            </p>
+            <p class="text-form">
+                <label for="gram-feature"><b>Add a GramBank feature</b></label>
+                <select class="grambank-js"  style="width: 50%" name="grambank[]" multiple="multiple">
+                </select>
+            </p>
+        </div>
+    </div>
+    <p class="text-form">
+        <button type="submit" class="submit-button"><b>Make a sample!</b></button>
+    </p>
+</form>
 {% endblock %}

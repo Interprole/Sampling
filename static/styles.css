@@ -1,17 +1,10 @@
-.navbar {
-	color: #296465;
-	font-family: "Charis SIL";
-}
-
-body {
-	background-color: white;
-}
-
+/* text */
 p {
 	color: #0F3362;
 	font-family: "Charis SIL";
 	text-align: justify;
-	margin: 50px;
+	margin: 30px;
+	/* padding: 30px; */
 }
 
 h3 {
@@ -19,4 +12,86 @@ h3 {
 	font-family: "Charis SIL";
 	text-align: justify;
 	margin: 50px;
+}
+
+.navbar {
+	color: #296465;
+	font-family: "Charis SIL";
+}
+
+/* containers */
+body {
+	background-color: white;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 45% 45%;
+	gap: 0px 50px;
+	background-color: #ffffff;
+	justify-content: center;
+	padding-bottom: 50px;
+}
+
+.grid-container>div {
+	background-color: #c2dbbe;
+}
+
+.filter-title {
+	background-color: #A4CA9D !important;
+	height: 45px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.filter-title p {
+	color: #0F3362;
+	font-size: 25px;
+	margin: 0px;
+}
+
+/* forms */
+
+.submit-button {
+	background-color: #A4CA9D;
+	text-align: center;
+	color: #0F3362;
+	font-family: "Charis SIL";
+	border: none;
+	font-size: 24px;
+	border-radius: 10px;
+	margin-bottom: auto;
+	display: block;
+	padding: 20px;
+	width: 50%;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.text-form {
+	color: #0F3362;
+	font-family: "Charis SIL";
+	text-align: justify;
+	font-size: 18px;
+}
+
+input[type="text"],
+select {
+	border: 1px, solid, #296465;
+	border-radius: 5px;
+	height: 30px;
+	width: 60%;
+}
+
+.range {
+	display: grid;
+	gap: 20px;
+	width: 100px;
+}
+
+.range-input {
+	accent-color: #296465;
 }

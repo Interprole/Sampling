@@ -1,76 +1,76 @@
 {
     "results": [
         {
-            "id": 1,
-            "text": "cmn"
+            "id": "nld",
+            "text": "Dutch"
         },
         {
-            "id": 2,
-            "text": "deu"
+            "id": "eng",
+            "text": "English"
         },
         {
-            "id": 3,
-            "text": "eng"
+            "id": "fra",
+            "text": "French"
         },
         {
-            "id": 4,
-            "text": "fra"
+            "id": "glg",
+            "text": "Galician"
         },
         {
-            "id": 5,
-            "text": "glg"
+            "id": "deu",
+            "text": "German"
         },
         {
-            "id": 6,
-            "text": "ind"
+            "id": "isl",
+            "text": "Icelandic"
         },
         {
-            "id": 7,
-            "text": "isl"
+            "id": "ind",
+            "text": "Indonesian"
         },
         {
-            "id": 8,
-            "text": "ita"
+            "id": "ita",
+            "text": "Italian"
         },
         {
-            "id": 9,
-            "text": "jpn"
+            "id": "jpn",
+            "text": "Japanese"
         },
         {
-            "id": 10,
-            "text": "nld"
+            "id": "cmn",
+            "text": "Mandarin Chinese"
         },
         {
-            "id": 11,
-            "text": "nor"
+            "id": "nor",
+            "text": "Norwegian"
         },
         {
-            "id": 12,
-            "text": "oci"
+            "id": "oci",
+            "text": "Occitan"
         },
         {
-            "id": 13,
-            "text": "por"
+            "id": "por",
+            "text": "Portuguese"
         },
         {
-            "id": 14,
-            "text": "roh"
+            "id": "roh",
+            "text": "Romansh"
         },
         {
-            "id": 15,
-            "text": "rus"
+            "id": "rus",
+            "text": "Russian"
         },
         {
-            "id": 16,
-            "text": "spa"
+            "id": "spa",
+            "text": "Spanish"
         },
         {
-            "id": 17,
-            "text": "swe"
+            "id": "swe",
+            "text": "Swedish"
         },
         {
-            "id": 18,
-            "text": "ukr"
+            "id": "ukr",
+            "text": "Ukrainian"
         }
     ]
 }
