@@ -32,7 +32,7 @@
         "5.0": "Both missing"
     },
     "6A_Uvular Consonants": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "Uvular stops only",
         "3.0": "Uvular continuants only",
         "4.0": "Uvular stops and continuants"
@@ -71,7 +71,7 @@
         "5.0": "four-way nasal vs. oral vowel contrast (/\u1e7d/ vs. /\u1e7d\u02d0/ vs. /V/ v /V\u02d0/) with nasal spreading"
     },
     "11A_Front Rounded Vowels": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "High and mid",
         "3.0": "High only",
         "4.0": "Mid only"
@@ -130,7 +130,7 @@
         "6.0": "No fricatives or nasals"
     },
     "19A_Presence of Uncommon Consonants": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "Clicks",
         "3.0": "Labial-velars",
         "4.0": "Pharyngeals",
@@ -221,7 +221,7 @@
         "3.0": "Not syncretic"
     },
     "30A_Number of Genders": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "Two",
         "3.0": "Three",
         "4.0": "Four",
@@ -391,7 +391,7 @@
         "3.0": "Mixed"
     },
     "53A_Ordinal Numerals": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "One, two, three",
         "3.0": "First, two, three",
         "4.0": "One-th, two-th, three-th",
@@ -559,7 +559,7 @@
         "1.0": "Tense",
         "2.0": "Aspect",
         "3.0": "Tense and aspect",
-        "4.0": NaN
+        "4.0": "None"
     },
     "79B_Suppletion in Imperatives and Hortatives": {
         "1.0": "A regular and a suppletive form alternate",
@@ -569,7 +569,7 @@
         "5.0": "None (= no suppletive imperatives reported in the reference material)"
     },
     "80A_Verbal Number and Suppletion": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "Singular-plural pairs, no suppletion",
         "3.0": "Singular-plural pairs, suppletion",
         "4.0": "Singular-dual-plural triples, no suppletion",
@@ -752,7 +752,7 @@
         "4.0": "Ergative - absolutive",
         "5.0": "Tripartite",
         "6.0": "Active - inactive",
-        "7.0": NaN
+        "7.0": "None"
     },
     "100A_Alignment of Verbal Person Marking": {
         "1.0": "Neutral",
@@ -996,14 +996,14 @@
         "4.0": "Black/blue vs. green",
         "5.0": "Yellow/green/blue",
         "6.0": "Yellow/green vs. blue",
-        "7.0": NaN
+        "7.0": "None"
     },
     "135A_Red and Yellow": {
         "1.0": "Red vs. yellow",
         "2.0": "Red/yellow",
         "3.0": "Yellow/green/blue vs. red",
         "4.0": "Yellow/green vs. red",
-        "5.0": NaN
+        "5.0": "None"
     },
     "136A_M-T Pronouns": {
         "1.0": "No M-T pronouns",
@@ -1029,13 +1029,13 @@
         "3.0": "Others"
     },
     "139A_Irregular Negatives in Sign Languages": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "One",
         "3.0": "Some (2-5)",
         "4.0": "Many (more than 5)"
     },
     "140A_Question Particles in Sign Languages": {
-        "1.0": NaN,
+        "1.0": "None",
         "2.0": "One",
         "3.0": "More than one"
     },
@@ -1126,19 +1126,19 @@
         "1.0": "NegV",
         "2.0": "[Neg-V]",
         "3.0": "NegV&[Neg-V]",
-        "4.0": NaN
+        "4.0": "None"
     },
     "143F_Postverbal Negative Morphemes": {
         "1.0": "VNeg",
         "2.0": "[V-Neg]",
         "3.0": "VNeg&[V-Neg]",
-        "4.0": NaN
+        "4.0": "None"
     },
     "143G_Minor morphological means of signaling negation": {
         "1.0": "NegTone",
         "2.0": "NegInfix",
         "3.0": "NegStemChange",
-        "4.0": NaN
+        "4.0": "None"
     },
     "144A_Position of Negative Word With Respect to Subject, Object, and Verb": {
         "1.0": "NegSVO",
@@ -1505,7 +1505,7 @@
         "3.0": "Suffix&OptDoubleNeg",
         "4.0": "Suffix&OnlyWithAnotherNeg",
         "5.0": "WordBetweenSAndO",
-        "6.0": NaN
+        "6.0": "None"
     },
     "144X_Verb-Initial with Clause-Final Negative": {
         "1.0": "NoDoubleNeg",
