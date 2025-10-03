@@ -17,15 +17,17 @@
             </p>
             <p class="text-form">
                 <label for="sampling-algorithm"><b>Sampling algorithm</b></label>
-                <select id="sampling-algorithm" name="sampling-algorithm">
-                    <option value="genus-macroarea">Genus-macroarea method</option>
+                <select class="js-example-basic-single" name="sampling-algorithm">
+                     <option value="genus-macroarea">Genus-macroarea method</option>
                     <option value="diversity-value">The Diversity value method</option>
                     <option value="random">Random sample</option>
                 </select>
             </p>
             <p class="text-form">
-                <label for="sample-size"><b>Sample size</b></label>
-                <input class="range-input" type="range" min="0" max="100" value="50" step="1" name="sample-size" id="sample-size" min="1" max="100" value="1" step="1">
+               <label for="sample-size"><b>Sample size:</b></label>
+                <input class="range-input" type="range" min="0" max="100" value="50" step="1" name="sample-size" id="sample-size" oninput="this.nextElementSibling.value = this.value">
+                &nbsp
+                <output>50</output>
             </p>
             <p class="text-form">
                 <label for="macroareas"><b>Macroareas</b></label>
@@ -45,35 +47,35 @@
             </p>
             <p class="text-form">
                 <label for="ranking"><b>Rank Documents By</b></label>
-                <select id="ranking" name="ranking">
-                    <option value="item1">Any</option>
-                </select>
+                <select class="js-example-basic-single" name="ranking">
+                     <option value="item1">Any</option>
+               </select>
             </p>
         </div>
         <div>
             <p class="text-form">
                 <label for="include"><b>Include Languages</b></label>
-                <select class="include-lang-js"  style="width: 50%" name="include[]" multiple="multiple">
+                <select class="include-lang-js" name="include[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                 <label for="exclude"><b>Exclude Languages</b></label>
-                <select class="exclude-lang-js" style="width: 50%" name="exclude[]" multiple="multiple">
+                <select class="exclude-lang-js" name="exclude[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                 <label for="gram-feature"><b>Add a GramBank feature</b></label>
-                <select class="grambank-js"  style="width: 50%" name="grambank[]" multiple="multiple">
+                <select class="grambank-js" name="grambank[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                <label for="wals-feature"><b>Add a WALS feature</b></label>
-               <select class="wals-js"  style="width: 50%" name="wals[]" multiple="multiple">
+               <select class="wals-js" name="wals[]" multiple="multiple">
                </select>
            </p>
         </div>
     </div>
-    <p class="text-form">
+    <p class="text-submit">
         <button type="submit" class="submit-button"><b>Make a sample!</b></button>
     </p>
 </form>

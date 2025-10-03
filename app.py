@@ -13,16 +13,15 @@ def main():
 def sample():
     if request.method == "POST":
         title = request.form['name']
-        algorithm = request.form['sampling-algorithm']
+        algorithm = request.form.getlist('sampling-algorithm')
         size = request.form['sample-size']
         macroareas = request.form.getlist('macroareas[]')
         docLang = request.form.getlist('docLanguages[]')
-        rank = request.form['ranking']
+        rank = request.form.getlist('ranking')
         includeLang = request.form.getlist('include[]')
         excludeLang = request.form.getlist('exclude[]')
         gramFeature = request.form.getlist('grambank[]')
         walsFeature = request.form.getlist('wals[]')
-    
     return render_template("sample.html", sample=sample)
 
 

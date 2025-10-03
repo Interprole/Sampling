@@ -32,7 +32,8 @@ body {
 	padding-bottom: 50px;
 }
 
-.grid-container>div {
+.grid-container > div {
+	align-items: center;
 	background-color: #c2dbbe;
 }
 
@@ -73,24 +74,45 @@ body {
 .text-form {
 	color: #0F3362;
 	font-family: "Charis SIL";
+	font-size: 18px;
+	display: grid;
+	grid-template-columns: auto 60%;
+}
+
+
+
+.text-submit {
+	color: #0F3362;
+	font-family: "Charis SIL";
 	text-align: justify;
 	font-size: 18px;
 }
 
 input[type="text"],
-select {
+select,
+.select2-selection--single,
+.select2-selection--multiple {
 	border: 1px, solid, #296465;
 	border-radius: 5px;
-	height: 30px;
-	width: 60%;
-}
-
-.range {
-	display: grid;
-	gap: 20px;
-	width: 100px;
+	min-height: 30px;
 }
 
 .range-input {
 	accent-color: #296465;
+}
+
+.select2-results__option--highlighted[aria-selected] {
+    background-color: #A4CA9D !important;
+}
+
+.select2-results__option--load-fail,
+.select2-search__field,
+.select2-results__option--highlighted[aria-selected],
+.select2-container--default,
+.select2-selection__choice,
+.select2-results__option, 
+.select2-selection__rendered {
+	color: #0F3362 !important;
+	font-family: "Charis SIL" !important;
+	font-size: 18px !important;
 }
