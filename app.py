@@ -22,7 +22,10 @@ def sample():
         excludeLang = request.form.getlist('exclude[]')
         gramFeature = request.form.getlist('grambank[]')
         walsFeature = request.form.getlist('wals[]')
-    return render_template("sample.html", sample=sample)
+
+        # make a sample
+        
+        return render_template("sample.html", сontent=sample)
 
 
 @app.route("/manual")
