@@ -23,8 +23,6 @@ def sample():
         gramFeature = request.form.getlist('grambank[]')
         walsFeature = request.form.getlist('wals[]')
 
-        # make a sample
-        
         return render_template("sample.html", сontent=sample)
 
 
