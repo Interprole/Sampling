@@ -1,3 +1,9 @@
+async function getJsonData(url) {
+    const response = await fetch(url);
+    const javascriptObject = await response.json();
+    return javascriptObject.results;
+};
+
 $(document).ready(function() {
     $('.js-example-basic-single, .js-example-basic-multiple').select2({
         width: '100%',
@@ -5,43 +11,43 @@ $(document).ready(function() {
         closeOnSelect: false,
     });
 
-    $('.doc-lang-js').select2({
-        width: '100%',
-        theme: "classic",
-        closeOnSelect: false,
-        ajax: {
-            url: 'static/documentLanguages.json',
-            dataType: 'json',
-        }
-    });
+    getJsonData("static/documentLanguages.json")
+        .then(data =>
+            $('.doc-lang-js').select2({
+                width: '100%',
+                theme: "classic",
+                data: data,
+                closeOnSelect: false
+            })
+        );
 
-    $('.include-lang-js, .exclude-lang-js').select2({
-        width: '100%',
-        theme: "classic",
-        closeOnSelect: false,
-        ajax: {
-            url: 'static/languages.json',
-            dataType: 'json'
-        }
-    });
+    getJsonData("static/languages.json")
+        .then(data =>
+            $('.include-lang-js, .exclude-lang-js').select2({
+                width: '100%',
+                theme: "classic",
+                data: data,
+                closeOnSelect: false
+            })
+        );
 
-    $('.grambank-js').select2({
-        width: '100%',
-        theme: "classic",
-        closeOnSelect: false,
-        ajax: {
-            url: 'static/grambankFeatures.json',
-            dataType: 'json',
-        }
-    });
+    getJsonData("static/grambankFeatures.json")
+        .then(data =>
+            $('.grambank-js').select2({
+                width: '100%',
+                theme: "classic",
+                data: data,
+                closeOnSelect: false
+            })
+        );
 
-    $('.wals-js').select2({
-        width: '100%',
-        theme: "classic",
-        closeOnSelect: false,
-        ajax: {
-            url: 'static/walsFeatures.json',
-            dataType: 'json'
-        }
-    });
+    getJsonData("static/walsFeatures.json")
+        .then(data =>
+            $('.wals-js').select2({
+                width: '100%',
+                theme: "classic",
+                data: data,
+                closeOnSelect: false
+            })
+        );
 });
