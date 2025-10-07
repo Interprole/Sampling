@@ -97,6 +97,103 @@ class Language(Group):
         self.is_language = True
 
 
+class DocumentLanguage(Base):
+    """
+    A class used to represent document languages (languages of sources/documentation).
+    
+    This stores the relationship between languages and the languages in which
+    their documentation is available (e.g., 'eng' for English, 'rus' for Russian).
+    
+    Attributes
+    ----------
+    language_glottocode : str
+        Foreign key to Group (Language)
+    doc_language_code : str
+        ISO 639-3 code of the documentation language (e.g., 'eng', 'rus', 'fra')
+    """
+    __tablename__ = 'document_languages'
+    
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
+    doc_language_code = Column(String, primary_key=True)
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+
+
+class Feature(Base):
+    """
+    A class used to represent a linguistic Feature from WALS or Grambank.
+    
+    Attributes
+    ----------
+    code : str
+        The feature code (e.g., '1A', 'GB020') - primary key
+    name : str
+        The full name of the feature (e.g., 'Consonant Inventories')
+    source : str
+        The source database ('WALS' or 'Grambank')
+    description : str
+        Optional description of the feature
+    """
+    __tablename__ = 'features'
+    
+    code = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
+    source = Column(String, nullable=False)  # 'WALS' or 'Grambank'
+    description = Column(String)
+    
+    # Relationships
+    values = relationship("FeatureValue", back_populates="feature", cascade="all, delete-orphan")
+    language_features = relationship("LanguageFeature", back_populates="feature", cascade="all, delete-orphan")
+
+
+class FeatureValue(Base):
+    """
+    A class used to represent possible values for a Feature.
+    
+    Attributes
+    ----------
+    feature_code : str
+        Foreign key to Feature.code
+    value_code : str
+        The code for this value (e.g., '1.0', '2.0', '0', '1')
+    value_name : str
+        The name/description of this value
+    """
+    __tablename__ = 'feature_values'
+    
+    feature_code = Column(String, ForeignKey('features.code'), primary_key=True)
+    value_code = Column(String, primary_key=True)
+    value_name = Column(String, nullable=False)
+    
+    # Relationships
+    feature = relationship("Feature", back_populates="values")
+
+
+class LanguageFeature(Base):
+    """
+    A class used to represent a Feature value for a specific Language.
+    
+    Attributes
+    ----------
+    language_glottocode : str
+        Foreign key to Group (Language)
+    feature_code : str
+        Foreign key to Feature.code
+    value_code : str
+        The value code for this language-feature pair
+    """
+    __tablename__ = 'language_features'
+    
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
+    feature_code = Column(String, ForeignKey('features.code'), primary_key=True)
+    value_code = Column(String, nullable=False)
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+    feature = relationship("Feature", back_populates="language_features")
+
+
 def create_tables(engine):
     Base.metadata.create_all(engine)
 
