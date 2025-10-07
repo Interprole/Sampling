@@ -12,26 +12,33 @@
         </div>
         <div>
             <p class="text-form">
-                <label for="name"><b>Name a sample</b></label>
+                <label for="name"><b>Name a sample</b> 
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <input type="text" name="name" id="name">
             </p>
             <p class="text-form">
-                <label for="sampling-algorithm"><b>Sampling algorithm
-                </b></label>
+                <label for="sampling-algorithm"><b>Sampling algorithm</b>
+               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+               </label>
                 <select class="js-example-basic-single" name="sampling-algorithm">
-                    <option value="genus-macroarea">Genus-macroarea method</option>
-                    <option value="diversity-value">The Diversity value method</option>
-                    <option value="random">Random sample</option>
+                    <option value="genus-macroarea-standard">The Genus-Macroarea sampling method</option>
+                    <option value="diversity-value">The Diversity Value sampling method</option>
+                    <option value="random">The Random Sample</option>
                 </select>
             </p>
             <p class="text-form">
-                <label for="sample-size"><b>Sample size</b></label>
-                <input class="range-input" type="range" min="0" max="100" value="50" step="1" name="sample-size" id="sample-size" oninput="this.nextElementSibling.value = this.value">
+                <label for="sample-size"><b>Sample size</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
+                <input class="range-input" type="range" min="0" max="100" value="0" step="1" name="sample-size" id="sample-size" oninput="this.nextElementSibling.value = this.value">
                 &nbsp
-                <output>50</output>
+                <output>0</output>
             </p>
             <p class="text-form">
-                <label for="macroareas"><b>Macroareas</b></label>
+                <label for="macroareas"><b>Macroareas</b>
+               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="js-example-basic-multiple" name="macroareas[]" multiple="multiple">
                     <option value="Africa">Africa</option>
                     <option value="Australia">Australia</option>
@@ -42,12 +49,16 @@
                 </select>
             </p>
             <p class="text-form">
-                <label for="doc-lang"><b>Documents' Languages</b></label>
+                <label for="doc-lang"><b>Documents' Languages</b>
+               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="doc-lang-js" name="docLanguages[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
-                <label for="ranking"><b>Rank Documents By</b></label>
+                <label for="ranking"><b>Rank Documents By</b>
+               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="js-example-basic-single" name="ranking">
                     <option value="item1">Any</option>
                 </select>
@@ -55,22 +66,30 @@
         </div>
         <div>
             <p class="text-form">
-                <label for="include"><b>Include Languages</b></label>
+                <label for="include"><b>Include Languages</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="include-lang-js" name="include[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
-                <label for="exclude"><b>Exclude Languages</b></label>
+                <label for="exclude"><b>Exclude Languages</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="exclude-lang-js" name="exclude[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
-                <label for="gram-feature"><b>Add a GramBank feature</b></label>
+                <label for="gram-feature"><b>Add a GramBank feature</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="grambank-js" name="grambank[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
-                <label for="wals-feature"><b>Add a WALS feature</b></label>
+                <label for="wals-feature"><b>Add a WALS feature</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                </label>
                 <select class="wals-js" name="wals[]" multiple="multiple">
                 </select>
             </p>

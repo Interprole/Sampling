@@ -5,6 +5,11 @@ async function getJsonData(url) {
 };
 
 $(document).ready(function() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+        container: 'body'
+    }));
+
     $('.js-example-basic-single, .js-example-basic-multiple').select2({
         width: '100%',
         theme: "classic",

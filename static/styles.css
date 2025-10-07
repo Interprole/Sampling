@@ -69,7 +69,7 @@ h3 {
 	margin: 10px;
 	padding: 10px;
 	display: grid;
-	grid-template-columns: auto 60%;
+	grid-template-columns: auto 55%;
 	align-items: center;
 }
 
@@ -145,4 +145,36 @@ select,
 .accordion-button,
 .accordion-button:not(.collapsed) {
 	background-color: #A4CA9D;
+}
+
+.tooltip {
+	font-family: "Charis SIL";
+	--bs-tooltip-bg: #0F3362;
+	--bs-tooltip-opacity: 0.8;
+	--bs-tooltip-color: #ffffff;
+}
+
+.btn-secondary,
+.btn-secondary:active,
+.btn-secondary.active,
+.btn-secondary:hover,
+.btn-secondary:focus {
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	padding: 0;
+	color: #0F3362;
+	background-color: #A4CA9D !important;
+	border: 1.5px solid #0F3362 !important;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	align-content: center;
+	white-space: nowrap;
+	margin-left: px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+	background-color: #aec3aa !important;
 }
