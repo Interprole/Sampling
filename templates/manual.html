@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
 {% block title %} Manual {% endblock %}
 {% block content %}
-<h3> How this framework works? </h3>
-<p> <b>1. Methodology</b> </p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae elementum leo, vitae tempor ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce dui odio, sodales id euismod eu, vestibulum id neque. Nullam sed dignissim leo, luctus auctor sem. Nunc at sapien accumsan, cursus enim sed, lacinia lectus. Nulla nisl quam, sollicitudin eu volutpat in, sollicitudin at enim. Nunc elit mi, laoreet in accumsan et, ultrices ut purus. Nulla dignissim eu felis lobortis commodo. Nullam non ante luctus, vehicula risus at, vehicula felis. In sodales, neque vitae luctus ultricies, ex neque cursus est, ut laoreet erat nibh ut lacus. Maecenas at mi condimentum, congue ipsum vehicula, aliquam ante. Nulla fermentum est non tristique euismod. Nam euismod aliquam ullamcorper. Quisque dictum, libero at tincidunt facilisis, urna eros sollicitudin massa, ac consectetur diam nunc id est.
-</p>
-<p> <b>2. Features</b> </p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae elementum leo, vitae tempor ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce dui odio, sodales id euismod eu, vestibulum id neque. Nullam sed dignissim leo, luctus auctor sem. Nunc at sapien accumsan, cursus enim sed, lacinia lectus. Nulla nisl quam, sollicitudin eu volutpat in, sollicitudin at enim. Nunc elit mi, laoreet in accumsan et, ultrices ut purus. Nulla dignissim eu felis lobortis commodo. Nullam non ante luctus, vehicula risus at, vehicula felis. In sodales, neque vitae luctus ultricies, ex neque cursus est, ut laoreet erat nibh ut lacus. Maecenas at mi condimentum, congue ipsum vehicula, aliquam ante. Nulla fermentum est non tristique euismod. Nam euismod aliquam ullamcorper. Quisque dictum, libero at tincidunt facilisis, urna eros sollicitudin massa, ac consectetur diam nunc id est.
-</p>
-<p> <b>Resources</b>
-    <br><br>
-    Bell, Alan. 1978. Language samples. In Joseph H. Greenberg (ed.), Universals of human language, Vol. 1: Method & theory, 123–156. Stanford: Stanford University Press.
-    <br><br>
-    Croft, William. 2003. Typology and universals. 2nd edn. Cambridge: Cambridge University Press.
-    <br><br>
-    Dryer, Matthew S. 1989. Large linguistic areas and language sampling. Studies in Language 13. 257–292.
-    <br><br>
-    Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank, Sebastian. 2024. Glottolog 5.1. Leipzig: Max Planck Institute for Evolutionary Anthropology. https://doi.org/10.5281/zenodo.14006617 Miestamo, Matti, Dik Bakker, and Antti Arppe. 2016. «Sampling for Variety». Linguistic Typology 20 (2): 233–96.
-    <br><br>
-    Rijkhoff, Jan, Dik Bakker, Kees Hengeveld & Peter Kahrel. 1993. A method of language sampling. Studies in Language 17. 169–203.
-</p>
+<h3><strong>Manual: How to make a Sample</strong></h3>
+<p> <strong>1. Obligatory Filters</strong> </p>
+<ul>
+    <li><code>Name a Sample</code> enables you to name a sample that you are going to work with (e.g. «Sample for my MA thesis»). </li>
+    <li><code>Sampling Algorithm</code> enables you to choose the sampling method. See more about available sampling methods on the <a href="/about">About</a> page.</li>
+    <li><code>Sample Size</code> enables you to choose the size of your future sample. The minimum size is ? and the maximum is ?.</li>
+    <li><code>Macroareas</code> enables you to choose languages from which macroareas you want to include in your sample. The macroarea list is as in <a href="glottolog.org">Glottolog</a>.</li>
+    <li><code>Documents' Languages</code> enables you to choose the languages of the descriptions. For example, if you are able to read only in English, the algorithm will suggest to you only the languages with English descriptions available.</li>
+</ul>
+<p> <strong>2. Extra Filters</strong> </p>
+<ul>
+    <li><code>Include Languages</code> enables you to include in the sample particular languages that you would like to work with.</li>
+    <li><code>Exclude Languages</code> enables you to exclude in the sample particular languages that you would like to work with.</li>
+    <li><code>Add a Grambank feature</code> enables you to restrict the sample to languages that have particular characteristics in the Grambank database. See the <a href="https://grambank.clld.org/">Grambank site</a> to explore the available parameters. Be aware that the number of languages annotated in Grambank is limited.</li>
+    <li><code>Add a WALS feature</code> enables you to restrict the sample to languages that have particular characteristics in the WALS database. See the <a href="https://wals.info/">WALS site</a> to explore the available parameters. Be aware that the number of languages annotated in WALS is limited.</li>
+</ul>
+<p> <strong>3. Search Settings</strong> </p>
+<ul>
+    <li><i>Soon, here will be the description of search settings.</i></li>
+</ul>
 {% endblock %}

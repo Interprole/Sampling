@@ -17,11 +17,12 @@ main {
 }
 
 /* text */
-
+ul,
 p,
 h3,
 .navbar,
-.filter-title p,
+.text-input,
+.range-input,
 .text-form,
 .submit-button,
 .collapse-button,
@@ -58,11 +59,6 @@ h3 {
 	font-size: 24px;
 }
 
-.filter-title p {
-	font-size: 25px;
-	margin: 0;
-}
-
 /* containers */
 
 .text-form {
@@ -76,10 +72,11 @@ h3 {
 .form-container {
 	display: grid;
 	grid-template-columns: 45% 45%;
-	gap: 0px 50px;
+	grid-column-gap: 50px;
+	grid-row-gap: 0px;
 	background-color: #ffffff;
 	justify-content: center;
-	margin-bottom: 75px;
+	margin-bottom: 50px;
 }
 
 .form-container>div {
@@ -87,7 +84,37 @@ h3 {
 	background-color: #c2dbbe;
 }
 
-.filter-title {
+.div1 {
+	grid-area: 1 / 1 / 2 / 2;
+	font-size: 90px !important;
+}
+
+.div2 {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.div3 {
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.div4 {
+	grid-area: 2 / 2 / 3 / 3;
+}
+
+.div5 {
+	grid-area: 3 / 1 / 4 / 3;
+	margin-top: 25px !important;
+	background-color: #ffffff !important;
+}
+
+.div6 {
+	grid-area: 4 / 1 / 5 / 3;
+	margin-top: 50px !important;
+	background-color: #ffffff !important;
+}
+
+.div1,
+.div2 {
 	background-color: #A4CA9D !important;
 	height: 45px;
 	padding: 10px;
@@ -96,15 +123,19 @@ h3 {
 	align-items: center;
 }
 
+.div1 p,
+.div2 p {
+	font-size: 20px;
+	margin: 0;
+}
+
+
 /* buttons */
 
 .submit-button {
 	display: block;
 	padding: 20px;
-	width: 50%;
-	position: relative;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 100%;
 }
 
 .submit-button,
@@ -144,6 +175,8 @@ select,
 
 .accordion-button,
 .accordion-button:not(.collapsed) {
+	font-size: 20px;
+	border-radius: 0px !important;
 	background-color: #A4CA9D;
 }
 
@@ -152,6 +185,10 @@ select,
 	--bs-tooltip-bg: #0F3362;
 	--bs-tooltip-opacity: 0.8;
 	--bs-tooltip-color: #ffffff;
+}
+
+.tooltip-inner {
+	text-align: justify !important;
 }
 
 .btn-secondary,
@@ -177,4 +214,15 @@ select,
 .btn-secondary:hover,
 .btn-secondary:focus {
 	background-color: #aec3aa !important;
+}
+
+datalist {
+	display: flex;
+	justify-content: space-between;
+	writing-mode: horizontal-tb;
+	width: 100%;
+  }
+  
+.preferenceValues span {
+    transform: translateX(0%); 
 }

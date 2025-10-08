@@ -4,40 +4,38 @@
 <h3 style="text-align: center;"><b>Let's make a sample!</b></h3>
 <form action="/sample" method="post">
     <div class="form-container">
-        <div class="filter-title">
+        <div class="div1">
             <p><b>Obligatory Filters</b></p>
         </div>
-        <div class="filter-title">
+        <div class="div2">
             <p><b>Extra Filters</b></p>
         </div>
-        <div>
+        <div class="div3">
             <p class="text-form">
-                <label for="name"><b>Name a sample</b> 
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <label for="name"><b>Name a Sample</b> 
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can name a sample that you are going to work with (e.g. «Sample for my MA thesis»)."><b>?</b></button>
                 </label>
-                <input type="text" name="name" id="name">
+                <input class="text-input" type="text" name="name" id="name">
             </p>
             <p class="text-form">
-                <label for="sampling-algorithm"><b>Sampling algorithm</b>
-               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
-               </label>
+                <label for="sampling-algorithm"><b>Sampling Algorithm</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you choose the sampling method. See more about available sampling methods on the <a href='/manual'>Manual</a> page."><b>?</b></button>
+                </label>
                 <select class="js-example-basic-single" name="sampling-algorithm">
                     <option value="genus-macroarea">The Genus-Macroarea sampling method</option>
                     <option value="diversity-value">The Diversity Value sampling method</option>
-                    <option value="random">The Random Sample</option>
+                    <option value="random">A Random Sample</option>
                 </select>
             </p>
             <p class="text-form">
-                <label for="sample-size"><b>Sample size</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <label for="sample-size"><b>Sample Size</b>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose the size of your future sample. The minimum size is ? and the maximum is ?."><b>?</b></button>
                 </label>
-                <input class="range-input" type="range" min="0" max="100" value="0" step="1" name="sample-size" id="sample-size" oninput="this.nextElementSibling.value = this.value">
-                &nbsp
-                <output>0</output>
+                <input class="range-input" type="text" id="sampleSizeInput" name="sample-size" id="sample-size" value="50">
             </p>
             <p class="text-form">
                 <label for="macroareas"><b>Macroareas</b>
-               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose languages from which macroareas you want to include in your sample. The macroarea list is as in <a href='glottolog.org'>Glottolog</a>."><b>?</b></button>
                 </label>
                 <select class="js-example-basic-multiple" name="macroareas[]" multiple="multiple">
                     <option value="Africa">Africa</option>
@@ -50,51 +48,93 @@
             </p>
             <p class="text-form">
                 <label for="doc-lang"><b>Documents' Languages</b>
-               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose the languages of the descriptions. For example, if you are able to read only in English, the algorithm will suggest to you only the languages with English descriptions available."><b>?</b></button>
                 </label>
                 <select class="doc-lang-js" name="docLanguages[]" multiple="multiple">
                 </select>
             </p>
-            <p class="text-form">
-                <label for="ranking"><b>Rank Documents By</b>
-               <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
-                </label>
-                <select class="js-example-basic-single" name="ranking">
-                    <option value="item1">Any</option>
-                </select>
-            </p>
         </div>
-        <div>
+        <div class="div4">
             <p class="text-form">
                 <label for="include"><b>Include Languages</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can include particular languages in the sample that you would like to work with."><b>?</b></button>
                 </label>
                 <select class="include-lang-js" name="include[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                 <label for="exclude"><b>Exclude Languages</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can exclude from the sample particular languages that you wouldn't like to work with."><b>?</b></button>
                 </label>
                 <select class="exclude-lang-js" name="exclude[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                 <label for="gram-feature"><b>Add a GramBank feature</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can restrict the sample to languages that have particular characteristics in the Grambank database. See the <a href='https://grambank.clld.org/'>Grambank site</a> to explore the available parameters. Be aware that the number of languages annotated in Grambank is limited."><b>?</b></button>
                 </label>
                 <select class="grambank-js" name="grambank[]" multiple="multiple">
                 </select>
             </p>
             <p class="text-form">
                 <label for="wals-feature"><b>Add a WALS feature</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A very important tip"><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can restrict the sample to languages that have particular characteristics in the WALS database. See the <a href='https://wals.info/'>WALS site</a> to explore the available parameters. Be aware that the number of languages annotated in WALS is limited."><b>?</b></button>
                 </label>
                 <select class="wals-js" name="wals[]" multiple="multiple">
                 </select>
             </p>
         </div>
+        <div class="div5">
+            <div class="accordion" style="min-height: 200px" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" style="text-align: center;">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                        <span class="d-block text-center w-100"> 
+                        <strong>Search Settings</strong>
+                        </span>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                        <div class="accordion-body" style="background-color: #c2dbbe;">
+                            <p class="text-form">
+                                <label for="ranking"><b>Select Languages By</b>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="As parameters of ranking we use year of the document publishing and its length in pages. Here you can choose how relevant these parameters are for your sample."><b>?</b></button>
+                                </label>
+                                <select class="js-example-basic-single" name="ranking">
+                                    <option value="random">Random</option>
+                                    <option value="item1">Our Custom Formula</option>
+                                    <option value="item2">Documents' publication year</option>
+                                    <option value="item3">Documents' page count</option>
+                                    <option value="item4">Total number of Documents</option>
+                                </select>
+                            </p>
+                            <p class="text-form">
+                                <label for="grammarDictionaryPreference"><b>Preference for Documents</b>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="A very important tip."><b>?</b></button>
+                                </label>
+                                <input class="range-input" type="range" min="-2" max="2" value="0" step="1" name="grammarDictionaryPreference" id="grammarDictionaryPreference" list="preferenceValues">
+                                &nbsp;
+                                <datalist id="preferenceValues">
+                                    <span>-2</span>
+                                    <span>-1</span>
+                                    <span>0</span>
+                                    <span>1</span>
+                                    <span>2</span>
+                                </datalist>
+                                &nbsp;
+                                <datalist id="preferenceValues">
+                                    <span>Grammars</span>
+                                    <span>Dictionaries</span>
+                                </datalist>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div6">
+            <button type="submit" class="submit-button"><b>Make a Sample!</b></button>
+        </div>
     </div>
-    <button type="submit" class="submit-button"><b>Make a sample!</b></button>
 </form>
 {% endblock %}
