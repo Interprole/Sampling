@@ -83,7 +83,8 @@ class GenusSample(Sample):
         exclude_languages: Optional[List[str]] = None,
         wals_features: Optional[Dict[str, List[str]]] = None,
         grambank_features: Optional[Dict[str, List[str]]] = None,
-        doc_languages: Optional[List[str]] = None
+        doc_languages: Optional[List[str]] = None,
+        ranking_key: Optional[str] = None
     ):
         """
         Инициализация GenusSample с фильтрами.
@@ -107,6 +108,9 @@ class GenusSample(Sample):
         doc_languages : List[str], optional
             Список ISO 639-3 кодов языков документации (например, ['eng', 'rus']).
             Будут выбраны только языки, имеющие документацию на этих языках.
+        ranking_key : str, optional
+            Критерий ранжирования языков при выборе из рода.
+            Возможные значения: 'source_count', None (случайный выбор).
         """
         if genus_list is None:
             self.genus_list = global_session.query(Genus).all()
@@ -119,6 +123,7 @@ class GenusSample(Sample):
         self.wals_features = wals_features or {}
         self.grambank_features = grambank_features or {}
         self.doc_languages = set(doc_languages) if doc_languages else set()
+        self.ranking_key = ranking_key
         
         super().__init__()
 
@@ -137,6 +142,118 @@ class GenusSample(Sample):
             "num_genera": len(self.genus_list),
             "genera_names": [genus.name for genus in self.genus_list]
         }
+
+    def get_language_rank_score(self, language: Language) -> int:
+        """
+        Вычисляет оценку языка для ранжирования на основе выбранного критерия.
+        
+        Parameters
+        ----------
+        language : Language
+            Язык для оценки.
+            
+        Returns
+        -------
+        int
+            Оценка языка (чем больше, тем лучше). Для случайного выбора возвращает 0.
+        """
+        if self.ranking_key == 'source_count':
+            # Количество библиографических источников
+            from models import Source
+            count = global_session.query(Source).filter_by(
+                language_glottocode=language.glottocode
+            ).count()
+            return count
+        else:
+            # Без ранжирования - случайный выбор
+            return 0
+
+    def select_best_language(self, available_languages: List[Language]) -> Language:
+        """
+        Выбирает лучший язык из списка доступных на основе критерия ранжирования.
+        
+        Parameters
+        ----------
+        available_languages : List[Language]
+            Список языков для выбора.
+            
+        Returns
+        -------
+        Language
+            Выбранный язык. Если ранжирование не задано, выбирается случайный язык.
+        """
+        if not available_languages:
+            return None
+        
+        if self.ranking_key:
+            # Сортируем языки по убыванию оценки
+            scored_languages = [(lang, self.get_language_rank_score(lang)) for lang in available_languages]
+            # Сортируем по оценке (от большего к меньшему)
+            scored_languages.sort(key=lambda x: x[1], reverse=True)
+            # Возвращаем язык с максимальной оценкой
+            return scored_languages[0][0]
+        else:
+            # Случайный выбор
+            return random.choice(available_languages)
+
+    def get_genus_rank_score(self, genus: Genus) -> int:
+        """
+        Вычисляет оценку рода для ранжирования на основе выбранного критерия.
+        Оценка рода = максимальная оценка среди всех его языков, прошедших фильтры.
+        
+        Parameters
+        ----------
+        genus : Genus
+            Род для оценки.
+            
+        Returns
+        -------
+        int
+            Оценка рода (чем больше, тем лучше). Для случайного выбора возвращает 0.
+        """
+        if not self.ranking_key or not genus.languages:
+            return 0
+        
+        # Применяем фильтры к языкам рода
+        available_languages = self.apply_all_filters(genus.languages)
+        if not available_languages:
+            return 0
+        
+        # Находим максимальную оценку среди языков рода
+        max_score = max(self.get_language_rank_score(lang) for lang in available_languages)
+        return max_score
+
+    def select_best_genera(self, available_genera: List[Genus], count: int) -> List[Genus]:
+        """
+        Выбирает лучшие роды из списка доступных на основе критерия ранжирования.
+        
+        Parameters
+        ----------
+        available_genera : List[Genus]
+            Список родов для выбора.
+        count : int
+            Количество родов для выбора.
+            
+        Returns
+        -------
+        List[Genus]
+            Список выбранных родов.
+        """
+        if not available_genera:
+            return []
+        
+        count = min(count, len(available_genera))
+        
+        if self.ranking_key:
+            # Сортируем роды по убыванию оценки
+            scored_genera = [(genus, self.get_genus_rank_score(genus)) for genus in available_genera]
+            # Сортируем по оценке (от большего к меньшему)
+            scored_genera.sort(key=lambda x: x[1], reverse=True)
+            # Возвращаем топ N родов
+            return [genus for genus, score in scored_genera[:count]]
+        else:
+            # Случайный выбор
+            return random.sample(available_genera, count)
 
 
     def limit_languages(self, languages: List[Language], num_languages: int) -> List[Language]:
@@ -375,7 +492,7 @@ class GenusSample(Sample):
                     ]
                     
                     if available_languages:
-                        selected_languages.append(random.choice(available_languages))
+                        selected_languages.append(self.select_best_language(available_languages))
                         included_genera.append(genus)
         
         return SamplingResult(selected_languages, included_genera)
@@ -417,7 +534,7 @@ class GenusSample(Sample):
                 ]
                 
                 if usable_languages:
-                    selected_languages.append(random.choice(usable_languages))
+                    selected_languages.append(self.select_best_language(usable_languages))
                     included_genera.append(genus)
         
         return SamplingResult(selected_languages, included_genera)
@@ -487,7 +604,7 @@ class GenusSample(Sample):
                     ]
                     
                     if available_languages:
-                        selected_languages.append(random.choice(available_languages))
+                        selected_languages.append(self.select_best_language(available_languages))
                         included_genera.append(genus)
 
         return SamplingResult(selected_languages, included_genera)
@@ -567,7 +684,7 @@ class GenusSample(Sample):
             num_to_select = min(target_count, len(available_genera))
             
             if num_to_select > 0:
-                selected_genera = random.sample(available_genera, num_to_select)
+                selected_genera = self.select_best_genera(available_genera, num_to_select)
                 
                 for genus in selected_genera:
                     if genus.languages:
@@ -578,7 +695,7 @@ class GenusSample(Sample):
                         ]
                         
                         if available_languages:
-                            selected_languages.append(random.choice(available_languages))
+                            selected_languages.append(self.select_best_language(available_languages))
                             included_genera.append(genus)
         
         # Второй проход: добираем недостающие языки из любых доступных родов
@@ -596,7 +713,7 @@ class GenusSample(Sample):
             
             num_additional = min(shortage, len(all_remaining_genera))
             if num_additional > 0:
-                additional_genera = random.sample(all_remaining_genera, num_additional)
+                additional_genera = self.select_best_genera(all_remaining_genera, num_additional)
                 
                 for genus in additional_genera:
                     if genus.languages:
@@ -607,9 +724,66 @@ class GenusSample(Sample):
                         ]
                         
                         if available_languages:
-                            selected_languages.append(random.choice(available_languages))
+                            selected_languages.append(self.select_best_language(available_languages))
                             included_genera.append(genus)
 
+        return SamplingResult(selected_languages, included_genera)
+
+    def random_sample(self, sample_size: int) -> SamplingResult:
+        """
+        Random Sample (RS): Predetermined sample size with random selection of genera.
+        В отличие от primary_sample, не учитывает пропорциональное распределение по макроареалам.
+        Применяет все фильтры и добавляет обязательные языки.
+        
+        Parameters
+        ----------
+        sample_size : int
+            Желаемый размер выборки.
+        """
+        # Получаем обязательные языки
+        mandatory_languages = self.get_included_languages()
+        mandatory_glottocodes = {lang.glottocode for lang in mandatory_languages}
+        mandatory_genera = []
+        
+        for lang in mandatory_languages:
+            if lang.genus and lang.genus not in mandatory_genera:
+                mandatory_genera.append(lang.genus)
+        
+        # Обязательные языки входят в общий размер выборки
+        remaining_size = max(0, sample_size - len(mandatory_languages))
+        
+        # Собираем все доступные роды (после применения фильтров)
+        available_genera = []
+        for genus in self.genus_list:
+            if genus in mandatory_genera:
+                continue
+            
+            # Проверяем, есть ли у рода языки после фильтрации
+            if self.genus_has_available_languages(genus):
+                available_genera.append(genus)
+        
+        # Выбираем нужное количество родов
+        num_to_select = min(remaining_size, len(available_genera))
+        
+        selected_languages = list(mandatory_languages)
+        included_genera = list(mandatory_genera)
+        
+        if num_to_select > 0:
+            # Выбираем роды (с ранжированием или случайно)
+            selected_genera = self.select_best_genera(available_genera, num_to_select)
+            
+            for genus in selected_genera:
+                if genus.languages:
+                    available_languages = self.apply_all_filters(genus.languages)
+                    available_languages = [
+                        lang for lang in available_languages 
+                        if lang.glottocode not in mandatory_glottocodes
+                    ]
+                    
+                    if available_languages:
+                        selected_languages.append(self.select_best_language(available_languages))
+                        included_genera.append(genus)
+        
         return SamplingResult(selected_languages, included_genera)
     
     

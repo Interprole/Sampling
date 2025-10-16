@@ -11,7 +11,7 @@ function processResultsWithChildren(data, params) {
         const results = data.map(feature => ({
             text: `${feature.code}_${feature.name}`,
             children: feature.values.map(value => ({
-                id: value.code,
+                id: `${feature.code}-${value.code}`,
                 text: `${feature.code}_${feature.name} | ${value.name}`
             }))
         }));
@@ -29,7 +29,7 @@ function processResultsWithChildren(data, params) {
         );
         if (filteredChildren.length > 0) {
             const mappedChildren = filteredChildren.map(value => ({
-                id: value.code,
+                id: `${feature.code}-${value.code}`,
                 text: `${feature.code}_${feature.name} | ${value.name}`
             }));
             filteredResults.push({
@@ -54,30 +54,79 @@ $(document).ready(function() {
             container: 'body'
         }));
     
-    // Setting options for Select2 from api-endpoint json
-    $('.js-example-basic-single, .js-example-basic-multiple').select2({
+    // Sampling Algorithm select (simple, no AJAX)
+    $('.js-example-basic-single').select2({
+        width: '100%',
+        theme: "classic",
+        closeOnSelect: true
+    });
+    
+    // Macroareas from API
+    $('.js-example-basic-multiple').select2({
         width: '100%',
         theme: "classic",
         closeOnSelect: false,
+        ajax: {
+            url: '/api/macroareas',
+            dataType: "json",
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function(data) {
+                return data;
+            },
+            cache: true
+        }
     });
-    getJsonData("static/documentLanguages.json")
-        .then(data =>
-            $('.doc-lang-js').select2({
-                width: '100%',
-                theme: "classic",
-                data: data,
-                closeOnSelect: false
-            })
-        );
-    getJsonData("static/languages.json")
-        .then(data =>
-            $('.include-lang-js, .exclude-lang-js').select2({
-                width: '100%',
-                theme: "classic",
-                data: data,
-                closeOnSelect: false
-            })
-        );
+    
+    // Document languages from API
+    $('.doc-lang-js').select2({
+        width: '100%',
+        theme: "classic",
+        closeOnSelect: false,
+        ajax: {
+            url: '/api/document-languages',
+            dataType: "json",
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function(data) {
+                return data;
+            },
+            cache: true
+        }
+    });
+    
+    // Include/exclude languages from API
+    $('.include-lang-js, .exclude-lang-js').select2({
+        width: '100%',
+        theme: "classic",
+        closeOnSelect: false,
+        minimumInputLength: 2,
+        ajax: {
+            url: '/api/languages',
+            dataType: "json",
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function(data) {
+                return data;
+            },
+            cache: true
+        }
+    });
     $('.grambank-js').select2({
         width: '100%',
         theme: "classic",

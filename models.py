@@ -194,6 +194,26 @@ class LanguageFeature(Base):
     feature = relationship("Feature", back_populates="language_features")
 
 
+class Source(Base):
+    """
+    A class used to represent a bibliographic source for a language.
+    
+    Attributes
+    ----------
+    language_glottocode : str
+        Foreign key to Group (Language)
+    source : str
+        The source citation (e.g., 'Nekitel-1985', 'Hayward-1990a')
+    """
+    __tablename__ = 'sources'
+    
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
+    source = Column(String, primary_key=True)
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+
+
 def create_tables(engine):
     Base.metadata.create_all(engine)
 

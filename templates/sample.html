@@ -20,6 +20,20 @@
     <strong>Total genera:</strong> {{ total_genera }}
 </p>
 
+{% if feature_info %}
+<div style="text-align: center; margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+    <strong>Filtered by features:</strong>
+    <ul style="list-style: none; padding: 0; margin: 10px 0 0 0;">
+    {% for feature_code, info in feature_info.items() %}
+        <li style="margin: 5px 0;">
+            <strong>{{ info.name }}</strong> ({{ feature_code }}, {{ info.source }}): 
+            <em>{{ info.value_names|join(', ') }}</em>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <div class="accordion" id="accordionPanelsStayOpenExample">
     {% for macroarea, languages in languages_by_macroarea.items() %}
     <div class="accordion-item">
@@ -45,6 +59,15 @@
                             <th scope="col">ISO</th>
                             <th scope="col">Genus</th>
                             <th scope="col">Coordinates</th>
+                            <th scope="col">Sources</th>
+                            {% if has_doc_lang_filter %}
+                                <th scope="col">Documentation Languages</th>
+                            {% endif %}
+                            {% if all_feature_codes %}
+                                {% for feature_code in all_feature_codes %}
+                                    <th scope="col">{{ feature_info[feature_code].name }} ({{ feature_code }})</th>
+                                {% endfor %}
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -62,6 +85,35 @@
                                     -
                                 {% endif %}
                             </td>
+                            <td>
+                                {% if lang.sources %}
+                                    <span title="Bibliographic sources">{{ lang.sources|join(', ') }}</span>
+                                {% else %}
+                                    <span style="color: #999;">-</span>
+                                {% endif %}
+                            </td>
+                            {% if has_doc_lang_filter %}
+                                <td>
+                                    {% if lang.doc_languages %}
+                                        <span title="Documentation languages">{{ lang.doc_languages|join(', ') }}</span>
+                                    {% else %}
+                                        <span style="color: #999;">-</span>
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                            {% if all_feature_codes %}
+                                {% for feature_code in all_feature_codes %}
+                                    <td>
+                                        {% if feature_code in lang.features %}
+                                            <span title="{{ lang.features[feature_code].value_code }}">
+                                                {{ lang.features[feature_code].value_name }}
+                                            </span>
+                                        {% else %}
+                                            <span style="color: #999;">-</span>
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -160,11 +212,31 @@ document.querySelector('.collapse-button').addEventListener('click', function() 
 // Функция экспорта (заглушка)
 document.querySelector('.export-button').addEventListener('click', function() {
     // Собираем данные в CSV формат
-    let csv = 'Language,Glottocode,ISO,Genus,Macroarea,Latitude,Longitude\n';
+    let csv = 'Language,Glottocode,ISO,Genus,Macroarea,Latitude,Longitude,Sources{% if has_doc_lang_filter %},Documentation Languages{% endif %}';
+    
+    {% if all_feature_codes %}
+    {% for feature_code in all_feature_codes %}
+    csv += ',{{ feature_info[feature_code].name }} ({{ feature_code }})';
+    {% endfor %}
+    {% endif %}
+    
+    csv += '\n';
     
     {% for macroarea, languages in languages_by_macroarea.items() %}
     {% for lang in languages %}
-    csv += '"{{ lang.name }}","{{ lang.glottocode }}","{{ lang.iso if lang.iso else '' }}","{{ lang.genus }}","{{ macroarea }}","{{ lang.latitude if lang.latitude else '' }}","{{ lang.longitude if lang.longitude else '' }}"\n';
+    csv += '"{{ lang.name }}","{{ lang.glottocode }}","{{ lang.iso if lang.iso else '' }}","{{ lang.genus }}","{{ macroarea }}","{{ lang.latitude if lang.latitude else '' }}","{{ lang.longitude if lang.longitude else '' }}","{{ lang.sources|join('; ') if lang.sources else '' }}"{% if has_doc_lang_filter %},"{{ lang.doc_languages|join('; ') if lang.doc_languages else '' }}"{% endif %}';
+    
+    {% if all_feature_codes %}
+    {% for feature_code in all_feature_codes %}
+    {% if feature_code in lang.features %}
+    csv += ',"{{ lang.features[feature_code].value_name }}"';
+    {% else %}
+    csv += ',""';
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    
+    csv += '\n';
     {% endfor %}
     {% endfor %}
     

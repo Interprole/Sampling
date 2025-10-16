@@ -212,3 +212,44 @@ def get_all_document_language_codes():
     """
     codes = global_session.query(DocumentLanguage.doc_language_code).distinct().all()
     return [code[0] for code in codes]
+
+
+def get_source_counts():
+    """
+    Вычисляет количество библиографических источников для каждого языка.
+    
+    Returns
+    -------
+    dict
+        Словарь {glottocode: количество_источников}
+    """
+    from models import Source
+    from sqlalchemy import func
+    
+    # Подсчитываем количество источников для каждого языка
+    counts = global_session.query(
+        Source.language_glottocode,
+        func.count(Source.source).label('source_count')
+    ).group_by(Source.language_glottocode).all()
+    
+    return {glottocode: count for glottocode, count in counts}
+
+
+def get_languages_by_source(source_name):
+    """
+    Получает список языков имеющих определенный источник.
+    
+    Parameters
+    ----------
+    source_name : str
+        Название источника (например, 'Hayward-1990a').
+    
+    Returns
+    -------
+    list
+        Список glottocode языков.
+    """
+    from models import Source
+    
+    sources = global_session.query(Source).filter_by(source=source_name).all()
+    return [s.language_glottocode for s in sources]
