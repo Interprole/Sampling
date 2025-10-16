@@ -63,16 +63,16 @@ def sample():
         # Парсим фичи в словари
         grambank_features = {}
         for item in grambank_raw:
-            if ':' in item:
-                feature_code, value_code = item.split(':', 1)
+            if '-' in item:
+                feature_code, value_code = item.split('-', 1)
                 if feature_code not in grambank_features:
                     grambank_features[feature_code] = []
                 grambank_features[feature_code].append(value_code)
         
         wals_features = {}
         for item in wals_raw:
-            if ':' in item:
-                feature_code, value_code = item.split(':', 1)
+            if '-' in item:
+                feature_code, value_code = item.split('-', 1)
                 if feature_code not in wals_features:
                     wals_features[feature_code] = []
                 wals_features[feature_code].append(value_code)
