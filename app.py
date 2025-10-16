@@ -44,6 +44,7 @@ def sample():
         title = request.form.get('name', 'Untitled Sample')
         algorithm = request.form.get('sampling-algorithm', 'genus-macroarea')
         size = int(request.form.get('sample-size', 50))
+        gramDictPref = int(request.form.get('grammarDictionaryPreference', 0))
         
         # Списковые параметры
         macroareas = request.form.getlist('macroareas[]')
