@@ -15,14 +15,17 @@
 <h3 style="text-align: center">
 {{ title }}
 </h3>
-<p style="text-align: center">
-    <strong>Total languages:</strong> {{ total_languages }} | 
-    <strong>Total genera:</strong> {{ total_genera }}
-</p>
+
+<h5 style="text-align: center;"><strong>Total languages:</strong> {{ total_languages }} | <strong>Total genera:</strong> {{ total_genera }}</h5>
+<br>
+{% if total_languages < sampleSize %}
+<p style="text-align: center;">The actual size of a sample is less than expected. Unfortunately, the sample of {{ sampleSize }} languages is not possible with chosen filters.</p>
+{% endif %}
 
 {% if feature_info %}
-<div style="text-align: center; margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-    <strong>Filtered by features:</strong>
+<div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+    <h5 style="text-align: center;"><strong style="text-align: center">Filtered by features:</strong></h5>
+    <br>
     <ul style="list-style: none; padding: 0; margin: 10px 0 0 0;">
     {% for feature_code, info in feature_info.items() %}
         <li style="margin: 5px 0;">
@@ -65,7 +68,12 @@
                             {% endif %}
                             {% if all_feature_codes %}
                                 {% for feature_code in all_feature_codes %}
-                                    <th scope="col">{{ feature_info[feature_code].name }} ({{ feature_code }})</th>
+                                    {% if feature_info[feature_code].source == "WALS" %}
+                                        <th scope="col">{{ feature_info[feature_code].name }} <a href="https://wals.info/feature/{{ feature_code }}">({{ feature_code }})</a></th>
+                                    {% endif %}
+                                    {% if feature_info[feature_code].source == "Grambank" %}
+                                        <th scope="col">{{ feature_info[feature_code].name }} <a href="https://grambank.clld.org/parameters/{{ feature_code }}">({{ feature_code }})</a></th>
+                                    {% endif %}
                                 {% endfor %}
                             {% endif %}
                         </tr>
@@ -106,7 +114,7 @@
                                     <td>
                                         {% if feature_code in lang.features %}
                                             <span title="{{ lang.features[feature_code].value_code }}">
-                                                {{ lang.features[feature_code].value_name }}
+                                                {{ lang.features[feature_code].value_name.capitalize() }}
                                             </span>
                                         {% else %}
                                             <span style="color: #999;">-</span>
@@ -123,59 +131,6 @@
     </div>
     {% endfor %}
 </div>
-
-<style>
-.sample-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.sample-buttons-container button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.collapse-button {
-    background-color: #6c757d;
-    color: white;
-}
-
-.collapse-button:hover {
-    background-color: #5a6268;
-}
-
-.export-button {
-    background-color: #28a745;
-    color: white;
-}
-
-.export-button:hover {
-    background-color: #218838;
-}
-
-.newsample-button {
-    background-color: #007bff;
-    color: white;
-}
-
-.newsample-button:hover {
-    background-color: #0056b3;
-}
-
-.table {
-    margin-top: 15px;
-}
-
-.accordion-body {
-    padding: 15px;
-}
-</style>
 
 <script>
 // Функция для сворачивания/разворачивания всех аккордеонов

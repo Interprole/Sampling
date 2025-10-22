@@ -205,6 +205,7 @@ def sample():
         
         return render_template(
             "sample.html",
+            sampleSize=size,
             title=title,
             languages_by_macroarea=languages_by_macroarea,
             total_languages=len(result.languages),

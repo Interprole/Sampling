@@ -20,6 +20,9 @@ main {
 ul,
 p,
 h3,
+h5,
+th,
+td,
 .navbar,
 .text-input,
 .range-input,
@@ -43,6 +46,10 @@ h3,
 	text-align: justify;
 	font-size: 18px;
 	min-height: 20px !important;
+}
+
+h5 {
+	font-size: 20px !important;
 }
 
 .submit-button,
@@ -129,6 +136,10 @@ h3 {
 	margin: 0;
 }
 
+.accordion-body {
+    padding: 15px;
+}
+
 
 /* buttons */
 
@@ -138,10 +149,7 @@ h3 {
 	width: 100%;
 }
 
-.submit-button,
-.collapse-button,
-.export-button,
-.newsample-button {
+.submit-button {
 	background-color: #A4CA9D;
 	border: none;
 	border-radius: 10px;
@@ -166,11 +174,32 @@ select,
 }
 
 .sample-buttons-container {
-	display: grid;
-	grid-template-columns: 30% 30% 30%;
-	gap: 50px;
-	justify-content: center;
-	padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.sample-buttons-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.collapse-button,
+.export-button,
+.newsample-button {
+    background-color: #A4CA9D;
+    color: white;
+}
+
+.collapse-button:hover,
+.export-button:hover,
+.newsample-button:hover {
+    background-color: #8aab84;
 }
 
 .accordion-button,
@@ -225,4 +254,8 @@ datalist {
   
 .preferenceValues span {
     transform: translateX(0%); 
+}
+
+.table {
+    margin-top: 15px;
 }
