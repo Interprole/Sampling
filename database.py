@@ -1,4 +1,4 @@
-from models import Genus, Feature, FeatureValue, LanguageFeature, DocumentLanguage, create_tables
+from models import Genus, Feature, FeatureValue, LanguageFeature, create_tables
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from collections import Counter
@@ -173,11 +173,19 @@ def get_document_languages(glottocode: str):
     list
         Список ISO 639-3 кодов языков источников.
     """
-    doc_langs = global_session.query(DocumentLanguage).filter_by(
+    from models import Source
+    
+    sources = global_session.query(Source).filter_by(
         language_glottocode=glottocode
     ).all()
     
-    return [dl.doc_language_code for dl in doc_langs]
+    # Collect all unique language codes from all sources
+    codes = set()
+    for source in sources:
+        if source.doc_language_codes:
+            codes.update(source.doc_language_codes.split(','))
+    
+    return list(codes)
 
 
 def get_languages_with_doc_language(doc_language_code: str):
@@ -194,11 +202,15 @@ def get_languages_with_doc_language(doc_language_code: str):
     list
         Список glottocode языков.
     """
-    doc_langs = global_session.query(DocumentLanguage).filter_by(
-        doc_language_code=doc_language_code
+    from models import Source
+    
+    # Find all sources that have this language code
+    sources = global_session.query(Source).filter(
+        Source.doc_language_codes.like(f'%{doc_language_code}%')
     ).all()
     
-    return [dl.language_glottocode for dl in doc_langs]
+    # Get unique glottocodes
+    return list(set(s.language_glottocode for s in sources))
 
 
 def get_all_document_language_codes():
@@ -210,8 +222,19 @@ def get_all_document_language_codes():
     list
         Список ISO 639-3 кодов.
     """
-    codes = global_session.query(DocumentLanguage.doc_language_code).distinct().all()
-    return [code[0] for code in codes]
+    from models import Source
+    
+    sources = global_session.query(Source.doc_language_codes).filter(
+        Source.doc_language_codes != None
+    ).all()
+    
+    # Collect all unique codes
+    codes = set()
+    for (doc_langs,) in sources:
+        if doc_langs:
+            codes.update(doc_langs.split(','))
+    
+    return sorted(list(codes))
 
 
 def get_source_counts():

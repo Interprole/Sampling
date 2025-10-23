@@ -95,7 +95,11 @@
                             </td>
                             <td>
                                 {% if lang.sources %}
-                                    <span title="Bibliographic sources">{{ lang.sources|join(', ') }}</span>
+                                    <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                                        {% for source in lang.sources %}
+                                            <li style="margin-bottom: 4px;">{{ source }}</li>
+                                        {% endfor %}
+                                    </ul>
                                 {% else %}
                                     <span style="color: #999;">-</span>
                                 {% endif %}
