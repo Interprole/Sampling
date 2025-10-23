@@ -97,29 +97,6 @@ class Language(Group):
         self.is_language = True
 
 
-class DocumentLanguage(Base):
-    """
-    A class used to represent document languages (languages of sources/documentation).
-    
-    This stores the relationship between languages and the languages in which
-    their documentation is available (e.g., 'eng' for English, 'rus' for Russian).
-    
-    Attributes
-    ----------
-    language_glottocode : str
-        Foreign key to Group (Language)
-    doc_language_code : str
-        ISO 639-3 code of the documentation language (e.g., 'eng', 'rus', 'fra')
-    """
-    __tablename__ = 'document_languages'
-    
-    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
-    doc_language_code = Column(String, primary_key=True)
-    
-    # Relationships
-    language = relationship("Group", foreign_keys=[language_glottocode])
-
-
 class Feature(Base):
     """
     A class used to represent a linguistic Feature from WALS or Grambank.
@@ -202,13 +179,62 @@ class Source(Base):
     ----------
     language_glottocode : str
         Foreign key to Group (Language)
-    source : str
-        The source citation (e.g., 'Nekitel-1985', 'Hayward-1990a')
+    title : str
+        The full title of the source
+    year : int
+        Publication year (nullable)
+    pages : int
+        Number of pages (nullable)
+    document_type : str
+        Type of document (e.g., 'grammar', 'dictionary', 'grammar_sketch', etc.)
+    doc_language_codes : str
+        Comma-separated ISO 639-3 codes of documentation languages (e.g., 'eng,rus,fra')
     """
     __tablename__ = 'sources'
     
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), nullable=False)
+    title = Column(String, nullable=False)
+    year = Column(Integer)  # Can be None
+    pages = Column(Integer)  # Can be None
+    document_type = Column(String)  # Can be None or comma-separated types
+    doc_language_codes = Column(String)  # Comma-separated codes: 'eng,rus,fra'
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+
+
+class LanguageRankingCache(Base):
+    """
+    A class used to cache ranking scores for languages.
+    Speeds up sampling by avoiding repeated calculations.
+    
+    Attributes
+    ----------
+    language_glottocode : str
+        Foreign key to Group (Language)
+    source_count : int
+        Total number of sources for this language
+    max_year : int
+        Maximum publication year among sources
+    max_pages : int
+        Maximum page count among sources
+    grammar_count : int
+        Number of grammar sources
+    dictionary_count : int
+        Number of dictionary sources
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'language_ranking_cache'
+    
     language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
-    source = Column(String, primary_key=True)
+    source_count = Column(Integer, default=0)
+    max_year = Column(Integer, default=0)
+    max_pages = Column(Integer, default=0)
+    grammar_count = Column(Integer, default=0)
+    dictionary_count = Column(Integer, default=0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
     
     # Relationships
     language = relationship("Group", foreign_keys=[language_glottocode])
@@ -216,4 +242,5 @@ class Source(Base):
 
 def create_tables(engine):
     Base.metadata.create_all(engine)
+
 

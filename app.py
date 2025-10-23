@@ -96,7 +96,8 @@ def sample():
             wals_features=wals_features if wals_features else None,
             grambank_features=grambank_features if grambank_features else None,
             doc_languages=docLang if docLang else None,
-            ranking_key=ranking_key
+            ranking_key=ranking_key,
+            grammar_dict_preference=float(gramDictPref)
         )
         
         # Выбираем алгоритм сэмплинга
@@ -104,6 +105,8 @@ def sample():
             result = sampler.primary_sample(sample_size=size)
         elif algorithm == 'random':
             result = sampler.random_sample(sample_size=size)
+        elif algorithm == 'diversity-value':
+            result = sampler.diversity_value_sample(sample_size=size)
         else:
             return "Unknown sampling algorithm", 400
         
@@ -143,7 +146,7 @@ def sample():
                     }
         
         # Получаем источники и языки документации для всех языков
-        from models import Source, DocumentLanguage
+        from models import Source
         
         # Группируем языки по макроареалам для отображения
         languages_by_macroarea = {}
@@ -170,17 +173,29 @@ def sample():
                         'value_name': fv.value_name if fv else lang_feature.value_code
                     }
             
-            # Получаем список источников для языка
+            # Получаем список источников для языка, сортируем по году (от новых к старым)
             sources = global_session.query(Source).filter_by(
                 language_glottocode=lang.glottocode
-            ).all()
-            source_list = [s.source for s in sources]
+            ).order_by(Source.year.desc().nullslast()).all()
             
-            # Получаем языки документации для этого языка
-            doc_langs = global_session.query(DocumentLanguage).filter_by(
-                language_glottocode=lang.glottocode
-            ).all()
-            doc_lang_codes = [dl.doc_language_code for dl in doc_langs]
+            # Формируем список источников с годом и страницами
+            source_list = []
+            for s in sources:
+                source_str = s.title
+                details = []
+                if s.year:
+                    details.append(str(s.year))
+                if s.pages:
+                    details.append(f"{s.pages}pp")
+                if details:
+                    source_str += f" ({', '.join(details)})"
+                source_list.append(source_str)
+            
+            # Получаем языки документации для этого языка (из всех источников)
+            doc_lang_codes = set()
+            for source in sources:
+                if source.doc_language_codes:
+                    doc_lang_codes.update(source.doc_language_codes.split(','))
             
             # Получаем полные названия языков документации
             doc_lang_names = []
@@ -259,14 +274,21 @@ def api_grambank_features():
 @app.route("/api/document-languages")
 def api_document_languages():
     """API endpoint для получения списка языков документации."""
-    from models import DocumentLanguage, Language
+    from models import Source, Language
     
     # Получаем параметр поиска
     search_term = request.args.get('q', '').strip().lower()
     
-    # Получаем уникальные коды языков документации
-    doc_lang_codes = global_session.query(DocumentLanguage.doc_language_code).distinct().all()
-    doc_lang_codes = [code[0] for code in doc_lang_codes]
+    # Получаем уникальные коды языков документации из всех источников
+    sources = global_session.query(Source.doc_language_codes).filter(
+        Source.doc_language_codes != None
+    ).distinct().all()
+    
+    # Собираем все уникальные коды
+    doc_lang_codes = set()
+    for (codes_str,) in sources:
+        if codes_str:
+            doc_lang_codes.update(codes_str.split(','))
     
     result = []
     for lang_code in sorted(doc_lang_codes):

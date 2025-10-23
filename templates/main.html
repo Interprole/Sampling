@@ -96,15 +96,15 @@
                                 </label>
                                 <select class="js-example-basic-single" name="ranking">
                                     <option value="random">Random</option>
-                                    <option value="item1">Our Custom Formula</option>
-                                    <option value="item2">Documents' publication year</option>
-                                    <option value="item3">Documents' page count</option>
+                                    <option value="item2">Our Custom Formula   </option>
                                     <option value="source_count">Total number of Documents</option>
+                                    <option value="year_ranking">Documents' publication year</option>
+                                    <option value="pages_ranking">Documents' page count</option>
                                 </select>
                             </p>
                             <p class="text-form">
                                 <label for="grammarDictionaryPreference"><b>Preference for Documents</b>
-                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="A very important tip."><b>?</b></button>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="This preference modifies any ranking method above. Positive values favor languages with more grammars, negative values favor languages with more dictionaries. Works by adjusting the ranking score based on the grammar/dictionary ratio in the language's sources."><b>?</b></button>
                                 </label>
                                 <input class="range-input" type="range" min="-2" max="2" value="0" step="1" name="grammarDictionaryPreference" id="grammarDictionaryPreference" list="preferenceValues">
                                 &nbsp;
@@ -117,8 +117,8 @@
                                 </datalist>
                                 &nbsp;
                                 <datalist id="preferenceValues">
-                                    <span>Grammars</span>
                                     <span>Dictionaries</span>
+                                    <span>Grammars</span>
                                 </datalist>
                             </p>
                         </div>
