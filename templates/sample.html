@@ -95,11 +95,14 @@
                             </td>
                             <td>
                                 {% if lang.sources %}
-                                    <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                                        {% for source in lang.sources %}
-                                            <li style="margin-bottom: 4px;">{{ source }}</li>
-                                        {% endfor %}
-                                    </ul>
+                                    <details style="width: 300px">
+                                        <summary>List of Descriptions</summary>
+                                            <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
+                                            {% for source in lang.sources %}
+                                                <li style="margin-bottom: 4px;">{{ source }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                    </details>
                                 {% else %}
                                     <span style="color: #999;">-</span>
                                 {% endif %}
