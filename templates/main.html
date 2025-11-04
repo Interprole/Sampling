@@ -29,7 +29,7 @@
             </p>
             <p class="text-form">
                 <label for="sample-size"><b>Sample Size</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose the size of your future sample. The minimum size is ? and the maximum is ?."><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose the size of your future sample."><b>?</b></button>
                 </label>
                 <input class="range-input" type="text" id="sampleSizeInput" name="sample-size" id="sample-size" value="50">
             </p>
@@ -41,7 +41,7 @@
                 </select>
             </p>
             <p class="text-form">
-                <label for="doc-lang"><b>Documents' Languages</b>
+                <label for="doc-lang"><b>Descriptions' Languages</b>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can choose the languages of the descriptions. For example, if you are able to read only in English, the algorithm will suggest to you only the languages with English descriptions available."><b>?</b></button>
                 </label>
                 <select class="doc-lang-js" name="docLanguages[]" multiple="multiple">
@@ -58,7 +58,7 @@
             </p>
             <p class="text-form">
                 <label for="exclude"><b>Exclude Languages</b>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can exclude from the sample particular languages that you wouldn't like to work with."><b>?</b></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can exclude from the sample particular languages that you would not like to work with."><b>?</b></button>
                 </label>
                 <select class="exclude-lang-js" name="exclude[]" multiple="multiple">
                 </select>
@@ -92,19 +92,19 @@
                         <div class="accordion-body" style="background-color: #c2dbbe;">
                             <p class="text-form">
                                 <label for="ranking"><b>Select Languages By</b>
-                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="As parameters of ranking we use year of the document publishing and its length in pages. Here you can choose how relevant these parameters are for your sample."><b>?</b></button>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="As parameters of ranking we use year of the description's publishing and its length in pages. Here you can choose how relevant these parameters are for your sample. For details, see <a href='/manual'>Manual</a> page."><b>?</b></button>
                                 </label>
                                 <select class="js-example-basic-single" name="ranking">
                                     <option value="random">Random</option>
-                                    <option value="item2">Our Custom Formula   </option>
-                                    <option value="source_count">Total number of Documents</option>
-                                    <option value="year_ranking">Documents' publication year</option>
-                                    <option value="pages_ranking">Documents' page count</option>
+                                    <option value="descriptive_ranking">Extensiveness of description (<span>2 &middot;&nbsp;pages + 0.5 &middot;&nbsp;year</span>)</option>
+                                    <option value="source_count">Total number of Descriptions</option>
+                                    <option value="year_ranking">Descriptions' publication year</option>
+                                    <option value="pages_ranking">Descriptions' page count</option>
                                 </select>
                             </p>
                             <p class="text-form">
-                                <label for="grammarDictionaryPreference"><b>Preference for Documents</b>
-                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="This preference modifies any ranking method above. Positive values favor languages with more grammars, negative values favor languages with more dictionaries. Works by adjusting the ranking score based on the grammar/dictionary ratio in the language's sources."><b>?</b></button>
+                                <label for="grammarDictionaryPreference"><b>Preference for Descriptions</b>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="This preference modifies any ranking method above and enables you to select the type of descriptions you're interested in (positive values for grammatical descriptions and negative values for dictionaries). For details, see <a href='/manual'>Manual</a> page."><b>?</b></button>
                                 </label>
                                 <input class="range-input" type="range" min="-2" max="2" value="0" step="1" name="grammarDictionaryPreference" id="grammarDictionaryPreference" list="preferenceValues">
                                 &nbsp;

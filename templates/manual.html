@@ -8,17 +8,25 @@
     <li><code>Sampling Algorithm</code> enables you to choose the sampling method. See more about available sampling methods on the <a href="/about">About</a> page.</li>
     <li><code>Sample Size</code> enables you to choose the size of your future sample. The minimum size is ? and the maximum is ?.</li>
     <li><code>Macroareas</code> enables you to choose languages from which macroareas you want to include in your sample. The macroarea list is as in <a href="glottolog.org">Glottolog</a>.</li>
-    <li><code>Documents' Languages</code> enables you to choose the languages of the descriptions. For example, if you are able to read only in English, the algorithm will suggest to you only the languages with English descriptions available.</li>
+    <li><code>Descriptions' Languages</code> enables you to choose the languages of the descriptions. For example, if you are able to read only in English, the algorithm will suggest to you only the languages with English descriptions available.</li>
 </ul>
 <p> <strong>2. Extra Filters</strong> </p>
 <ul>
     <li><code>Include Languages</code> enables you to include in the sample particular languages that you would like to work with.</li>
-    <li><code>Exclude Languages</code> enables you to exclude in the sample particular languages that you would like to work with.</li>
+    <li><code>Exclude Languages</code> enables you to exclude in the sample particular languages that you would not like to work with.</li>
     <li><code>Add a Grambank feature</code> enables you to restrict the sample to languages that have particular characteristics in the Grambank database. See the <a href="https://grambank.clld.org/">Grambank site</a> to explore the available parameters. Be aware that the number of languages annotated in Grambank is limited.</li>
     <li><code>Add a WALS feature</code> enables you to restrict the sample to languages that have particular characteristics in the WALS database. See the <a href="https://wals.info/">WALS site</a> to explore the available parameters. Be aware that the number of languages annotated in WALS is limited.</li>
 </ul>
 <p> <strong>3. Search Settings</strong> </p>
 <ul>
-    <li><i>Soon, here will be the description of search settings.</i></li>
+    <li><code>Select Languages By</code> enables you to choose, according to which parameters the languages are chosen by the algorithm.</li>
+    <ul>
+        <li><code>Random</code>: No specific filter is set. The languages are randomly ranked.</li>
+        <li><code>Extensiveness of description (<span>2 &middot;&nbsp;pages + 0.5 &middot;&nbsp;year</span>)</code>: The formula given here is our approximate estimation of description degree. The formula applies to scaled year and pages values.</li>
+        <li><code>Total number of Descriptions</code>: The languages with the highest number of descriptions will be chosen.</li>
+        <li><code>Descriptions' publication year</code>: The languages with the most recently published descriptions will be chosen.</li>
+        <li><code>Descriptions' page count</code>: The languages with the highest number of descriptions' pages (in total, all descriptions counted) will be chosen.</li>
+    </ul>
+    <li><code>Preference for Descriptions</code> enables you to select the type of descriptions you're interested in as this preference modifies any ranking method listed above. For instance, if your research focuses on grammatical number, you'll probably want to explore grammatical descriptions. On the other hand, if you're studying verbal colexifications, you may prefer languages that have dictionaries available. Positive values favor languages with more grammars, negative values favor languages with more dictionaries. This feature works by adjusting the ranking score based on the grammar/dictionary ratio in the language's sources.</li>
 </ul>
 {% endblock %}

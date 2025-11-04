@@ -222,6 +222,8 @@ select,
 }
 
 .tooltip-inner {
+    max-width: 250px;
+    white-space: normal;
 	text-align: justify !important;
 }
 
