@@ -127,8 +127,101 @@
             </div>
         </div>
         <div class="div6">
-            <button type="submit" class="submit-button"><b>Make a Sample!</b></button>
+            <button type="submit" class="submit-button" id="submitBtn"><b>Make a Sample!</b></button>
         </div>
     </div>
 </form>
+
+<!-- Progress Modal -->
+<div class="modal fade" id="progressModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="progressModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="progressModalLabel">Creating Sample...</h5>
+            </div>
+            <div class="modal-body">
+                <div class="progress mb-3" style="height: 30px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p class="text-center mb-0" id="progressText">Initializing...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const progressModal = new bootstrap.Modal(document.getElementById('progressModal'));
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show progress modal
+        progressModal.show();
+        progressBar.style.width = '10%';
+        progressText.textContent = 'Initializing filters...';
+        
+        // Collect form data
+        const formData = new FormData(form);
+        
+        // Send POST request
+        fetch('/sample', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            // Simulate progress updates
+            let progress = 10;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 90) progress = 90;
+                progressBar.style.width = progress + '%';
+                
+                if (progress < 30) {
+                    progressText.textContent = 'Applying filters...';
+                } else if (progress < 60) {
+                    progressText.textContent = 'Selecting languages...';
+                } else {
+                    progressText.textContent = 'Finalizing sample...';
+                }
+            }, 200);
+            
+            return response.text().then(html => {
+                clearInterval(progressInterval);
+                return html;
+            });
+        })
+        .then(html => {
+            progressBar.style.width = '100%';
+            progressText.textContent = 'Complete!';
+            
+            // Wait a bit before navigating
+            setTimeout(() => {
+                // Hide modal first
+                progressModal.hide();
+                
+                // Write HTML to document and navigate properly
+                document.open();
+                document.write(html);
+                document.close();
+            }, 500);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            progressText.textContent = 'Error creating sample!';
+            progressText.classList.add('text-danger');
+            setTimeout(() => {
+                progressModal.hide();
+            }, 2000);
+        });
+    });
+});
+</script>
 {% endblock %}

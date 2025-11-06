@@ -219,6 +219,8 @@ class LanguageRankingCache(Base):
         Maximum publication year among sources
     max_pages : int
         Maximum page count among sources
+    descriptive_ranking : float
+        Combined score: 2 * max_pages + 0.5 * max_year
     grammar_count : int
         Number of grammar sources
     dictionary_count : int
@@ -232,8 +234,34 @@ class LanguageRankingCache(Base):
     source_count = Column(Integer, default=0)
     max_year = Column(Integer, default=0)
     max_pages = Column(Integer, default=0)
+    descriptive_ranking = Column(Float, default=0.0)
     grammar_count = Column(Integer, default=0)
     dictionary_count = Column(Integer, default=0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+
+
+class LanguageDocLanguagesCache(Base):
+    """
+    A class used to cache documentation languages for each language.
+    Speeds up filtering by documentation language by avoiding repeated queries.
+    
+    Attributes
+    ----------
+    language_glottocode : str
+        Foreign key to Group (Language)
+    doc_language_codes : str
+        Comma-separated list of all documentation language codes for this language
+        Example: 'eng,rus,fra'
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'language_doc_languages_cache'
+    
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
+    doc_language_codes = Column(String, default='')  # Comma-separated codes
     last_updated = Column(Integer, default=0)  # Unix timestamp
     
     # Relationships

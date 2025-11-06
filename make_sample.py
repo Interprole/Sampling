@@ -143,6 +143,11 @@ class GenusSample(Sample):
         if self.wals_features or self.grambank_features:
             self._load_feature_cache()
         
+        # Кэш для языков документации - загружаем все данные одним запросом
+        self._doc_languages_cache = None
+        if self.doc_languages:
+            self._load_doc_languages_cache()
+        
         super().__init__()
 
     def _load_cache_from_db(self):
@@ -166,6 +171,8 @@ class GenusSample(Sample):
                 self._ranking_cache[entry.language_glottocode] = entry.max_year
             elif self.ranking_key == 'pages_ranking':
                 self._ranking_cache[entry.language_glottocode] = entry.max_pages
+            elif self.ranking_key == 'descriptive_ranking':
+                self._ranking_cache[entry.language_glottocode] = entry.descriptive_ranking
             
             # Вычисляем модификатор типа документа, если нужен
             if self.grammar_dict_preference != 0:
@@ -204,6 +211,55 @@ class GenusSample(Sample):
             if lf.language_glottocode not in self._feature_cache:
                 self._feature_cache[lf.language_glottocode] = {}
             self._feature_cache[lf.language_glottocode][lf.feature_code] = lf.value_code
+
+    def _load_doc_languages_cache(self):
+        """
+        Загружает весь кэш языков документации из БД при инициализации.
+        Это быстрее, чем загружать по частям во время работы.
+        """
+        self._doc_languages_cache = {}
+        self._use_db_cache = True
+        
+        # Проверяем, существует ли таблица кэша
+        from models import LanguageDocLanguagesCache
+        try:
+            # Загружаем ВСЕ записи кэша одним запросом
+            # Это быстрее, чем делать много маленьких запросов потом
+            cache_entries = global_session.query(LanguageDocLanguagesCache).all()
+            
+            if cache_entries:
+                # Строим кэш из таблицы: {glottocode: set(doc_language_codes)}
+                for entry in cache_entries:
+                    if entry.doc_language_codes:
+                        self._doc_languages_cache[entry.language_glottocode] = set(
+                            entry.doc_language_codes.split(',')
+                        )
+                    else:
+                        self._doc_languages_cache[entry.language_glottocode] = set()
+                
+                return  # Успешно загрузили из кэша
+        except Exception:
+            # Таблица не существует, используем fallback
+            self._use_db_cache = False
+        
+        # Fallback: загружаем напрямую из источников
+        # Этот код выполнится только если таблица кэша не существует
+        from models import Source
+        
+        sources = global_session.query(Source).filter(
+            Source.doc_language_codes != None,
+            Source.doc_language_codes != ''
+        ).all()
+        
+        # Строим кэш: {glottocode: set(doc_language_codes)}
+        for source in sources:
+            lang_code = source.language_glottocode
+            if lang_code not in self._doc_languages_cache:
+                self._doc_languages_cache[lang_code] = set()
+            
+            # Добавляем коды языков документации
+            if source.doc_language_codes:
+                self._doc_languages_cache[lang_code].update(source.doc_language_codes.split(','))
 
     def __str__(self) -> str:
         """
@@ -261,6 +317,21 @@ class GenusSample(Sample):
                     Source.pages != None
                 ).scalar()
                 base_score = max_pages if max_pages else 0
+            elif self.ranking_key == 'descriptive_ranking':
+                # Вычисляем descriptive_ranking: 2 * max_pages + 0.5 * max_year
+                max_year = global_session.query(func.max(Source.year)).filter(
+                    Source.language_glottocode == language.glottocode,
+                    Source.year != None
+                ).scalar()
+                max_pages = global_session.query(func.max(Source.pages)).filter(
+                    Source.language_glottocode == language.glottocode,
+                    Source.pages != None
+                ).scalar()
+                base_score = 0.0
+                if max_pages:
+                    base_score += 2.0 * max_pages
+                if max_year:
+                    base_score += 0.5 * max_year
             else:
                 base_score = 0
         
@@ -517,19 +588,10 @@ class GenusSample(Sample):
         # Преобразуем список требуемых языков документации в множество
         required_doc_langs = set(self.doc_languages)
         
+        # Фильтруем языки используя кэш (уже полностью загружен при инициализации)
         filtered = []
         for lang in languages:
-            # Получаем все языки документации для данного языка из источников
-            from models import Source
-            sources = global_session.query(Source).filter_by(
-                language_glottocode=lang.glottocode
-            ).all()
-            
-            # Собираем все коды языков из источников
-            lang_doc_codes = set()
-            for source in sources:
-                if source.doc_language_codes:
-                    lang_doc_codes.update(source.doc_language_codes.split(','))
+            lang_doc_codes = self._doc_languages_cache.get(lang.glottocode, set())
             
             # Проверяем, есть ли пересечение с требуемыми языками документации
             if lang_doc_codes & required_doc_langs:  # Пересечение множеств
@@ -865,9 +927,17 @@ class GenusSample(Sample):
                             selected_languages.append(self.select_best_language(available_languages))
                             included_genera.append(genus)
         
-        # Второй проход: добираем недостающие языки из любых доступных родов
-        shortage = remaining_size - (len(selected_languages) - len(mandatory_languages))
-        if shortage > 0:
+        # Циклический проход: добираем недостающие языки пока есть доступные роды
+        max_iterations = 1000  # Защита от бесконечного цикла
+        iteration = 0
+        
+        while iteration < max_iterations:
+            shortage = remaining_size - (len(selected_languages) - len(mandatory_languages))
+            
+            # Если достигли нужного размера или нет дефицита, выходим
+            if shortage <= 0:
+                break
+            
             # Собираем все оставшиеся доступные роды из всех макроареалов
             all_remaining_genera = []
             for macroarea_genera_list in macroarea_genera.values():
@@ -878,21 +948,34 @@ class GenusSample(Sample):
             # Убираем дубликаты (род может быть в нескольких макроареалах)
             all_remaining_genera = list(set(all_remaining_genera))
             
+            # Если больше нет доступных родов, выходим
+            if not all_remaining_genera:
+                break
+            
             num_additional = min(shortage, len(all_remaining_genera))
-            if num_additional > 0:
-                additional_genera = self.select_best_genera(all_remaining_genera, num_additional)
-                
-                for genus in additional_genera:
-                    if genus.languages:
-                        available_languages = self.apply_all_filters(genus.languages)
-                        available_languages = [
-                            lang for lang in available_languages 
-                            if lang.glottocode not in mandatory_glottocodes
-                        ]
-                        
-                        if available_languages:
-                            selected_languages.append(self.select_best_language(available_languages))
-                            included_genera.append(genus)
+            additional_genera = self.select_best_genera(all_remaining_genera, num_additional)
+            
+            # Отслеживаем, добавили ли мы хотя бы один язык
+            languages_added = False
+            
+            for genus in additional_genera:
+                if genus.languages:
+                    available_languages = self.apply_all_filters(genus.languages)
+                    available_languages = [
+                        lang for lang in available_languages 
+                        if lang.glottocode not in mandatory_glottocodes
+                    ]
+                    
+                    if available_languages:
+                        selected_languages.append(self.select_best_language(available_languages))
+                        included_genera.append(genus)
+                        languages_added = True
+            
+            # Если не добавили ни одного языка, значит роды есть, но языки не проходят фильтры
+            if not languages_added:
+                break
+            
+            iteration += 1
 
         return SamplingResult(selected_languages, included_genera)
 
@@ -936,15 +1019,35 @@ class GenusSample(Sample):
             if self.genus_has_available_languages(genus):
                 available_genera.append(genus)
         
-        # Выбираем нужное количество родов
-        num_to_select = min(remaining_size, len(available_genera))
-        
         selected_languages = list(mandatory_languages)
         included_genera = list(mandatory_genera)
         
-        if num_to_select > 0:
-            # Выбираем роды (с ранжированием или случайно)
-            selected_genera = self.select_best_genera(available_genera, num_to_select)
+        # Циклически выбираем роды и языки пока не достигнем нужного размера
+        max_iterations = 1000  # Защита от бесконечного цикла
+        iteration = 0
+        
+        while iteration < max_iterations:
+            # Проверяем текущий размер выборки (без mandatory)
+            current_size = len(selected_languages) - len(mandatory_languages)
+            shortage = remaining_size - current_size
+            
+            # Если достигли нужного размера или нет дефицита, выходим
+            if shortage <= 0:
+                break
+            
+            # Фильтруем доступные роды (исключаем уже использованные)
+            remaining_genera = [g for g in available_genera if g not in included_genera]
+            
+            # Если больше нет доступных родов, выходим
+            if not remaining_genera:
+                break
+            
+            # Выбираем нужное количество родов
+            num_to_select = min(shortage, len(remaining_genera))
+            selected_genera = self.select_best_genera(remaining_genera, num_to_select)
+            
+            # Отслеживаем, добавили ли мы хотя бы один язык
+            languages_added = False
             
             for genus in selected_genera:
                 if genus.languages:
@@ -957,6 +1060,13 @@ class GenusSample(Sample):
                     if available_languages:
                         selected_languages.append(self.select_best_language(available_languages))
                         included_genera.append(genus)
+                        languages_added = True
+            
+            # Если не добавили ни одного языка, выходим
+            if not languages_added:
+                break
+            
+            iteration += 1
         
         return SamplingResult(selected_languages, included_genera)
     
@@ -1139,11 +1249,32 @@ class GenusSample(Sample):
             
             # Если это листовой узел или язык
             if not children or tree_structure[node]['is_language']:
-                # Выбираем случайно из доступных языков узла
+                # Выбираем из доступных языков узла (с учетом ранжирования, если задано)
                 available = [g for g in node_languages if g not in mandatory_glottocodes]
                 if available:
                     num_select = min(num_to_allocate, len(available))
-                    return random.sample(available, num_select)
+                    
+                    # Преобразуем glottocodes в объекты Language для ранжирования
+                    available_lang_objects = []
+                    for glottocode in available:
+                        lang = global_session.query(Language).filter_by(glottocode=glottocode).first()
+                        if lang:
+                            available_lang_objects.append(lang)
+                    
+                    if not available_lang_objects:
+                        return []
+                    
+                    # Применяем ранжирование если задано, иначе случайный выбор
+                    if self.ranking_key:
+                        # Сортируем по рангу и выбираем топ N
+                        scored = [(lang, self.get_language_rank_score(lang)) for lang in available_lang_objects]
+                        scored.sort(key=lambda x: x[1], reverse=True)
+                        selected = [lang.glottocode for lang, score in scored[:num_select]]
+                    else:
+                        # Случайный выбор
+                        selected = [lang.glottocode for lang in random.sample(available_lang_objects, num_select)]
+                    
+                    return selected
                 return []
             
             # Если есть дети, распределяем между ними пропорционально их DV
@@ -1193,13 +1324,51 @@ class GenusSample(Sample):
                 family_langs = allocate_languages_in_subtree(family, allocation)
                 selected_glottocodes.update(family_langs)
         
-        # Если не хватает языков, добираем случайно из оставшихся
-        shortage = remaining_size - len(selected_glottocodes)
-        if shortage > 0:
+        # Циклически добираем недостающие языки пока есть доступные
+        max_iterations = 1000  # Защита от бесконечного цикла
+        iteration = 0
+        
+        while iteration < max_iterations:
+            shortage = remaining_size - len(selected_glottocodes)
+            
+            # Если достигли нужного размера, выходим
+            if shortage <= 0:
+                break
+            
             remaining = available_glottocodes - selected_glottocodes - mandatory_glottocodes
-            if remaining:
-                additional = random.sample(list(remaining), min(shortage, len(remaining)))
-                selected_glottocodes.update(additional)
+            
+            # Если больше нет доступных языков, выходим
+            if not remaining:
+                break
+            
+            # Преобразуем glottocodes в объекты Language
+            remaining_lang_objects = []
+            for glottocode in remaining:
+                lang = global_session.query(Language).filter_by(glottocode=glottocode).first()
+                if lang:
+                    remaining_lang_objects.append(lang)
+            
+            if not remaining_lang_objects:
+                break
+            
+            num_additional = min(shortage, len(remaining_lang_objects))
+            
+            # Применяем ранжирование если задано, иначе случайный выбор
+            if self.ranking_key:
+                # Сортируем по рангу и выбираем топ N
+                scored = [(lang, self.get_language_rank_score(lang)) for lang in remaining_lang_objects]
+                scored.sort(key=lambda x: x[1], reverse=True)
+                additional = [lang.glottocode for lang, score in scored[:num_additional]]
+            else:
+                # Случайный выбор
+                additional = [lang.glottocode for lang in random.sample(remaining_lang_objects, num_additional)]
+            
+            # Если не добавили ни одного языка, выходим
+            if not additional:
+                break
+            
+            selected_glottocodes.update(additional)
+            iteration += 1
         
         # Преобразуем glottocodes в объекты Language
         selected_languages = list(mandatory_languages)

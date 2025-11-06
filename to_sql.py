@@ -80,25 +80,33 @@ def load_macroareas_data(session, tsv_filepath):
                     # Add groups to database
                     path = row['path']
                     groups = path.split('/')
-                    for group_code in groups:
-                        parent_code = ''
+                    
+                    # Убираем 'tree' если он есть в начале
+                    if groups[0] == 'tree':
+                        groups = groups[1:]
+                    
+                    parent_code = None  # Первый элемент не имеет родителя
+                    
+                    for i, group_code in enumerate(groups):
+                        # Проверяем, существует ли группа
                         group = session.query(Group).filter_by(glottocode=group_code).first()
+                        
                         if not group:
-                            if parent_code:
-                                group = Group(glottocode=group_code,
-                                              closest_supergroup=parent_code,
-                                              is_genus=False,
-                                              is_language=False)
-                            else:
-                                group = Group(glottocode=group_code,
-                                              is_genus=False,
-                                              is_language=False)
+                            # Создаем новую группу
+                            group = Group(
+                                glottocode=group_code,
+                                closest_supergroup=parent_code,
+                                is_genus=False,
+                                is_language=(i == len(groups) - 1)  # Последний элемент - это язык
+                            )
                             session.add(group)
                             session.flush()
-                        elif parent_code:
-                            group = session.query(Group).filter_by(glottocode=group_code).first()
-                            group.closest_supergroup = parent_code
-
+                        else:
+                            # Обновляем родителя, если его еще нет
+                            if parent_code and not group.closest_supergroup:
+                                group.closest_supergroup = parent_code
+                        
+                        # Текущая группа становится родителем для следующей
                         parent_code = group_code
 
                     # Update language entry
