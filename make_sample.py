@@ -318,20 +318,17 @@ class GenusSample(Sample):
                 ).scalar()
                 base_score = max_pages if max_pages else 0
             elif self.ranking_key == 'descriptive_ranking':
-                # Вычисляем descriptive_ranking: 2 * max_pages + 0.5 * max_year
-                max_year = global_session.query(func.max(Source.year)).filter(
-                    Source.language_glottocode == language.glottocode,
-                    Source.year != None
-                ).scalar()
-                max_pages = global_session.query(func.max(Source.pages)).filter(
-                    Source.language_glottocode == language.glottocode,
-                    Source.pages != None
-                ).scalar()
+                # Вычисляем descriptive_ranking: СУММА по всем источникам (2 * pages + 0.5 * year)
+                sources = global_session.query(Source).filter(
+                    Source.language_glottocode == language.glottocode
+                ).all()
+                
                 base_score = 0.0
-                if max_pages:
-                    base_score += 2.0 * max_pages
-                if max_year:
-                    base_score += 0.5 * max_year
+                for source in sources:
+                    if source.pages:
+                        base_score += 2.0 * source.pages
+                    if source.year:
+                        base_score += 0.5 * source.year
             else:
                 base_score = 0
         
