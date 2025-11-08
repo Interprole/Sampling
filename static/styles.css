@@ -227,6 +227,10 @@ select,
 	text-align: justify !important;
 }
 
+.validation-error-tooltip {
+    --bs-tooltip-bg: #dc3545;
+}
+
 .btn-secondary,
 .btn-secondary:active,
 .btn-secondary.active,

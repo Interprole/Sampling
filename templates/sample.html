@@ -21,6 +21,9 @@
 {% if total_languages < sampleSize %}
 <p style="text-align: center;">The actual size of a sample is less than expected. Unfortunately, the sample of {{ sampleSize }} languages is not possible with chosen filters.</p>
 {% endif %}
+{% if total_languages > sampleSize %}
+<p style="text-align: center;">The actual size of a sample is more than expected due to chosen filters.</p>
+{% endif %}
 
 {% if feature_info %}
 <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">

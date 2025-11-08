@@ -160,3 +160,79 @@ $(document).ready(function() {
         }
     });
 });
+
+// Validation of the amount of selected languages compared to sample size
+$(document).ready(function() {
+    const $sampleSizeInput = $('#sampleSizeInput');
+    const $languagesSelect = $('.include-lang-js');
+
+    const $select2Container = $languagesSelect.next('.select2-container'); 
+
+    $select2Container.tooltip({
+        trigger: 'manual',
+        placement: 'bottom',
+        html: true,
+        customClass: 'validation-error-tooltip' 
+    });
+
+    function validateLanguageAmount() {
+        const selectedLanguages = $languagesSelect.val() || [];
+        const selectedLangugesAmount = selectedLanguages.length;
+        const sampleSize = parseInt($sampleSizeInput.val(), 10);
+
+        if (isNaN(sampleSize) || sampleSize <= 0) {
+             $select2Container.tooltip('hide');
+             return true; 
+        }
+
+        if (selectedLangugesAmount > sampleSize) {
+            const message = "Attention! You have selected more languages than the chosen sample size.";
+            $select2Container.attr('data-bs-original-title', message);
+            $select2Container.tooltip('show');
+            return false;
+        } else {
+            $select2Container.tooltip('hide');
+            return true;
+        }
+    }
+
+    $languagesSelect.on('change', validateLanguageAmount);
+    $sampleSizeInput.on('input', validateLanguageAmount);
+
+    validateLanguageAmount();
+});
+
+// Validation of the sample size input format
+$(document).ready(function() {
+    const $sampleSizeInput = $('#sampleSizeInput');
+
+    $sampleSizeInput.tooltip({
+        trigger: 'manual',
+        placement: 'bottom',
+        html: true,
+        customClass: 'validation-error-tooltip' 
+    });
+
+    function validateSampleSizeInput() {
+        const inputValue = $sampleSizeInput.val().trim();
+        const digitRegex = /^\d+$/;
+        
+        if (isNaN(inputValue) || inputValue == "0" || !digitRegex.test(inputValue)) {
+            const message = "Attention! The Sample Size must contain only digits and be greater than 0.";
+            $sampleSizeInput.attr('data-bs-original-title', message);
+            $sampleSizeInput.tooltip('show');
+            return false;
+        } else {
+            $sampleSizeInput.tooltip('hide');
+            return true;
+        }
+    }
+
+    $sampleSizeInput.on('input', validateSampleSizeInput);
+
+    $sampleSizeInput.on('blur', function() {
+        validateSampleSizeInput();
+    });
+
+    validateSampleSizeInput();
+});
