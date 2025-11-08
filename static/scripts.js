@@ -218,7 +218,7 @@ $(document).ready(function() {
         const digitRegex = /^\d+$/;
         
         if (isNaN(inputValue) || inputValue == "0" || !digitRegex.test(inputValue)) {
-            const message = "Attention! The Sample Size must contain only digits and be greater than 0.";
+            const message = "Attention! The sample size must contain only digits and be greater than 0.";
             $sampleSizeInput.attr('data-bs-original-title', message);
             $sampleSizeInput.tooltip('show');
             return false;
