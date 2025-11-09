@@ -227,6 +227,10 @@ select,
 	text-align: justify !important;
 }
 
+.validation-error-tooltip {
+    --bs-tooltip-bg: #dc3545;
+}
+
 .btn-secondary,
 .btn-secondary:active,
 .btn-secondary.active,
@@ -265,4 +269,13 @@ datalist {
 
 .table {
     margin-top: 15px;
+}
+
+.modal-header {
+	background-color: #A4CA9D;
+	color: #aec3aa;
+}
+
+.progress-bar {
+	background-color: #A4CA9D;
 }

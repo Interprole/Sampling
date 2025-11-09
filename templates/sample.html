@@ -19,7 +19,10 @@
 <h5 style="text-align: center;"><strong>Total languages:</strong> {{ total_languages }} | <strong>Total genera:</strong> {{ total_genera }}</h5>
 <br>
 {% if total_languages < sampleSize %}
-<p style="text-align: center;">The actual size of a sample is less than expected. Unfortunately, the sample of {{ sampleSize }} languages is not possible with chosen filters.</p>
+<p style="text-align: center;">The resulting sample size ({{ total_languages }}) is smaller than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
+{% endif %}
+{% if total_languages > sampleSize %}
+<p style="text-align: center;">The resulting sample size ({{ total_languages }}) is larger than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
 {% endif %}
 
 {% if target_macroarea_distribution and actual_macroarea_distribution %}
