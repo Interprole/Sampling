@@ -22,6 +22,44 @@
 <p style="text-align: center;">The actual size of a sample is less than expected. Unfortunately, the sample of {{ sampleSize }} languages is not possible with chosen filters.</p>
 {% endif %}
 
+{% if target_macroarea_distribution and actual_macroarea_distribution %}
+{% set has_mismatch = namespace(value=False) %}
+{% for macroarea, target in target_macroarea_distribution.items() %}
+    {% set actual = actual_macroarea_distribution.get(macroarea, 0) %}
+    {% set diff = (actual - target) if actual > target else (target - actual) %}
+    {% if diff > 1 %}
+        {% set has_mismatch.value = True %}
+    {% endif %}
+{% endfor %}
+{% if has_mismatch.value %}
+<div style="margin: 10px auto; padding: 15px; max-width: 800px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 5px;">
+    <p style="margin: 0; text-align: center;"><strong>⚠️ Macroarea distribution mismatch:</strong> The target distribution by macroareas could not be fully achieved with the chosen filters.</p>
+    <table style="margin: 10px auto; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="padding: 5px 15px; text-align: left;">Macroarea</th>
+                <th style="padding: 5px 15px; text-align: center;">Target</th>
+                <th style="padding: 5px 15px; text-align: center;">Actual</th>
+                <th style="padding: 5px 15px; text-align: center;">Diff</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for macroarea, target in target_macroarea_distribution.items() %}
+            {% set actual = actual_macroarea_distribution.get(macroarea, 0) %}
+            {% set diff = (actual - target) if actual > target else (target - actual) %}
+            <tr style="background-color: {% if diff <= 1 %}#e3f2fd{% else %}#ffebee{% endif %};">
+                <td style="padding: 5px 15px;">{{ macroarea }}</td>
+                <td style="padding: 5px 15px; text-align: center;">{{ target }}</td>
+                <td style="padding: 5px 15px; text-align: center;">{{ actual }}</td>
+                <td style="padding: 5px 15px; text-align: center;">{{ diff }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endif %}
+
 {% if feature_info %}
 <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
     <h5 style="text-align: center;"><strong style="text-align: center">Filtered by features:</strong></h5>

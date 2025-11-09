@@ -207,7 +207,7 @@ class Source(Base):
 class LanguageRankingCache(Base):
     """
     A class used to cache ranking scores for languages.
-    Speeds up sampling by avoiding repeated calculations.
+    Caches all 25 combinations (5 ranking methods × 5 preference levels).
     
     Attributes
     ----------
@@ -215,26 +215,52 @@ class LanguageRankingCache(Base):
         Foreign key to Group (Language)
     source_count : int
         Total number of sources for this language
-    max_year : int
-        Maximum publication year among sources
-    max_pages : int
-        Maximum page count among sources
-    descriptive_ranking : float
-        Combined score: 2 * max_pages + 0.5 * max_year
-    grammar_count : int
-        Number of grammar sources
-    dictionary_count : int
-        Number of dictionary sources
-    last_updated : int
-        Timestamp of last cache update (Unix timestamp)
+    
+    For each ranking method, we cache 5 values for preference levels: -2, -1, 0, +1, +2
+    Naming: {method}_pref_{level} where level is: m2 (-2), m1 (-1), 0 (0), p1 (+1), p2 (+2)
+    
+    Random ranking (normalized count):
     """
     __tablename__ = 'language_ranking_cache'
     
     language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
     source_count = Column(Integer, default=0)
-    max_year = Column(Integer, default=0)
-    max_pages = Column(Integer, default=0)
-    descriptive_ranking = Column(Float, default=0.0)
+    
+    # Random ranking: sum(1 × coef) / total_count
+    random_pref_m2 = Column(Float, default=0.0)  # preference = -2
+    random_pref_m1 = Column(Float, default=0.0)  # preference = -1
+    random_pref_0 = Column(Float, default=0.0)   # preference = 0
+    random_pref_p1 = Column(Float, default=0.0)  # preference = +1
+    random_pref_p2 = Column(Float, default=0.0)  # preference = +2
+    
+    # Source count ranking: sum(count × coef)
+    source_count_pref_m2 = Column(Float, default=0.0)
+    source_count_pref_m1 = Column(Float, default=0.0)
+    source_count_pref_0 = Column(Float, default=0.0)
+    source_count_pref_p1 = Column(Float, default=0.0)
+    source_count_pref_p2 = Column(Float, default=0.0)
+    
+    # Year ranking: sum(year × coef)
+    year_pref_m2 = Column(Float, default=0.0)
+    year_pref_m1 = Column(Float, default=0.0)
+    year_pref_0 = Column(Float, default=0.0)
+    year_pref_p1 = Column(Float, default=0.0)
+    year_pref_p2 = Column(Float, default=0.0)
+    
+    # Pages ranking: sum(pages × coef)
+    pages_pref_m2 = Column(Float, default=0.0)
+    pages_pref_m1 = Column(Float, default=0.0)
+    pages_pref_0 = Column(Float, default=0.0)
+    pages_pref_p1 = Column(Float, default=0.0)
+    pages_pref_p2 = Column(Float, default=0.0)
+    
+    # Descriptive ranking: sum((0.5*year + 2*pages) × coef)
+    descriptive_pref_m2 = Column(Float, default=0.0)
+    descriptive_pref_m1 = Column(Float, default=0.0)
+    descriptive_pref_0 = Column(Float, default=0.0)
+    descriptive_pref_p1 = Column(Float, default=0.0)
+    descriptive_pref_p2 = Column(Float, default=0.0)
+    
     grammar_count = Column(Integer, default=0)
     dictionary_count = Column(Integer, default=0)
     last_updated = Column(Integer, default=0)  # Unix timestamp

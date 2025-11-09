@@ -9,9 +9,13 @@ class SamplingResult:
     """
     Класс для представления результата сэмплинга.
     """
-    def __init__(self, languages: List[Language], included_genera: List[Genus]):
+    def __init__(self, languages: List[Language], included_genera: List[Genus], 
+                 target_macroarea_distribution: Optional[Dict[str, int]] = None,
+                 actual_macroarea_distribution: Optional[Dict[str, int]] = None):
         self.languages = languages
         self.included_genera = included_genera
+        self.target_macroarea_distribution = target_macroarea_distribution or {}
+        self.actual_macroarea_distribution = actual_macroarea_distribution or {}
 
     def __str__(self) -> str:
         return f"SamplingResult: {len(self.languages)} languages from {len(self.included_genera)} genera"
@@ -119,7 +123,10 @@ class GenusSample(Sample):
             +2.0 = сильное предпочтение грамматик
         """
         if genus_list is None:
-            self.genus_list = global_session.query(Genus).all()
+            # Предзагружаем языки для каждого рода (избегаем N+1 запросов)
+            self.genus_list = global_session.query(Genus).options(
+                joinedload(Genus.languages)
+            ).all()
         else:
             self.genus_list = genus_list
         
@@ -153,37 +160,43 @@ class GenusSample(Sample):
     def _load_cache_from_db(self):
         """
         Загружает кэш ранжирования из таблицы language_ranking_cache.
-        Намного быстрее, чем вычислять каждый раз.
+        Использует готовые закэшированные значения для комбинации 
+        (ranking_method, grammar_dict_preference).
         """
         from models import LanguageRankingCache
         
         self._ranking_cache = {}
-        self._type_modifier_cache = {}
         
         # Загружаем все записи кэша одним запросом
         cache_entries = global_session.query(LanguageRankingCache).all()
         
+        # Определяем суффикс для колонки на основе preference
+        # preference: -2 → m2, -1 → m1, 0 → 0, +1 → p1, +2 → p2
+        pref_map = {-2: 'm2', -1: 'm1', 0: '0', 1: 'p1', 2: 'p2'}
+        pref_suffix = pref_map.get(int(self.grammar_dict_preference), '0')
+        
+        # Определяем префикс для колонки на основе ranking_key
+        if self.ranking_key == 'source_count':
+            field_prefix = 'source_count'
+        elif self.ranking_key == 'year_ranking':
+            field_prefix = 'year'
+        elif self.ranking_key == 'pages_ranking':
+            field_prefix = 'pages'
+        elif self.ranking_key == 'descriptive_ranking':
+            field_prefix = 'descriptive'
+        elif self.ranking_key == 'random' or self.ranking_key is None:
+            field_prefix = 'random'
+        else:
+            # Неизвестный метод, используем random
+            field_prefix = 'random'
+        
+        # Название поля: {prefix}_pref_{suffix}
+        field_name = f"{field_prefix}_pref_{pref_suffix}"
+        
+        # Заполняем кэш готовыми значениями
         for entry in cache_entries:
-            # Заполняем кэш в зависимости от типа ранжирования
-            if self.ranking_key == 'source_count':
-                self._ranking_cache[entry.language_glottocode] = entry.source_count
-            elif self.ranking_key == 'year_ranking':
-                self._ranking_cache[entry.language_glottocode] = entry.max_year
-            elif self.ranking_key == 'pages_ranking':
-                self._ranking_cache[entry.language_glottocode] = entry.max_pages
-            elif self.ranking_key == 'descriptive_ranking':
-                self._ranking_cache[entry.language_glottocode] = entry.descriptive_ranking
-            
-            # Вычисляем модификатор типа документа, если нужен
-            if self.grammar_dict_preference != 0:
-                total = entry.grammar_count + entry.dictionary_count
-                if total > 0:
-                    grammar_ratio = entry.grammar_count / total
-                    dictionary_ratio = entry.dictionary_count / total
-                    type_bias = grammar_ratio - dictionary_ratio
-                    self._type_modifier_cache[entry.language_glottocode] = self.grammar_dict_preference * type_bias
-                else:
-                    self._type_modifier_cache[entry.language_glottocode] = 0
+            score = getattr(entry, field_name, 0.0)
+            self._ranking_cache[entry.language_glottocode] = score
 
     def _load_feature_cache(self):
         """
@@ -295,53 +308,175 @@ class GenusSample(Sample):
         
         # Используем кэш если доступен
         if self._ranking_cache is not None:
-            base_score = self._ranking_cache.get(language.glottocode, 0)
+            cached_score = self._ranking_cache.get(language.glottocode)
+            if cached_score is not None:
+                # Добавляем небольшой случайный шум к рангу
+                noise = self._get_ranking_noise()
+                return cached_score + noise
+        
+        # Fallback: вычисляем на месте и кэшируем результат
+        from models import Source, LanguageRankingCache
+        
+        # Вычисляем коэффициенты на основе preference
+        if self.grammar_dict_preference > 0:
+            grammar_coef = 1.0 + self.grammar_dict_preference * 0.5
+            dict_coef = 1.0
+        elif self.grammar_dict_preference < 0:
+            grammar_coef = 1.0
+            dict_coef = 1.0 + abs(self.grammar_dict_preference) * 0.5
         else:
-            # Fallback на старый метод если кэш не загружен
-            from models import Source
-            from sqlalchemy import func
+            grammar_coef = dict_coef = 1.0
+        other_coef = 1.0
+        
+        # Собираем данные по источникам
+        sources = global_session.query(Source).filter(
+            Source.language_glottocode == language.glottocode
+        ).all()
+        
+        grammar_count = 0
+        dict_count = 0
+        other_count = 0
+        year_sum_g = 0
+        year_sum_d = 0
+        year_sum_o = 0
+        pages_sum_g = 0
+        pages_sum_d = 0
+        pages_sum_o = 0
+        desc_sum_g = 0
+        desc_sum_d = 0
+        desc_sum_o = 0
+        
+        for source in sources:
+            doc_type = 'other'
+            if source.document_type:
+                doc_type_lower = source.document_type.lower()
+                if 'grammar' in doc_type_lower:  # Включая sketch
+                    doc_type = 'grammar'
+                elif 'dictionary' in doc_type_lower:
+                    doc_type = 'dictionary'
             
-            if self.ranking_key == 'source_count':
-                base_score = global_session.query(Source).filter_by(
-                    language_glottocode=language.glottocode
-                ).count()
-            elif self.ranking_key == 'year_ranking':
-                max_year = global_session.query(func.max(Source.year)).filter(
-                    Source.language_glottocode == language.glottocode,
-                    Source.year != None
-                ).scalar()
-                base_score = max_year if max_year else 0
-            elif self.ranking_key == 'pages_ranking':
-                max_pages = global_session.query(func.max(Source.pages)).filter(
-                    Source.language_glottocode == language.glottocode,
-                    Source.pages != None
-                ).scalar()
-                base_score = max_pages if max_pages else 0
-            elif self.ranking_key == 'descriptive_ranking':
-                # Вычисляем descriptive_ranking: СУММА по всем источникам (2 * pages + 0.5 * year)
-                sources = global_session.query(Source).filter(
-                    Source.language_glottocode == language.glottocode
-                ).all()
-                
+            if doc_type == 'grammar':
+                grammar_count += 1
+                if source.year:
+                    year_sum_g += source.year
+                if source.pages:
+                    pages_sum_g += source.pages
+                desc_score = 0.0
+                if source.year:
+                    desc_score += 0.5 * source.year
+                if source.pages:
+                    desc_score += 2.0 * source.pages
+                desc_sum_g += desc_score
+            elif doc_type == 'dictionary':
+                dict_count += 1
+                if source.year:
+                    year_sum_d += source.year
+                if source.pages:
+                    pages_sum_d += source.pages
+                desc_score = 0.0
+                if source.year:
+                    desc_score += 0.5 * source.year
+                if source.pages:
+                    desc_score += 2.0 * source.pages
+                desc_sum_d += desc_score
+            else:
+                other_count += 1
+                if source.year:
+                    year_sum_o += source.year
+                if source.pages:
+                    pages_sum_o += source.pages
+                desc_score = 0.0
+                if source.year:
+                    desc_score += 0.5 * source.year
+                if source.pages:
+                    desc_score += 2.0 * source.pages
+                desc_sum_o += desc_score
+        
+        # Вычисляем финальный score в зависимости от метода
+        if self.ranking_key == 'source_count':
+            base_score = (grammar_count * grammar_coef + 
+                         dict_count * dict_coef + 
+                         other_count * other_coef)
+        elif self.ranking_key == 'year_ranking':
+            base_score = (year_sum_g * grammar_coef + 
+                         year_sum_d * dict_coef + 
+                         year_sum_o * other_coef)
+        elif self.ranking_key == 'pages_ranking':
+            base_score = (pages_sum_g * grammar_coef + 
+                         pages_sum_d * dict_coef + 
+                         pages_sum_o * other_coef)
+        elif self.ranking_key == 'descriptive_ranking':
+            base_score = (desc_sum_g * grammar_coef + 
+                         desc_sum_d * dict_coef + 
+                         desc_sum_o * other_coef)
+        elif self.ranking_key == 'random' or self.ranking_key is None:
+            total = grammar_count + dict_count + other_count
+            if total > 0:
+                base_score = ((grammar_count * grammar_coef + 
+                              dict_count * dict_coef + 
+                              other_count * other_coef) / total)
+            else:
                 base_score = 0.0
-                for source in sources:
-                    if source.pages:
-                        base_score += 2.0 * source.pages
-                    if source.year:
-                        base_score += 0.5 * source.year
-            else:
-                base_score = 0
+        else:
+            base_score = 0
         
-        # Применяем модификатор по типу документа (grammar/dictionary preference)
-        if self.grammar_dict_preference != 0 and base_score > 0:
-            if self._type_modifier_cache is not None:
-                type_modifier = self._type_modifier_cache.get(language.glottocode, 0)
-            else:
-                type_modifier = self._get_document_type_modifier(language)
+        # Кэшируем результат в памяти
+        if self._ranking_cache is None:
+            self._ranking_cache = {}
+        self._ranking_cache[language.glottocode] = base_score
+        
+        # Пытаемся также сохранить в БД кэш (если его там нет)
+        try:
+            cache_entry = global_session.query(LanguageRankingCache).filter_by(
+                language_glottocode=language.glottocode
+            ).first()
             
-            base_score = base_score + (type_modifier * abs(base_score) * 0.1)
+            if cache_entry:
+                # Обновляем нужное поле в кэше
+                pref_map = {-2: 'm2', -1: 'm1', 0: '0', 1: 'p1', 2: 'p2'}
+                pref_suffix = pref_map.get(int(self.grammar_dict_preference), '0')
+                
+                if self.ranking_key == 'source_count':
+                    field_name = f'source_count_pref_{pref_suffix}'
+                elif self.ranking_key == 'year_ranking':
+                    field_name = f'year_pref_{pref_suffix}'
+                elif self.ranking_key == 'pages_ranking':
+                    field_name = f'pages_pref_{pref_suffix}'
+                elif self.ranking_key == 'descriptive_ranking':
+                    field_name = f'descriptive_pref_{pref_suffix}'
+                elif self.ranking_key == 'random' or self.ranking_key is None:
+                    field_name = f'random_pref_{pref_suffix}'
+                else:
+                    field_name = None
+                
+                if field_name:
+                    setattr(cache_entry, field_name, base_score)
+                    global_session.commit()
+        except Exception:
+            # Не критично если не удалось обновить БД кэш
+            pass
         
-        return base_score
+        # Добавляем небольшой случайный шум к рангу
+        noise = self._get_ranking_noise()
+        return base_score + noise
+    
+    def _get_ranking_noise(self) -> float:
+        """
+        Возвращает случайный шум для ранжирования.
+        Величина шума зависит от метода ранжирования (5-10% от типичных значений).
+        """
+        if self.ranking_key == 'source_count':
+            return random.uniform(-100, 100)  # ~5% от 2000
+        elif self.ranking_key == 'year_ranking':
+            return random.uniform(-200000, 200000)  # ~5% от 4M
+        elif self.ranking_key == 'pages_ranking':
+            return random.uniform(-5000, 5000)  # ~10% от 50k
+        elif self.ranking_key == 'descriptive_ranking':
+            return random.uniform(-100000, 100000)  # ~5% от 2M
+        elif self.ranking_key == 'random' or self.ranking_key is None:
+            return random.uniform(-0.05, 0.05)  # ~5% от 1.0
+        else:
+            return 0.0
     
     def _get_document_type_modifier(self, language: Language) -> float:
         """
@@ -973,8 +1108,21 @@ class GenusSample(Sample):
                 break
             
             iteration += 1
+        
+        # Подсчитываем фактическое распределение по макроареалам
+        # Каждый язык считается по своему собственному макроареалу
+        actual_distribution = {}
+        for lang in selected_languages:
+            if lang.macroarea:
+                ma_name = lang.macroarea.name
+                actual_distribution[ma_name] = actual_distribution.get(ma_name, 0) + 1
 
-        return SamplingResult(selected_languages, included_genera)
+        return SamplingResult(
+            selected_languages, 
+            included_genera,
+            target_macroarea_distribution=target_distribution,
+            actual_macroarea_distribution=actual_distribution
+        )
 
     def random_sample(self, sample_size: int) -> SamplingResult:
         """

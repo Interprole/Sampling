@@ -178,7 +178,7 @@ def sample():
                 language_glottocode=lang.glottocode
             ).order_by(Source.year.desc().nullslast()).all()
             
-            # Формируем список источников с годом и страницами
+            # Формируем список источников с годом, страницами и языками документации
             source_list = []
             for s in sources:
                 source_str = s.title
@@ -187,6 +187,20 @@ def sample():
                     details.append(str(s.year))
                 if s.pages:
                     details.append(f"{s.pages}pp")
+                
+                # Добавляем языки документации для этого источника
+                if s.doc_language_codes:
+                    doc_codes = s.doc_language_codes.split(',')
+                    doc_names = []
+                    for code in doc_codes:
+                        lang_obj = global_session.query(Language).filter_by(iso=code).first()
+                        if lang_obj:
+                            doc_names.append(lang_obj.name)
+                        else:
+                            doc_names.append(code)
+                    if doc_names:
+                        details.append(f"in {', '.join(doc_names)}")
+                
                 if details:
                     source_str += f" ({', '.join(details)})"
                 source_list.append(source_str)
@@ -227,7 +241,9 @@ def sample():
             total_genera=len(result.included_genera),
             feature_info=feature_info,
             all_feature_codes=all_feature_codes,
-            has_doc_lang_filter=bool(docLang)
+            has_doc_lang_filter=bool(docLang),
+            target_macroarea_distribution=result.target_macroarea_distribution,
+            actual_macroarea_distribution=result.actual_macroarea_distribution
         )
 
 
