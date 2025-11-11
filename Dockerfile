@@ -13,3 +13,4 @@ ENV FLASK_APP app.py
 EXPOSE 5002
 
 CMD ["flask", "run", "--host", "0.0.0.0", "-p", "5002"]
+
