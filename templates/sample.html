@@ -78,6 +78,29 @@
 </div>
 {% endif %}
 
+<!-- Карта с языками -->
+<div style="margin: 20px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h5 style="margin: 0;"><strong>Languages Map</strong></h5>
+        <div>
+            {% if all_feature_codes %}
+            <label for="mapFeatureSelect" style="margin-right: 10px;">Color by feature:</label>
+            <select id="mapFeatureSelect" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc;">
+                <option value="">None (by macroarea)</option>
+                {% for feature_code in all_feature_codes %}
+                    <option value="{{ feature_code }}">{{ feature_info[feature_code].name }} ({{ feature_code }})</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <button id="exportMapBtn" style="padding: 5px 15px; margin-left: 10px; border-radius: 5px; border: 1px solid #ccc; background-color: #fff; cursor: pointer;">
+                Export Map as PNG
+            </button>
+        </div>
+    </div>
+    <div id="languageMap" style="height: 700px; width: 100%; border: 1px solid #ccc; border-radius: 5px;"></div>
+    <div id="mapLegend" style="margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;"></div>
+</div>
+
 <div class="accordion" id="accordionPanelsStayOpenExample">
     {% for macroarea, languages in languages_by_macroarea.items() %}
     <div class="accordion-item">
@@ -181,6 +204,310 @@
 </div>
 
 <script>
+// Данные языков для карты
+const languagesData = [
+    {% for macroarea, languages in languages_by_macroarea.items() %}
+    {% for lang in languages %}
+    {
+        name: "{{ lang.name }}",
+        glottocode: "{{ lang.glottocode }}",
+        iso: "{{ lang.iso if lang.iso else '' }}",
+        genus: "{{ lang.genus }}",
+        macroarea: "{{ macroarea }}",
+        latitude: {{ lang.latitude if lang.latitude else 'null' }},
+        longitude: {{ lang.longitude if lang.longitude else 'null' }},
+        features: {
+            {% for feature_code in all_feature_codes %}
+            {% if feature_code in lang.features %}
+            "{{ feature_code }}": {
+                value_code: "{{ lang.features[feature_code].value_code }}",
+                value_name: "{{ lang.features[feature_code].value_name }}"
+            }{% if not loop.last %},{% endif %}
+            {% endif %}
+            {% endfor %}
+        }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+    {% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+// Цвета для макроареалов
+const macroareaColors = {
+    'Africa': '#e74c3c',
+    'Eurasia': '#3498db',
+    'Australia': '#f39c12',
+    'North America': '#9b59b6',
+    'South America': '#1abc9c',
+    'Papunesia': '#e67e22'
+};
+
+// Цвета для значений признаков (палитра)
+const featureValueColors = [
+    '#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', 
+    '#1abc9c', '#e67e22', '#34495e', '#16a085', '#c0392b',
+    '#2980b9', '#8e44ad', '#27ae60', '#d35400', '#7f8c8d'
+];
+
+let map;
+let markersLayer;
+let currentFeatureCode = '';
+
+// Инициализация карты
+function initMap() {
+    map = L.map('languageMap').setView([20, 0], 2);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 18
+    }).addTo(map);
+    
+    markersLayer = L.markerClusterGroup({
+        maxClusterRadius: 20,
+        disableClusteringAtZoom: 4,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false
+    });
+    
+    updateMap('');
+}
+
+// Обновление карты
+function updateMap(featureCode) {
+    currentFeatureCode = featureCode;
+    markersLayer.clearLayers();
+    
+    // Собираем уникальные значения для выбранного признака
+    let featureValues = new Set();
+    if (featureCode) {
+        languagesData.forEach(lang => {
+            if (lang.features[featureCode]) {
+                featureValues.add(lang.features[featureCode].value_name);
+            }
+        });
+    }
+    
+    // Создаем маппинг значений на цвета
+    let valueColorMap = {};
+    let colorIndex = 0;
+    featureValues.forEach(value => {
+        valueColorMap[value] = featureValueColors[colorIndex % featureValueColors.length];
+        colorIndex++;
+    });
+    
+    // Добавляем маркеры
+    languagesData.forEach(lang => {
+        if (lang.latitude && lang.longitude) {
+            let color;
+            let legendLabel;
+            
+            if (featureCode && lang.features[featureCode]) {
+                color = valueColorMap[lang.features[featureCode].value_name];
+                legendLabel = lang.features[featureCode].value_name;
+            } else if (featureCode) {
+                color = '#95a5a6'; // Серый для отсутствующих данных
+                legendLabel = 'No data';
+            } else {
+                color = macroareaColors[lang.macroarea] || '#95a5a6';
+                legendLabel = lang.macroarea;
+            }
+            
+            const marker = L.circleMarker([lang.latitude, lang.longitude], {
+                radius: 8,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            });
+            
+            let popupContent = `<strong>${lang.name}</strong><br>`;
+            popupContent += `Glottocode: ${lang.glottocode}<br>`;
+            if (lang.iso) popupContent += `ISO: ${lang.iso}<br>`;
+            popupContent += `Genus: ${lang.genus}<br>`;
+            popupContent += `Macroarea: ${lang.macroarea}<br>`;
+            
+            if (featureCode && lang.features[featureCode]) {
+                popupContent += `<br><strong>${featureCode}:</strong> ${lang.features[featureCode].value_name}`;
+            }
+            
+            marker.bindPopup(popupContent);
+            markersLayer.addLayer(marker);
+        }
+    });
+    
+    map.addLayer(markersLayer);
+    
+    // Обновляем легенду
+    updateLegend(featureCode, valueColorMap);
+}
+
+// Обновление легенды
+function updateLegend(featureCode, valueColorMap) {
+    const legendDiv = document.getElementById('mapLegend');
+    let legendHTML = '<strong>Legend:</strong> ';
+    
+    if (featureCode) {
+        for (let [value, color] of Object.entries(valueColorMap)) {
+            legendHTML += `<span style="display: inline-block; margin: 0 10px;">
+                <span style="display: inline-block; width: 12px; height: 12px; background-color: ${color}; border-radius: 50%; margin-right: 5px;"></span>
+                ${value}
+            </span>`;
+        }
+        legendHTML += `<span style="display: inline-block; margin: 0 10px;">
+            <span style="display: inline-block; width: 12px; height: 12px; background-color: #95a5a6; border-radius: 50%; margin-right: 5px;"></span>
+            No data
+        </span>`;
+    } else {
+        for (let [macroarea, color] of Object.entries(macroareaColors)) {
+            legendHTML += `<span style="display: inline-block; margin: 0 10px;">
+                <span style="display: inline-block; width: 12px; height: 12px; background-color: ${color}; border-radius: 50%; margin-right: 5px;"></span>
+                ${macroarea}
+            </span>`;
+        }
+    }
+    
+    legendDiv.innerHTML = legendHTML;
+}
+
+// Экспорт карты в PNG
+function exportMapAsPNG() {
+    const mapElement = document.getElementById('languageMap');
+    const legendElement = document.getElementById('mapLegend');
+    
+    // Временно отключаем кластеризацию для экспорта
+    const originalLayer = markersLayer;
+    map.removeLayer(markersLayer);
+    
+    // Создаем временный слой без кластеризации
+    const tempLayer = L.layerGroup();
+    
+    // Копируем все маркеры без кластеризации
+    languagesData.forEach(lang => {
+        if (lang.latitude && lang.longitude) {
+            let color;
+            
+            if (currentFeatureCode && lang.features[currentFeatureCode]) {
+                // Находим цвет для значения
+                const allValues = new Set();
+                languagesData.forEach(l => {
+                    if (l.features[currentFeatureCode]) {
+                        allValues.add(l.features[currentFeatureCode].value_name);
+                    }
+                });
+                
+                const valueColorMap = {};
+                let colorIndex = 0;
+                allValues.forEach(value => {
+                    valueColorMap[value] = featureValueColors[colorIndex % featureValueColors.length];
+                    colorIndex++;
+                });
+                
+                color = valueColorMap[lang.features[currentFeatureCode].value_name];
+            } else if (currentFeatureCode) {
+                color = '#95a5a6';
+            } else {
+                color = macroareaColors[lang.macroarea] || '#95a5a6';
+            }
+            
+            const marker = L.circleMarker([lang.latitude, lang.longitude], {
+                radius: 8,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            });
+            
+            tempLayer.addLayer(marker);
+        }
+    });
+    
+    tempLayer.addTo(map);
+    
+    // Даем время на рендеринг
+    setTimeout(() => {
+        // Используем dom-to-image для более точного захвата
+        domtoimage.toPng(mapElement, {
+            quality: 1,
+            bgcolor: '#ffffff',
+            width: mapElement.offsetWidth,
+            height: mapElement.offsetHeight
+        }).then(mapDataUrl => {
+            // Теперь захватываем легенду
+            domtoimage.toPng(legendElement, {
+                quality: 1,
+                bgcolor: '#f8f9fa',
+                width: legendElement.offsetWidth,
+                height: legendElement.offsetHeight
+            }).then(legendDataUrl => {
+                // Создаем финальный canvas
+                const mapImg = new Image();
+                const legendImg = new Image();
+                
+                mapImg.onload = () => {
+                    legendImg.onload = () => {
+                        const finalCanvas = document.createElement('canvas');
+                        const mapHeight = mapElement.offsetHeight;
+                        const legendHeight = legendElement.offsetHeight;
+                        
+                        finalCanvas.width = mapElement.offsetWidth;
+                        finalCanvas.height = mapHeight + legendHeight;
+                        
+                        const ctx = finalCanvas.getContext('2d');
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+                        
+                        // Рисуем карту (обрезаем до реального размера)
+                        ctx.drawImage(mapImg, 0, 0, mapElement.offsetWidth, mapHeight, 0, 0, mapElement.offsetWidth, mapHeight);
+                        
+                        // Рисуем легенду
+                        ctx.drawImage(legendImg, 0, 0, legendElement.offsetWidth, legendHeight, 0, mapHeight, legendElement.offsetWidth, legendHeight);
+                        
+                        // Скачиваем
+                        const link = document.createElement('a');
+                        link.download = '{{ title }}_map.png';
+                        link.href = finalCanvas.toDataURL('image/png');
+                        link.click();
+                        
+                        // Возвращаем кластеризацию
+                        map.removeLayer(tempLayer);
+                        map.addLayer(originalLayer);
+                    };
+                    legendImg.src = legendDataUrl;
+                };
+                mapImg.src = mapDataUrl;
+            }).catch(error => {
+                console.error('Error capturing legend:', error);
+                // Возвращаем кластеризацию даже при ошибке
+                map.removeLayer(tempLayer);
+                map.addLayer(originalLayer);
+            });
+        }).catch(error => {
+            console.error('Error capturing map:', error);
+            // Возвращаем кластеризацию даже при ошибке
+            map.removeLayer(tempLayer);
+            map.addLayer(originalLayer);
+        });
+    }, 500);
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    initMap();
+    
+    // Обработчик выбора признака
+    const featureSelect = document.getElementById('mapFeatureSelect');
+    if (featureSelect) {
+        featureSelect.addEventListener('change', function() {
+            updateMap(this.value);
+        });
+    }
+    
+    // Обработчик экспорта
+    document.getElementById('exportMapBtn').addEventListener('click', exportMapAsPNG);
+});
+
 // Функция для сворачивания/разворачивания всех аккордеонов
 document.querySelector('.collapse-button').addEventListener('click', function() {
     const allCollapses = document.querySelectorAll('.accordion-collapse');

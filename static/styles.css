@@ -279,3 +279,44 @@ datalist {
 .progress-bar {
 	background-color: #A4CA9D;
 }
+/* Map styles */
+#languageMap {
+z-index: 1;
+}
+
+#mapLegend {
+font-size: 14px;
+line-height: 1.6;
+}
+
+#mapLegend strong {
+margin-right: 15px;
+}
+
+#mapFeatureSelect {
+font-size: 14px;
+font-family: "Charis SIL";
+color: #0F3362;
+}
+
+#exportMapBtn {
+font-size: 14px;
+font-family: "Charis SIL";
+color: #0F3362;
+background-color: #A4CA9D;
+transition: all 0.3s ease;
+}
+
+#exportMapBtn:hover {
+background-color: #8aab84;
+}
+
+.leaflet-popup-content {
+font-family: "Charis SIL";
+color: #0F3362;
+font-size: 14px;
+}
+
+.leaflet-popup-content strong {
+font-size: 16px;
+}
