@@ -231,11 +231,18 @@ def sample():
                 'sources': source_list,
                 'doc_languages': doc_lang_names
             })
-        
+
         return render_template(
             "sample.html",
-            sampleSize=size,
             title=title,
+            algorithm=algorithm,
+            sampleSize=size,
+            macroareas=macroareas,
+            docLang=code_to_text(docLang, "iso"),
+            includeLang=code_to_text(includeLang, "iso"),
+            excludeLang=code_to_text(excludeLang, "iso"),
+            ranking_key=ranking_key,
+            gramDictPref=gramDictPref,
             languages_by_macroarea=languages_by_macroarea,
             total_languages=len(result.languages),
             total_genera=len(result.included_genera),
@@ -414,6 +421,18 @@ def api_sources():
     
     # Ограничиваем до 50 результатов для производительности
     return jsonify({'results': result[:50]})
+
+
+def code_to_text(codes, mode):
+    languageNames = []
+    for code in codes:
+        if mode == "iso":
+            language = global_session.query(Language).filter_by(iso=code).first()
+        if mode == "glottocode":
+            language = global_session.query(Language).filter_by(glottocode=code).first()
+        if language:
+            languageNames.append(language.name)
+    return languageNames
 
 
 if __name__ == "__main__":

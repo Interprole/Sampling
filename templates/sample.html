@@ -17,13 +17,73 @@
 </h3>
 
 <h5 style="text-align: center;"><strong>Total languages:</strong> {{ total_languages }} | <strong>Total genera:</strong> {{ total_genera }}</h5>
-<br>
-{% if total_languages < sampleSize %}
-<p style="text-align: center;">The resulting sample size ({{ total_languages }}) is smaller than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
-{% endif %}
-{% if total_languages > sampleSize %}
-<p style="text-align: center;">The resulting sample size ({{ total_languages }}) is larger than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
-{% endif %}
+
+<div style="margin: 10px auto; padding: 15px; max-width: 800px; background-color: #dcf8d7; border: 1px solid #A4CA9D; border-radius: 5px;">
+    <h5 style="text-align: center;"><strong style="text-align: center">Sample settings</strong></h5>
+    <p><strong>Sampling Algorithm</strong>:
+        {% if algorithm == "genus-macroarea" %} 
+            The Genus-Macroarea sampling method
+        {% elif algorithm == "diversity-value" %} 
+            The Diversity Value sampling method
+        {% elif algorithm == "random" %} 
+            A Random Sample
+        {% endif %}
+    </p>
+    <p><strong>Included Macroareas</strong>: 
+        {% if macroareas %}
+            {{ ', '.join(macroareas) }} 
+        {% else %}
+            Africa, Australia, Eurasia, North America, Papunesia, South America
+        {% endif %}
+    </p>
+    <p><strong>Sample Size</strong>: {{ sampleSize }} </p>
+    {% if feature_info%}
+        <h5 style="text-align: center;"><strong style="text-align: center">Filtered by features</strong></h5>
+        <ul style="padding: 0; margin: 20px 0 0 15px;">
+            {% for feature_code, info in feature_info.items() %}
+                <li style="margin: 5px 0;">
+                    <strong>{{ info.name }}</strong> ({{ feature_code }}, {{ info.source }}): 
+                    <em>{{ info.value_names|join(', ') }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+    {% endif %}
+    <h5 style="text-align: center;"><strong style="text-align: center">Search settings</strong></h5>
+        {% if includeLang %}
+            <p><strong>Included Languages</strong>: {{ ', '.join(includeLang) }} </p>
+        {% endif %}
+        {% if excludeLang %}
+            <p><strong>Excluded Languages</strong>: {{ ', '.join(excludeLang) }} </p>
+        {% endif %}
+        {% if docLang %}
+            <p><strong>Included Descriptions's Languages</strong>: {{ ', '.join(docLang) }} </p>
+        {% endif %}
+        <p><strong>Select Languages By</strong>:
+        {% if ranking_key == 'random' %}
+            Random
+        {% elif ranking_key == 'descriptive_ranking' %}
+            Extensiveness of description (<span>2 &middot;&nbsp;pages + 0.5 &middot;&nbsp;year</span>)
+        {% elif ranking_key == 'source_count' %}
+            "Total number of Descriptions"
+        {% elif ranking_key == 'year_ranking' %}
+            "Descriptions' publication year
+        {% elif ranking_key == 'pages_ranking' %}
+            Descriptions' page count
+        {% endif %}
+    </p>
+    <p><strong>Preference for Descriptions</strong>:
+        {% if gramDictPref < 0 %}
+            Dictionaries
+        {% elif gramDictPref > 0 %}
+            Grammars
+        {% elif gramDictPref == 0 %}
+            None
+        {% endif %}
+    </p>
+    
+</div>
+
 
 {% if target_macroarea_distribution and actual_macroarea_distribution %}
 {% set has_mismatch = namespace(value=False) %}
@@ -34,57 +94,54 @@
         {% set has_mismatch.value = True %}
     {% endif %}
 {% endfor %}
-{% if has_mismatch.value %}
+{% if has_mismatch.value or total_languages != sampleSize %}
 <div style="margin: 10px auto; padding: 15px; max-width: 800px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 5px;">
-    <p style="margin: 0; text-align: center;"><strong>⚠️ Macroarea distribution mismatch:</strong> The target distribution by macroareas could not be fully achieved with the chosen filters.</p>
-    <table style="margin: 10px auto; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th style="padding: 5px 15px; text-align: left;">Macroarea</th>
-                <th style="padding: 5px 15px; text-align: center;">Target</th>
-                <th style="padding: 5px 15px; text-align: center;">Actual</th>
-                <th style="padding: 5px 15px; text-align: center;">Diff</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for macroarea, target in target_macroarea_distribution.items() %}
-            {% set actual = actual_macroarea_distribution.get(macroarea, 0) %}
-            {% set diff = (actual - target) if actual > target else (target - actual) %}
-            <tr style="background-color: {% if diff <= 1 %}#e3f2fd{% else %}#ffebee{% endif %};">
-                <td style="padding: 5px 15px;">{{ macroarea }}</td>
-                <td style="padding: 5px 15px; text-align: center;">{{ target }}</td>
-                <td style="padding: 5px 15px; text-align: center;">{{ actual }}</td>
-                <td style="padding: 5px 15px; text-align: center;">{{ diff }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% if total_languages != sampleSize %}
+        <p style="margin: 0; text-align: center;"><strong>⚠️ Sample Size mismatch ⚠️ </strong> </p>
+        {% if total_languages < sampleSize %}
+            <p style="text-align: center;">The resulting sample size ({{ total_languages }}) is smaller than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
+        {% endif %}
+        {% if total_languages > sampleSize %}
+            <p style="text-align: center;">The resulting sample size ({{ total_languages }}) is larger than what was queried for ({{ sampleSize }}) due to chosen filters.</p>
+        {% endif %}
+    {% endif %}
+    
+    {% if has_mismatch.value %}
+        <p style="margin: 0; text-align: center;"><strong>⚠️ Macroarea distribution mismatch ⚠️ </strong> </p>
+        <p style="margin: 0; text-align: center;">The target distribution by macroareas could not be fully achieved with the chosen filters.</p>
+        <table style="margin: 10px auto; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="padding: 5px 15px; text-align: left;">Macroarea</th>
+                    <th style="padding: 5px 15px; text-align: center;">Target</th>
+                    <th style="padding: 5px 15px; text-align: center;">Actual</th>
+                    <th style="padding: 5px 15px; text-align: center;">Diff</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for macroarea, target in target_macroarea_distribution.items() %}
+                {% set actual = actual_macroarea_distribution.get(macroarea, 0) %}
+                {% set diff = (actual - target) if actual > target else (target - actual) %}
+                <tr style="background-color: {% if diff <= 1 %}#e3f2fd{% else %}#ffebee{% endif %};">
+                    <td style="padding: 5px 15px;">{{ macroarea }}</td>
+                    <td style="padding: 5px 15px; text-align: center;">{{ target }}</td>
+                    <td style="padding: 5px 15px; text-align: center;">{{ actual }}</td>
+                    <td style="padding: 5px 15px; text-align: center;">{{ diff }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </div>
 {% endif %}
 {% endif %}
-
-{% if feature_info %}
-<div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-    <h5 style="text-align: center;"><strong style="text-align: center">Filtered by features:</strong></h5>
-    <br>
-    <ul style="list-style: none; padding: 0; margin: 10px 0 0 0;">
-    {% for feature_code, info in feature_info.items() %}
-        <li style="margin: 5px 0;">
-            <strong>{{ info.name }}</strong> ({{ feature_code }}, {{ info.source }}): 
-            <em>{{ info.value_names|join(', ') }}</em>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
-{% endif %}
-
 <!-- Карта с языками -->
 <div style="margin: 20px 0;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
         <h5 style="margin: 0;"><strong>Languages Map</strong></h5>
         <div>
             {% if all_feature_codes %}
-            <label for="mapFeatureSelect" style="margin-right: 10px;">Color by feature:</label>
+            <label for="mapFeatureSelect" style="margin-right: 10px; color: #0F3362; font-family: 'Charis SIL';">Color by feature:</label>
             <select id="mapFeatureSelect" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc;">
                 <option value="">None (by macroarea)</option>
                 {% for feature_code in all_feature_codes %}
@@ -98,7 +155,7 @@
         </div>
     </div>
     <div id="languageMap" style="height: 700px; width: 100%; border: 1px solid #ccc; border-radius: 5px;"></div>
-    <div id="mapLegend" style="margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;"></div>
+    <div id="mapLegend" style="margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; color: #0F3362; font-family: 'Charis SIL'"></div>
 </div>
 
 <div class="accordion" id="accordionPanelsStayOpenExample">
