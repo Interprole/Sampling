@@ -57,7 +57,7 @@
             <p><strong>Excluded Languages</strong>: {{ ', '.join(excludeLang) }} </p>
         {% endif %}
         {% if docLang %}
-            <p><strong>Included Descriptions's Languages</strong>: {{ ', '.join(docLang) }} </p>
+            <p><strong>Included Descriptions' Languages</strong>: {{ ', '.join(docLang) }} </p>
         {% endif %}
         <p><strong>Select Languages By</strong>:
         {% if ranking_key == 'random' %}
@@ -73,17 +73,19 @@
         {% endif %}
     </p>
     <p><strong>Preference for Descriptions</strong>:
-        {% if gramDictPref < 0 %}
-            Dictionaries
-        {% elif gramDictPref > 0 %}
-            Grammars
+        {% if gramDictPref == -2 %}
+            Dictionaries (-2)
+        {% elif gramDictPref == -1 %}
+            Dictionaries rather than grammars (-1)
+        {% elif gramDictPref == 1 %}
+            Grammars rather than dictionaries (1)
+        {% elif gramDictPref == 2 %}
+            Grammars (2)
         {% elif gramDictPref == 0 %}
-            None
+            Neutral (0)
         {% endif %}
     </p>
-    
 </div>
-
 
 {% if target_macroarea_distribution and actual_macroarea_distribution %}
 {% set has_mismatch = namespace(value=False) %}
@@ -216,14 +218,41 @@
                             </td>
                             <td>
                                 {% if lang.sources %}
-                                    <details style="width: 300px">
-                                        <summary>List of Descriptions</summary>
-                                            <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
-                                            {% for source in lang.sources %}
-                                                <li style="margin-bottom: 4px;">{{ source }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                    </details>
+                                        {% if has_doc_lang_filter %}
+                                        <details style="width: 300px">
+                                            <summary>List of Descriptions (in {{ ', '.join(docLang) }})</summary>
+                                                <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
+                                                {% for i in range(lang.sources | length) %}
+                                                    {% if lang.sources_languages[i].intersection(docLang) %}
+                                                        <li style="margin-bottom: 4px;">
+                                                            {{ lang.sources[i][0] }}
+                                                        </li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                        </details>
+                                        <details style="width: 300px">
+                                            <summary>List of Descriptions (in other languages)</summary>
+                                                <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
+                                                {% for source in lang.sources %}
+                                                    <li style="margin-bottom: 4px;">
+                                                        {{ source[0] }}
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                        </details>
+                                        {% else %}
+                                        <details style="width: 300px">
+                                            <summary>List of Descriptions</summary>
+                                                <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
+                                                {% for source in lang.sources %}
+                                                    <li style="margin-bottom: 4px;">
+                                                        {{ source[0] }}
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                        </details>
+                                        {% endif %}
                                 {% else %}
                                     <span style="color: #999;">-</span>
                                 {% endif %}
@@ -626,17 +655,45 @@ document.querySelector('.export-button').addEventListener('click', function() {
     csv += '\n';
     {% endfor %}
     {% endfor %}
-    
+
     // Создаем Blob и скачиваем
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', '{{ title }}_sample.csv');
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const csvBlob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const csvLink = document.createElement('a');
+    const csvUrl = URL.createObjectURL(csvBlob);
+    csvLink.setAttribute('href', csvUrl);
+    csvLink.setAttribute('download', '{{ title }}_sample.csv');
+    csvLink.style.visibility = 'hidden';
+    document.body.appendChild(csvLink);
+    csvLink.click();
+    document.body.removeChild(csvLink);
+
+    // Собираем мета-данные в json формат
+    const metadata = {
+        "Sampling algorithm": "{% if algorithm == 'genus-macroarea' %}The Genus-Macroarea sampling method{% elif algorithm == 'diversity-value' %}The Diversity Value sampling method{% elif algorithm == 'random' %}A Random Sample{% endif %}",
+        "Included Macroareas": "{% if macroareas %}{{ macroareas|join(', ') }}{% else %}Africa, Australia, Eurasia, North America, Papunesia, South America{% endif %}",
+        "Sample Size": {{ sampleSize }},
+        "Filtered by Features": [
+            {% for feature_code, info in feature_info.items() %}
+                "{{ info.name }} ({{ feature_code }}, {{ info.source }}): {{ info.value_names|join(', ') }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        "Included Languages": "{{ includeLang|join(', ') }}",
+        "Excluded Languages": "{{ excludeLang|join(', ') }}",
+        "Included Descriptions' Languages": "{{ docLang|join(', ') }}",
+        "Select Languages By": "{% if ranking_key == 'random' %}Random{% elif ranking_key == 'descriptive_ranking' %}Extensiveness of description (2 * pages + 0.5 * year){% elif ranking_key == 'source_count' %}Total number of Descriptions{% elif ranking_key == 'year_ranking' %}Descriptions' publication year{% elif ranking_key == 'pages_ranking' %}Descriptions' page count{% endif %}",
+        "Preference for Descriptions": "{% if gramDictPref == -2 %}Dictionaries (-2){% elif gramDictPref == -1 %}Dictionaries rather than grammars (-1){% elif gramDictPref == 1 %}Grammars rather than dictionaries (1){% elif gramDictPref == 2 %}Grammars (2){% else %}Neutral (0){% endif %}"
+    };
+
+    // Создаем Blob и скачиваем
+    const jsonBlob = new Blob([JSON.stringify(metadata, null, 4)], { type: 'application/json' });
+    const jsonLink = document.createElement('a');
+    const urlJson = URL.createObjectURL(jsonBlob);
+    jsonLink.setAttribute('href', urlJson);
+    jsonLink.setAttribute('download', '{{ title }}_metadata.json');
+    jsonLink.style.visibility = 'hidden';
+    document.body.appendChild(jsonLink);
+    jsonLink.click();
+    document.body.removeChild(jsonLink);
 });
 </script>
 {% endblock %}

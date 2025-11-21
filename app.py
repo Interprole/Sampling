@@ -180,6 +180,7 @@ def sample():
             
             # Формируем список источников с годом, страницами и языками документации
             source_list = []
+            sources_languages = []
             for s in sources:
                 source_str = s.title
                 details = []
@@ -203,7 +204,8 @@ def sample():
                 
                 if details:
                     source_str += f" ({', '.join(details)})"
-                source_list.append(source_str)
+                source_list.append((source_str, ))
+                sources_languages.append(set(doc_names))
             
             # Получаем языки документации для этого языка (из всех источников)
             doc_lang_codes = set()
@@ -229,6 +231,7 @@ def sample():
                 'longitude': lang.longitude,
                 'features': lang_features,
                 'sources': source_list,
+                'sources_languages': sources_languages,
                 'doc_languages': doc_lang_names
             })
 
@@ -424,14 +427,14 @@ def api_sources():
 
 
 def code_to_text(codes, mode):
-    languageNames = []
+    languageNames = set()
     for code in codes:
         if mode == "iso":
             language = global_session.query(Language).filter_by(iso=code).first()
         if mode == "glottocode":
             language = global_session.query(Language).filter_by(glottocode=code).first()
         if language:
-            languageNames.append(language.name)
+            languageNames.add(language.name)
     return languageNames
 
 
