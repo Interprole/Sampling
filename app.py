@@ -204,7 +204,7 @@ def sample():
                 
                 if details:
                     source_str += f" ({', '.join(details)})"
-                source_list.append((source_str, ))
+                source_list.append(source_str)
                 sources_languages.append(set(doc_names))
             
             # Получаем языки документации для этого языка (из всех источников)
@@ -234,6 +234,42 @@ def sample():
                 'sources_languages': sources_languages,
                 'doc_languages': doc_lang_names
             })
+        
+        meta_data_json = {
+            "Title": title,
+            "Sampling algorithm": "The Genus-Macroarea sampling method" if algorithm == "genus-macroarea" else ("The Diversity Value sampling method" if algorithm == "diversity-value" else "A Random Sample"),
+            "Included Macroareas": ', '.join(macroareas) if macroareas else "Africa, Australia, Eurasia, North America, Papunesia, South America",
+            "Sample Size": str(size),
+            "Filtered by Features": '; '.join([f"{info["name"]} ({feature_code}, {info["source"]}): {', '.join(info["value_names"])}" for feature_code, info in feature_info.items()]),
+            "Included Languages": ', '.join(code_to_text(includeLang, "iso")),
+            "Excluded Languages": ', '.join(code_to_text(excludeLang, "iso")),
+            "Included Descriptions' Languages": ', '.join(code_to_text(docLang, "iso")),
+            "Select Languages By": "Random" if ranking_key == 'random' else ("Extensiveness of description (2 * pages + 0.5 * year)" if ranking_key == 'descriptive_ranking' else ("Total number of Descriptions" if ranking_key == 'source_count' else ("Descriptions' publication year" if ranking_key == 'year_ranking' else "Descriptions' page count"))),
+            "Preference for Descriptions": "Dictionaries (-2)" if gramDictPref == -2 else ("Dictionaries rather than grammars (-1)" if gramDictPref == -1 else ("Neutral (0)" if gramDictPref == 0 else "Grammars rather than dictionaries (1)" if gramDictPref == 1 else "Grammars (2)"))
+        }
+
+        sample_data_json = []
+        for macroarea, languages in languages_by_macroarea.items():
+            for language in languages:
+                line = {
+                    "Language": language["name"],
+                    "Glottocode": language.get("glottocode", "-"),
+                    "ISO": language.get("iso", "-"),
+                    "Genus": language.get("genus", "-"),
+                    "Macroarea": macroarea,
+                    "Latitude": language.get("latitude", "-"),
+                    "Longitude": language.get("longitude", "-"),
+                    "Sources": "; ".join(language.get("sources", [])[:25])
+                }
+
+                if bool(docLang):
+                    line["Documentation Languages"] = "; ".join(language.get("doc_languages", [])[:50])
+                
+                for feature_code in all_feature_codes:
+                    feature_name = language.get("features", {}).get(feature_code, {}).get("value_name", "")
+                    line[feature_code] = feature_name
+                
+                sample_data_json.append(line)
 
         return render_template(
             "sample.html",
@@ -253,7 +289,9 @@ def sample():
             all_feature_codes=all_feature_codes,
             has_doc_lang_filter=bool(docLang),
             target_macroarea_distribution=result.target_macroarea_distribution,
-            actual_macroarea_distribution=result.actual_macroarea_distribution
+            actual_macroarea_distribution=result.actual_macroarea_distribution,
+            meta_data_json=meta_data_json,
+            sample_data_json=sample_data_json
         )
 
 

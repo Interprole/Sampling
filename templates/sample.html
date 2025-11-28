@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% block title %} {{ title }} {% endblock %}
 {% block content %}
+<script>
+    window.SAMPLE_DATA = {{ sample_data_json | safe }};
+    window.META_DATA = {{ meta_data_json | safe }};
+</script>
+
 <div class="sample-buttons-container">
     <button class="collapse-button">
     Collapse all
     </button>
-    <button class="export-button">
-    Export as
+    <button class="export-button-csv">
+    Export sample as <code>.csv</code> & <br>metadata as <code>.json</code>
     </button>
+    <button class="export-button-xlsx">
+        Export sample & metadata<br>as <code>.xlsx</code>
+        </button>
     <button class="newsample-button" onclick="window.location.href='/'">
     Make a new sample!
     </button>
@@ -65,9 +73,9 @@
         {% elif ranking_key == 'descriptive_ranking' %}
             Extensiveness of description (<span>2 &middot;&nbsp;pages + 0.5 &middot;&nbsp;year</span>)
         {% elif ranking_key == 'source_count' %}
-            "Total number of Descriptions"
+            Total number of Descriptions
         {% elif ranking_key == 'year_ranking' %}
-            "Descriptions' publication year
+            Descriptions' publication year
         {% elif ranking_key == 'pages_ranking' %}
             Descriptions' page count
         {% endif %}
@@ -580,6 +588,106 @@ function exportMapAsPNG() {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
+    // Функция для сворачивания/разворачивания всех аккордеонов
+    document.querySelector('.collapse-button').addEventListener('click', function() {
+        const allCollapses = document.querySelectorAll('.accordion-collapse');
+        const allButtons = document.querySelectorAll('.accordion-button');
+        
+        // Проверяем состояние первого элемента
+        const firstCollapse = allCollapses[0];
+        const isShown = firstCollapse.classList.contains('show');
+        
+        allCollapses.forEach(collapse => {
+            if (isShown) {
+                collapse.classList.remove('show');
+            } else {
+                collapse.classList.add('show');
+            }
+        });
+        
+        allButtons.forEach(button => {
+            if (isShown) {
+                button.classList.add('collapsed');
+                button.setAttribute('aria-expanded', 'false');
+            } else {
+                button.classList.remove('collapsed');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Меняем текст кнопки
+        this.textContent = isShown ? 'Expand all' : 'Collapse all';
+    });
+
+    // Функция для экспорта сэмпла в формате .csv и метаданных в формате .json
+    document.querySelector('.export-button-csv').addEventListener('click', function() {
+        // Забираем данные о сэмпле из json
+        const sampleData = window.SAMPLE_DATA;
+        const headers = Object.keys(sampleData[0]);
+
+        let csvRows = [];
+        csvRows.push(headers.join(","));
+
+        for (const row of sampleData) {
+            const values = headers.map(h => {
+                let v = row[h];
+                v = String(v).replace(/"/g, '""');
+                return `"${v}"`;
+            });
+            csvRows.push(values.join(","));
+        }
+
+        const csvContent = csvRows.join("\n");
+        const csvBlob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const csvLink = document.createElement('a');
+        csvLink.href = URL.createObjectURL(csvBlob);
+        csvLink.download = '{{ title }}_sample.csv';
+        csvLink.click();
+
+        // Забираем метаданные о сэмпле из json
+        const metaData = window.META_DATA;
+        const jsonBlob = new Blob([JSON.stringify(metaData, null, 4)], {type: 'application/json' });
+        const jsonLink = document.createElement('a');
+        jsonLink.href = URL.createObjectURL(jsonBlob);
+        jsonLink.download = '{{ title }}_metadata.json';
+        jsonLink.click();
+    });
+
+    // Функция для экспорта сэмпла в формате .xlsx
+    document.querySelector('.export-button-xlsx').addEventListener('click', function() {
+        // Забираем данные о сэмпле из json
+        const metaData = window.META_DATA;
+        const sampleData = window.SAMPLE_DATA;
+
+        // Создаем файл
+        const book = XLSX.utils.book_new();
+
+        // Лист с метаданными
+        const meta_data_by_rows = Object.entries(metaData).map(([key, value]) => ({
+            Parameter: key,
+            Value: value
+        }));
+        const metaSheet = XLSX.utils.json_to_sheet(meta_data_by_rows, {
+            header: ["Parameter", "Value"]
+        });
+        XLSX.utils.book_append_sheet(book, metaSheet, "Metadata");
+
+        // Лист с сэмплом
+        const headers = Object.keys(sampleData[0]);
+        const sampleSheet = XLSX.utils.json_to_sheet(sampleData, {
+            header: headers
+        });
+        XLSX.utils.book_append_sheet(book, sampleSheet, "Sample");
+
+        const excelFile = XLSX.write(book, { bookType: 'xlsx', type: 'array' });
+        const excelBlob = new Blob([excelFile], { type: 'application/octet-stream' });
+        const excelLink = document.createElement('a');
+        excelLink.href = URL.createObjectURL(excelBlob);
+        excelLink.download = '{{ title }}_sample.xlsx';
+        excelLink.click();
+    });
+
+    // Карта
     initMap();
     
     // Обработчик выбора признака
@@ -592,108 +700,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Обработчик экспорта
     document.getElementById('exportMapBtn').addEventListener('click', exportMapAsPNG);
-});
-
-// Функция для сворачивания/разворачивания всех аккордеонов
-document.querySelector('.collapse-button').addEventListener('click', function() {
-    const allCollapses = document.querySelectorAll('.accordion-collapse');
-    const allButtons = document.querySelectorAll('.accordion-button');
-    
-    // Проверяем состояние первого элемента
-    const firstCollapse = allCollapses[0];
-    const isShown = firstCollapse.classList.contains('show');
-    
-    allCollapses.forEach(collapse => {
-        if (isShown) {
-            collapse.classList.remove('show');
-        } else {
-            collapse.classList.add('show');
-        }
-    });
-    
-    allButtons.forEach(button => {
-        if (isShown) {
-            button.classList.add('collapsed');
-            button.setAttribute('aria-expanded', 'false');
-        } else {
-            button.classList.remove('collapsed');
-            button.setAttribute('aria-expanded', 'true');
-        }
-    });
-    
-    // Меняем текст кнопки
-    this.textContent = isShown ? 'Expand all' : 'Collapse all';
-});
-
-// Функция экспорта (заглушка)
-document.querySelector('.export-button').addEventListener('click', function() {
-    // Собираем данные в CSV формат
-    let csv = 'Language,Glottocode,ISO,Genus,Macroarea,Latitude,Longitude,Sources{% if has_doc_lang_filter %},Documentation Languages{% endif %}';
-    
-    {% if all_feature_codes %}
-    {% for feature_code in all_feature_codes %}
-    csv += ',{{ feature_info[feature_code].name }} ({{ feature_code }})';
-    {% endfor %}
-    {% endif %}
-    
-    csv += '\n';
-    
-    {% for macroarea, languages in languages_by_macroarea.items() %}
-    {% for lang in languages %}
-    csv += '"{{ lang.name }}","{{ lang.glottocode }}","{{ lang.iso if lang.iso else '' }}","{{ lang.genus }}","{{ macroarea }}","{{ lang.latitude if lang.latitude else '' }}","{{ lang.longitude if lang.longitude else '' }}","{{ lang.sources|join('; ') if lang.sources else '' }}"{% if has_doc_lang_filter %},"{{ lang.doc_languages|join('; ') if lang.doc_languages else '' }}"{% endif %}';
-    
-    {% if all_feature_codes %}
-    {% for feature_code in all_feature_codes %}
-    {% if feature_code in lang.features %}
-    csv += ',"{{ lang.features[feature_code].value_name }}"';
-    {% else %}
-    csv += ',""';
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    
-    csv += '\n';
-    {% endfor %}
-    {% endfor %}
-
-    // Создаем Blob и скачиваем
-    const csvBlob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const csvLink = document.createElement('a');
-    const csvUrl = URL.createObjectURL(csvBlob);
-    csvLink.setAttribute('href', csvUrl);
-    csvLink.setAttribute('download', '{{ title }}_sample.csv');
-    csvLink.style.visibility = 'hidden';
-    document.body.appendChild(csvLink);
-    csvLink.click();
-    document.body.removeChild(csvLink);
-
-    // Собираем мета-данные в json формат
-    const metadata = {
-        "Sampling algorithm": "{% if algorithm == 'genus-macroarea' %}The Genus-Macroarea sampling method{% elif algorithm == 'diversity-value' %}The Diversity Value sampling method{% elif algorithm == 'random' %}A Random Sample{% endif %}",
-        "Included Macroareas": "{% if macroareas %}{{ macroareas|join(', ') }}{% else %}Africa, Australia, Eurasia, North America, Papunesia, South America{% endif %}",
-        "Sample Size": {{ sampleSize }},
-        "Filtered by Features": [
-            {% for feature_code, info in feature_info.items() %}
-                "{{ info.name }} ({{ feature_code }}, {{ info.source }}): {{ info.value_names|join(', ') }}"{% if not loop.last %},{% endif %}
-            {% endfor %}
-        ],
-        "Included Languages": "{{ includeLang|join(', ') }}",
-        "Excluded Languages": "{{ excludeLang|join(', ') }}",
-        "Included Descriptions' Languages": "{{ docLang|join(', ') }}",
-        "Select Languages By": "{% if ranking_key == 'random' %}Random{% elif ranking_key == 'descriptive_ranking' %}Extensiveness of description (2 * pages + 0.5 * year){% elif ranking_key == 'source_count' %}Total number of Descriptions{% elif ranking_key == 'year_ranking' %}Descriptions' publication year{% elif ranking_key == 'pages_ranking' %}Descriptions' page count{% endif %}",
-        "Preference for Descriptions": "{% if gramDictPref == -2 %}Dictionaries (-2){% elif gramDictPref == -1 %}Dictionaries rather than grammars (-1){% elif gramDictPref == 1 %}Grammars rather than dictionaries (1){% elif gramDictPref == 2 %}Grammars (2){% else %}Neutral (0){% endif %}"
-    };
-
-    // Создаем Blob и скачиваем
-    const jsonBlob = new Blob([JSON.stringify(metadata, null, 4)], { type: 'application/json' });
-    const jsonLink = document.createElement('a');
-    const urlJson = URL.createObjectURL(jsonBlob);
-    jsonLink.setAttribute('href', urlJson);
-    jsonLink.setAttribute('download', '{{ title }}_metadata.json');
-    jsonLink.style.visibility = 'hidden';
-    document.body.appendChild(jsonLink);
-    jsonLink.click();
-    document.body.removeChild(jsonLink);
 });
 </script>
 {% endblock %}

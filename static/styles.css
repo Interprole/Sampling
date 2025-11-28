@@ -30,7 +30,8 @@ td,
 .text-form,
 .submit-button,
 .collapse-button,
-.export-button,
+.export-button-csv,
+.export-button-xlsx,
 .newsample-button,
 .select2-results__option--load-fail,
 .select2-search__field,
@@ -59,7 +60,8 @@ h5 {
 
 .submit-button,
 .collapse-button,
-.export-button,
+.export-button-csv,
+.export-button-xlsx,
 .newsample-button {
 	font-size: 24px !important;
 	text-align: center;
@@ -195,14 +197,16 @@ select,
 }
 
 .collapse-button,
-.export-button,
+.export-button-csv,
+.export-button-xlsx,
 .newsample-button {
     background-color: #A4CA9D;
     color: white;
 }
 
 .collapse-button:hover,
-.export-button:hover,
+.export-button-csv:hover,
+.export-button-xlsx:hover,
 .newsample-button:hover {
     background-color: #8aab84;
 }
