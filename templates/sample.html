@@ -233,7 +233,7 @@
                                                 {% for i in range(lang.sources | length) %}
                                                     {% if lang.sources_languages[i].intersection(docLang) %}
                                                         <li style="margin-bottom: 4px;">
-                                                            {{ lang.sources[i][0] }}
+                                                            {{ lang.sources[i] }}
                                                         </li>
                                                     {% endif %}
                                                     {% endfor %}
@@ -244,7 +244,7 @@
                                                 <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
                                                 {% for source in lang.sources %}
                                                     <li style="margin-bottom: 4px;">
-                                                        {{ source[0] }}
+                                                        {{ source }}
                                                     </li>
                                                     {% endfor %}
                                                 </ul>
@@ -255,7 +255,7 @@
                                                 <ul style="margin: 0; padding-left: 20px; list-style-type: disc; width: 300px;">
                                                 {% for source in lang.sources %}
                                                     <li style="margin-bottom: 4px;">
-                                                        {{ source[0] }}
+                                                        {{ source }}
                                                     </li>
                                                     {% endfor %}
                                                 </ul>
