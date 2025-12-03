@@ -46,6 +46,8 @@ def sample():
         algorithm = request.form.get('sampling-algorithm', 'genus-macroarea')
         size = int(request.form.get('sample-size', 50))
         gramDictPref = int(request.form.get('grammarDictionaryPreference', 0))
+        is_Spoken = request.form.get('isSpoken') is not None
+        is_Sign = request.form.get('isSign') is not None
         
         # Списковые параметры
         macroareas = request.form.getlist('macroareas[]')
@@ -282,7 +284,7 @@ def sample():
             excludeLang=code_to_text(excludeLang, "iso"),
             ranking_key=ranking_key,
             gramDictPref=gramDictPref,
-            languages_by_macroarea=languages_by_macroarea,
+            languages_by_macroarea=sorted(languages_by_macroarea.items()),
             total_languages=len(result.languages),
             total_genera=len(result.included_genera),
             feature_info=feature_info,

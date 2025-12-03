@@ -83,6 +83,12 @@ h3 {
 	align-items: center;
 }
 
+.checkbox-group {
+	display: grid;
+	grid-template-columns: auto 55%;
+	align-items: center;
+}
+
 .form-container {
 	display: grid;
 	grid-template-columns: 45% 45%;

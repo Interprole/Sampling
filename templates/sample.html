@@ -169,7 +169,7 @@
 </div>
 
 <div class="accordion" id="accordionPanelsStayOpenExample">
-    {% for macroarea, languages in languages_by_macroarea.items() %}
+    {% for macroarea, languages in languages_by_macroarea %}
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button {% if loop.index0 != 0 %}collapsed{% endif %}" 
@@ -300,7 +300,7 @@
 <script>
 // Данные языков для карты
 const languagesData = [
-    {% for macroarea, languages in languages_by_macroarea.items() %}
+    {% for macroarea, languages in languages_by_macroarea %}
     {% for lang in languages %}
     {
         name: "{{ lang.name }}",
