@@ -1,9 +1,45 @@
 import random
+import time
 from typing import List, Dict, Callable, Optional, Set
 from models import Language, Genus, Macroarea, Feature, FeatureValue, LanguageFeature, Group
 from database import get_genera, global_session, calculate_macroarea_distribution, get_macroarea_by_genus
 from collections import Counter
 from sqlalchemy.orm import joinedload
+
+# Глобальные кэши на уровне модуля (загружаются один раз)
+_GLOBAL_GENUS_LIST = None  # Список родов с языками
+_GLOBAL_RANKING_CACHE = None  # Кэш ранжирования языков
+_GLOBAL_DOC_LANGUAGES_CACHE = None  # Кэш языков документации
+_GLOBAL_GENUS_SCORE_CACHE = None  # Кэш оценок родов {(genus_id, ranking_method, preference): score}
+
+
+def preload_caches():
+    """
+    Предзагрузка всех глобальных кэшей при старте приложения.
+    Это ускоряет первый запрос к API.
+    """
+    global _GLOBAL_GENUS_LIST, _GLOBAL_RANKING_CACHE, _GLOBAL_GENUS_SCORE_CACHE
+    
+    # 1. Загружаем список родов с языками
+    if _GLOBAL_GENUS_LIST is None:
+        _GLOBAL_GENUS_LIST = global_session.query(Genus).options(
+            joinedload(Genus.languages).joinedload(Group.macroarea)
+        ).all()
+    
+    # 2. Загружаем кэш ранжирования языков
+    if _GLOBAL_RANKING_CACHE is None:
+        from models import LanguageRankingCache
+        cache_entries = global_session.query(LanguageRankingCache).all()
+        _GLOBAL_RANKING_CACHE = {entry.language_glottocode: entry for entry in cache_entries}
+    
+    # 3. Загружаем кэш оценок родов
+    if _GLOBAL_GENUS_SCORE_CACHE is None:
+        from models import GenusScoreCache
+        genus_cache_entries = global_session.query(GenusScoreCache).all()
+        _GLOBAL_GENUS_SCORE_CACHE = {}
+        for entry in genus_cache_entries:
+            key = (entry.genus_id, entry.ranking_method, entry.preference)
+            _GLOBAL_GENUS_SCORE_CACHE[key] = entry.score
 
 class SamplingResult:
     """
@@ -123,10 +159,14 @@ class GenusSample(Sample):
             +2.0 = сильное предпочтение грамматик
         """
         if genus_list is None:
-            # Предзагружаем языки для каждого рода (избегаем N+1 запросов)
-            self.genus_list = global_session.query(Genus).options(
-                joinedload(Genus.languages)
-            ).all()
+            # Используем глобальный кэш родов
+            global _GLOBAL_GENUS_LIST
+            if _GLOBAL_GENUS_LIST is None:
+                from models import Group, Macroarea
+                _GLOBAL_GENUS_LIST = global_session.query(Genus).options(
+                    joinedload(Genus.languages).joinedload(Group.macroarea)
+                ).all()
+            self.genus_list = _GLOBAL_GENUS_LIST
         else:
             self.genus_list = genus_list
         
@@ -141,7 +181,7 @@ class GenusSample(Sample):
         
         # Кэш для ранжирования - загружаем из базы данных
         self._ranking_cache = None
-        self._type_modifier_cache = None
+        self._genus_score_cache = None  # Кэш оценок родов
         if self.ranking_key and self.ranking_key != 'random':
             self._load_cache_from_db()
         
@@ -159,16 +199,21 @@ class GenusSample(Sample):
 
     def _load_cache_from_db(self):
         """
-        Загружает кэш ранжирования из таблицы language_ranking_cache.
+        Загружает кэш ранжирования из таблицы language_ranking_cache и genus_score_cache.
         Использует готовые закэшированные значения для комбинации 
         (ranking_method, grammar_dict_preference).
+        Использует глобальный кэш для LanguageRankingCache.
         """
-        from models import LanguageRankingCache
+        from models import LanguageRankingCache, GenusScoreCache
+        global _GLOBAL_RANKING_CACHE
         
         self._ranking_cache = {}
+        self._genus_score_cache = {}
         
-        # Загружаем все записи кэша одним запросом
-        cache_entries = global_session.query(LanguageRankingCache).all()
+        # Загружаем глобальный кэш языков один раз
+        if _GLOBAL_RANKING_CACHE is None:
+            cache_entries = global_session.query(LanguageRankingCache).all()
+            _GLOBAL_RANKING_CACHE = {entry.language_glottocode: entry for entry in cache_entries}
         
         # Определяем суффикс для колонки на основе preference
         # preference: -2 → m2, -1 → m1, 0 → 0, +1 → p1, +2 → p2
@@ -193,10 +238,27 @@ class GenusSample(Sample):
         # Название поля: {prefix}_pref_{suffix}
         field_name = f"{field_prefix}_pref_{pref_suffix}"
         
-        # Заполняем кэш готовыми значениями
-        for entry in cache_entries:
+        # Заполняем кэш готовыми значениями из глобального кэша
+        for glottocode, entry in _GLOBAL_RANKING_CACHE.items():
             score = getattr(entry, field_name, 0.0)
-            self._ranking_cache[entry.language_glottocode] = score
+            self._ranking_cache[glottocode] = score
+        
+        # Загружаем кэш оценок родов из глобального кэша
+        global _GLOBAL_GENUS_SCORE_CACHE
+        if _GLOBAL_GENUS_SCORE_CACHE is None:
+            # Загружаем ВСЕ записи одним запросом
+            genus_cache_entries = global_session.query(GenusScoreCache).all()
+            _GLOBAL_GENUS_SCORE_CACHE = {}
+            for entry in genus_cache_entries:
+                key = (entry.genus_id, entry.ranking_method, entry.preference)
+                _GLOBAL_GENUS_SCORE_CACHE[key] = entry.score
+        
+        # Заполняем локальный кэш из глобального
+        preference_int = int(self.grammar_dict_preference)
+        ranking_method = self.ranking_key or 'random'
+        for (genus_id, method, pref), score in _GLOBAL_GENUS_SCORE_CACHE.items():
+            if method == ranking_method and pref == preference_int:
+                self._genus_score_cache[genus_id] = score
 
     def _load_feature_cache(self):
         """
@@ -558,6 +620,7 @@ class GenusSample(Sample):
         """
         Вычисляет оценку рода для ранжирования на основе выбранного критерия.
         Оценка рода = максимальная оценка среди всех его языков, прошедших фильтры.
+        Использует кэш из БД для ускорения.
         
         Parameters
         ----------
@@ -572,14 +635,76 @@ class GenusSample(Sample):
         if not self.ranking_key or not genus.languages:
             return 0
         
-        # Применяем фильтры к языкам рода
+        # Проверяем кэш оценок родов (загружен из БД)
+        if self._genus_score_cache is None:
+            self._genus_score_cache = {}
+        
+        if genus.id in self._genus_score_cache:
+            return self._genus_score_cache[genus.id]
+        
+        # Кэш не найден - вычисляем и сохраняем в БД
         available_languages = self.apply_all_filters(genus.languages)
         if not available_languages:
-            return 0
+            max_score = 0
+        else:
+            # Находим максимальную оценку среди языков рода
+            max_score = 0
+            if self._ranking_cache:
+                for lang in available_languages:
+                    score = self._ranking_cache.get(lang.glottocode, 0)
+                    if score > max_score:
+                        max_score = score
+            else:
+                max_score = max(self.get_language_rank_score(lang) for lang in available_languages)
         
-        # Находим максимальную оценку среди языков рода
-        max_score = max(self.get_language_rank_score(lang) for lang in available_languages)
+        # Сохраняем в in-memory кэш
+        self._genus_score_cache[genus.id] = max_score
+        
+        # Сохраняем в БД
+        self._save_genus_score_to_db(genus.id, max_score)
+        
         return max_score
+
+    def _save_genus_score_to_db(self, genus_id: int, score: float):
+        """
+        Сохраняет оценку рода в БД кэш.
+        """
+        import time
+        from models import GenusScoreCache
+        
+        try:
+            preference_int = int(self.grammar_dict_preference)
+            ranking_method = self.ranking_key or 'random'
+            
+            # Проверяем, есть ли уже запись
+            existing = global_session.query(GenusScoreCache).filter_by(
+                genus_id=genus_id,
+                ranking_method=ranking_method,
+                preference=preference_int
+            ).first()
+            
+            if existing:
+                existing.score = score
+                existing.last_updated = int(time.time())
+            else:
+                entry = GenusScoreCache(
+                    genus_id=genus_id,
+                    ranking_method=ranking_method,
+                    preference=preference_int,
+                    score=score,
+                    last_updated=int(time.time())
+                )
+                global_session.add(entry)
+            
+            global_session.commit()
+            
+            # Обновляем глобальный кэш
+            global _GLOBAL_GENUS_SCORE_CACHE
+            if _GLOBAL_GENUS_SCORE_CACHE is not None:
+                key = (genus_id, ranking_method, preference_int)
+                _GLOBAL_GENUS_SCORE_CACHE[key] = score
+        except Exception:
+            global_session.rollback()
 
     def select_best_genera(self, available_genera: List[Genus], count: int) -> List[Genus]:
         """
@@ -1009,17 +1134,18 @@ class GenusSample(Sample):
         remaining_size = max(0, sample_size - len(mandatory_languages))
 
         # Calculate the target number of genera for each macroarea based on proportions
+        # Используем полный sample_size для целевого распределения, чтобы сравнение с actual было корректным
         target_distribution = {
-            macroarea: round(remaining_size * (count / total_genera))
+            macroarea: round(sample_size * (count / total_genera))
             for macroarea, count in macroarea_distribution.items()
         }
         
-        # Корректируем распределение, чтобы сумма была точно equal remaining_size
+        # Корректируем распределение, чтобы сумма была точно equal sample_size
         current_total = sum(target_distribution.values())
-        if current_total != remaining_size and target_distribution:
+        if current_total != sample_size and target_distribution:
             # Находим макроареал с наибольшим количеством родов для корректировки
             largest_macroarea = max(macroarea_distribution.keys(), key=lambda m: macroarea_distribution[m])
-            target_distribution[largest_macroarea] += (remaining_size - current_total)
+            target_distribution[largest_macroarea] += (sample_size - current_total)
 
         macroarea_genera = {area: [] for area in macroarea_distribution.keys()}
         for genus in shuffled_genus_list:
@@ -1050,9 +1176,11 @@ class GenusSample(Sample):
                 for genus in selected_genera:
                     if genus.languages:
                         available_languages = self.apply_all_filters(genus.languages)
+                        # Фильтруем языки по текущему макроареалу
                         available_languages = [
                             lang for lang in available_languages 
                             if lang.glottocode not in mandatory_glottocodes
+                            and lang.macroarea and lang.macroarea.name == macroarea
                         ]
                         
                         if available_languages:
@@ -1108,6 +1236,35 @@ class GenusSample(Sample):
                 break
             
             iteration += 1
+        
+        # Дополнительный проход: если родов меньше чем sample_size, добираем из уже использованных родов
+        selected_glottocodes = {lang.glottocode for lang in selected_languages}
+        shortage = sample_size - len(selected_languages)
+        
+        if shortage > 0:
+            # Собираем все доступные языки из всех родов (включая уже использованные)
+            all_available_languages = []
+            for genus in self.genus_list:
+                if genus.languages:
+                    available = self.apply_all_filters(genus.languages)
+                    for lang in available:
+                        if lang.glottocode not in selected_glottocodes and lang.glottocode not in mandatory_glottocodes:
+                            all_available_languages.append(lang)
+            
+            # Сортируем по рангу и добираем
+            if all_available_languages and self.ranking_key:
+                scored = [(lang, self.get_language_rank_score(lang)) for lang in all_available_languages]
+                scored.sort(key=lambda x: x[1], reverse=True)
+                additional = [lang for lang, score in scored[:shortage]]
+            elif all_available_languages:
+                additional = random.sample(all_available_languages, min(shortage, len(all_available_languages)))
+            else:
+                additional = []
+            
+            for lang in additional:
+                selected_languages.append(lang)
+                if lang.genus and lang.genus not in included_genera:
+                    included_genera.append(lang.genus)
         
         # Подсчитываем фактическое распределение по макроареалам
         # Каждый язык считается по своему собственному макроареалу

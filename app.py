@@ -2,11 +2,14 @@ from flask import Flask, redirect, url_for, jsonify
 from flask import render_template
 from flask import request
 from sqlalchemy import or_
-from make_sample import GenusSample
+from make_sample import GenusSample, preload_caches
 from database import get_all_features, get_feature_values, get_all_document_language_codes, global_session
 from models import Language
 
 app = Flask(__name__)
+
+# Предзагрузка кэшей при старте приложения
+preload_caches()
 
 def iso_to_glottocode(iso_codes):
     """
@@ -90,8 +93,36 @@ def sample():
         if rank and len(rank) > 0:
             ranking_key = rank[0]  # Берем первое значение из списка
         
+        # Фильтрация по модальности языков (spoken/sign)
+        # Sign Languages имеют genus_id = 410
+        SIGN_LANGUAGE_GENUS_ID = 410
+        
+        # Получаем список родов для фильтрации
+        from models import Genus, Group
+        from sqlalchemy.orm import joinedload
+        filtered_genus_list = None
+        
+        if is_Spoken and is_Sign:
+            # Оба включены - используем все роды
+            filtered_genus_list = None
+        elif is_Spoken and not is_Sign:
+            # Только spoken - исключаем sign languages
+            all_genera = global_session.query(Genus).options(
+                joinedload(Genus.languages).joinedload(Group.macroarea)
+            ).all()
+            filtered_genus_list = [g for g in all_genera if g.id != SIGN_LANGUAGE_GENUS_ID]
+        elif is_Sign and not is_Spoken:
+            # Только sign - только sign languages
+            filtered_genus_list = global_session.query(Genus).options(
+                joinedload(Genus.languages).joinedload(Group.macroarea)
+            ).filter_by(id=SIGN_LANGUAGE_GENUS_ID).all()
+        else:
+            # Ничего не выбрано - используем все роды
+            filtered_genus_list = None
+        
         # Создаем sampler с фильтрами
         sampler = GenusSample(
+            genus_list=filtered_genus_list,
             macroareas=macroareas if macroareas else None,
             include_languages=includeLang_glottocodes if includeLang_glottocodes else None,
             exclude_languages=excludeLang_glottocodes if excludeLang_glottocodes else None,
@@ -229,6 +260,7 @@ def sample():
                 'glottocode': lang.glottocode,
                 'iso': lang.iso,
                 'genus': lang.genus.name if lang.genus else 'Unknown',
+                'family': lang.family if lang.family else 'Unknown',
                 'latitude': lang.latitude,
                 'longitude': lang.longitude,
                 'features': lang_features,
@@ -258,6 +290,7 @@ def sample():
                     "Glottocode": language.get("glottocode", "-"),
                     "ISO": language.get("iso", "-"),
                     "Genus": language.get("genus", "-"),
+                    "Family": language.get("family", "-"),
                     "Macroarea": macroarea,
                     "Latitude": language.get("latitude", "-"),
                     "Longitude": language.get("longitude", "-"),

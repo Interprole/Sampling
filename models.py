@@ -69,6 +69,7 @@ class Group(Base):
     longitude = Column(String)
     macroarea_id = Column(Integer, ForeignKey('macroareas.id'))
     macroarea = relationship("Macroarea", back_populates="languages")
+    family = Column(String)  # Family name from Glottolog (e.g., "Afro-Asiatic [afro1255]")
     
     closest_supergroup = Column(String, ForeignKey('groups.glottocode'))
     subgroups = relationship("Group", remote_side=[glottocode], backref="supergroup")
@@ -292,6 +293,82 @@ class LanguageDocLanguagesCache(Base):
     
     # Relationships
     language = relationship("Group", foreign_keys=[language_glottocode])
+
+
+class GenusMacroareaCache(Base):
+    """
+    A class used to cache macroareas for each genus.
+    Speeds up macroarea distribution calculations.
+    
+    Attributes
+    ----------
+    genus_id : int
+        Foreign key to Genus
+    macroareas : str
+        Comma-separated list of macroarea names for this genus
+        Example: 'Africa,Eurasia'
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'genus_macroarea_cache'
+    
+    genus_id = Column(Integer, ForeignKey('genera.id'), primary_key=True)
+    macroareas = Column(String, default='')  # Comma-separated names
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+    
+    # Relationships
+    genus = relationship("Genus", foreign_keys=[genus_id])
+
+
+class MacroareaDistributionCache(Base):
+    """
+    A class used to cache the global macroarea distribution.
+    Stores the count of genera per macroarea.
+    
+    Attributes
+    ----------
+    macroarea_name : str
+        Name of the macroarea
+    genus_count : int
+        Number of genera in this macroarea
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'macroarea_distribution_cache'
+    
+    macroarea_name = Column(String, primary_key=True)
+    genus_count = Column(Integer, default=0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+
+
+class GenusScoreCache(Base):
+    """
+    A class used to cache ranking scores for genera.
+    Stores pre-computed scores for all ranking method and preference combinations.
+    
+    Attributes
+    ----------
+    genus_id : int
+        Foreign key to Genus
+    ranking_method : str
+        The ranking method (descriptive_ranking, source_count, year_ranking, pages_ranking)
+    preference : int
+        Grammar/dictionary preference (-2, -1, 0, 1, 2)
+    score : float
+        The computed score for this genus
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'genus_score_cache'
+    
+    genus_id = Column(Integer, ForeignKey('genera.id'), primary_key=True)
+    ranking_method = Column(String, primary_key=True)
+    preference = Column(Integer, primary_key=True)
+    score = Column(Float, default=0.0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+    
+    # Relationships
+    genus = relationship("Genus", foreign_keys=[genus_id])
 
 
 def create_tables(engine):

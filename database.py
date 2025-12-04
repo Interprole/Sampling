@@ -1,7 +1,8 @@
 from models import Genus, Feature, FeatureValue, LanguageFeature, create_tables
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, joinedload
 from collections import Counter
+import time
 
 # Подключение к SQLite базе данных
 engine = create_engine('sqlite:///sql.db')
@@ -12,6 +13,101 @@ create_tables(engine)
 
 # Глобальная сессия
 global_session = Session()
+
+# In-memory кэш (загружается из БД при первом обращении)
+_macroarea_distribution_cache = None
+_genus_macroareas_cache = None  # None означает, что кэш не загружен
+
+def _load_macroarea_caches_from_db():
+    """
+    Загружает кэши макроареалов из базы данных.
+    Если кэш в БД пуст, пересчитывает и сохраняет.
+    """
+    global _macroarea_distribution_cache, _genus_macroareas_cache
+    
+    from models import GenusMacroareaCache, MacroareaDistributionCache
+    
+    try:
+        # Загружаем кэш распределения макроареалов
+        dist_entries = global_session.query(MacroareaDistributionCache).all()
+        if dist_entries:
+            _macroarea_distribution_cache = {e.macroarea_name: e.genus_count for e in dist_entries}
+        
+        # Загружаем кэш макроареалов по родам
+        genus_entries = global_session.query(GenusMacroareaCache).all()
+        if genus_entries:
+            _genus_macroareas_cache = {}
+            for e in genus_entries:
+                if e.macroareas:
+                    _genus_macroareas_cache[e.genus_id] = e.macroareas.split(',')
+                else:
+                    _genus_macroareas_cache[e.genus_id] = []
+        
+        # Если кэши загружены, выходим
+        if _macroarea_distribution_cache and _genus_macroareas_cache:
+            return
+    except Exception:
+        pass
+    
+    # Кэш пуст или не существует - пересчитываем
+    _rebuild_macroarea_caches()
+
+def _rebuild_macroarea_caches():
+    """
+    Пересчитывает и сохраняет кэши макроареалов в БД.
+    """
+    global _macroarea_distribution_cache, _genus_macroareas_cache
+    
+    from models import GenusMacroareaCache, MacroareaDistributionCache, Group, Macroarea
+    
+    _genus_macroareas_cache = {}
+    macroarea_counts = Counter()
+    
+    # Загружаем все роды с языками и макроареалами
+    genera = global_session.query(Genus).options(
+        joinedload(Genus.languages).joinedload(Group.macroarea)
+    ).all()
+    
+    current_time = int(time.time())
+    
+    # Вычисляем макроареалы для каждого рода
+    for genus in genera:
+        macroareas = list({lang.macroarea.name for lang in genus.languages if lang.macroarea})
+        _genus_macroareas_cache[genus.id] = macroareas
+        
+        for ma in macroareas:
+            macroarea_counts[ma] += 1
+    
+    _macroarea_distribution_cache = dict(macroarea_counts)
+    
+    # Сохраняем в БД
+    try:
+        # Очищаем старые записи
+        global_session.query(GenusMacroareaCache).delete()
+        global_session.query(MacroareaDistributionCache).delete()
+        
+        # Сохраняем кэш макроареалов по родам
+        for genus_id, macroareas in _genus_macroareas_cache.items():
+            entry = GenusMacroareaCache(
+                genus_id=genus_id,
+                macroareas=','.join(macroareas),
+                last_updated=current_time
+            )
+            global_session.add(entry)
+        
+        # Сохраняем кэш распределения
+        for ma_name, count in _macroarea_distribution_cache.items():
+            entry = MacroareaDistributionCache(
+                macroarea_name=ma_name,
+                genus_count=count,
+                last_updated=current_time
+            )
+            global_session.add(entry)
+        
+        global_session.commit()
+    except Exception as e:
+        global_session.rollback()
+        print(f"Warning: Failed to save macroarea cache to DB: {e}")
 
 def get_genera():
     """
@@ -24,40 +120,73 @@ def get_genera():
     """
     return global_session.query(Genus).all()
 
+def get_genera_with_languages():
+    """
+    Получает список всех родов с предзагруженными языками и макроареалами.
+    Это намного быстрее, чем делать lazy loading для каждого рода отдельно.
+    
+    Returns
+    -------
+    list
+        Список объектов Genus с загруженными языками.
+    """
+    from models import Group, Macroarea
+    return global_session.query(Genus).options(
+        joinedload(Genus.languages).joinedload(Group.macroarea)
+    ).all()
+
 def calculate_macroarea_distribution():
     """
     Calculates the distribution of genera across macroareas based on their associated languages.
+    Использует кэш из БД для ускорения.
 
     Returns
     -------
     dict
         A dictionary where keys are macroarea names and values are the counts of genera in each macroarea.
     """
-    macroarea_counts = Counter()
-    genera = get_genera()
-
-    for genus in genera:
-        macroareas = get_macroarea_by_genus(genus)
-        for macroarea in macroareas:
-            macroarea_counts[macroarea] += 1
-
-    return dict(macroarea_counts)
+    global _macroarea_distribution_cache
+    
+    if _macroarea_distribution_cache is None:
+        _load_macroarea_caches_from_db()
+    
+    return _macroarea_distribution_cache
 
 def get_macroarea_by_genus(genus: Genus):
     """
     Получает название макроареала для заданного рода (genus).
+    Использует кэш из БД для ускорения.
 
     Parameters
     ----------
-    genus : str
-        Название рода (genus).
+    genus : Genus
+        Объект рода.
 
     Returns
     -------
     list
         Список названий макроареалов, связанных с родом.
     """
-    return list({language.macroarea.name for language in genus.languages if language.macroarea})
+    global _genus_macroareas_cache
+    
+    if _genus_macroareas_cache is None:
+        _load_macroarea_caches_from_db()
+    
+    return _genus_macroareas_cache.get(genus.id, [])
+
+def clear_macroarea_cache():
+    """Очищает кэш макроареалов (в памяти и в БД)."""
+    global _macroarea_distribution_cache, _genus_macroareas_cache
+    _macroarea_distribution_cache = None
+    _genus_macroareas_cache = None
+    
+    from models import GenusMacroareaCache, MacroareaDistributionCache
+    try:
+        global_session.query(GenusMacroareaCache).delete()
+        global_session.query(MacroareaDistributionCache).delete()
+        global_session.commit()
+    except Exception:
+        global_session.rollback()
 
 
 def get_all_features(source=None):

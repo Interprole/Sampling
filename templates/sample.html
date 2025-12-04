@@ -192,6 +192,7 @@
                             <th scope="col">Glottocode</th>
                             <th scope="col">ISO</th>
                             <th scope="col">Genus</th>
+                            <th scope="col">Family</th>
                             <th scope="col">Coordinates</th>
                             <th scope="col">Sources</th>
                             {% if has_doc_lang_filter %}
@@ -217,6 +218,7 @@
                             <td><code>{{ lang.glottocode }}</code></td>
                             <td>{{ lang.iso if lang.iso else '-' }}</td>
                             <td>{{ lang.genus }}</td>
+                            <td>{{ lang.family if lang.family else '-' }}</td>
                             <td>
                                 {% if lang.latitude and lang.longitude %}
                                     {{ lang.latitude }}, {{ lang.longitude }}
