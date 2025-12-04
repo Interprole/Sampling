@@ -8,9 +8,8 @@ from sqlalchemy.orm import joinedload
 
 # Глобальные кэши на уровне модуля (загружаются один раз)
 _GLOBAL_GENUS_LIST = None  # Список родов с языками
-_GLOBAL_RANKING_CACHE = None  # Кэш ранжирования языков
-_GLOBAL_DOC_LANGUAGES_CACHE = None  # Кэш языков документации
-_GLOBAL_GENUS_SCORE_CACHE = None  # Кэш оценок родов {(genus_id, ranking_method, preference): score}
+_GLOBAL_RANKING_CACHE = None  # Кэш ранжирования языков (из LanguageRankingCache)
+_GLOBAL_GENUS_SCORE_CACHE = None  # Кэш оценок родов (из GenusScoreCache)
 
 
 def preload_caches():
