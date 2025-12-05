@@ -1,9 +1,3 @@
-async function getJsonData(url) {
-    const response = await fetch(url);
-    const javascriptObject = await response.json();
-    return javascriptObject.results;
-};
-
 // Filtering results from api-endpoint
 function processResultsWithChildren(data, params) {
     const searchTerm = (params.term || '').toLowerCase().trim();
@@ -127,6 +121,7 @@ $(document).ready(function() {
             cache: true
         }
     });
+
     $('.grambank-js').select2({
         width: '100%',
         theme: "classic",
@@ -143,6 +138,7 @@ $(document).ready(function() {
             processResults: processResultsWithChildren
         }
     });
+
     $('.wals-js').select2({
         width: '100%',
         theme: "classic",
@@ -157,6 +153,28 @@ $(document).ready(function() {
             url: '/api/features/wals',
             dataType: "json",
             processResults: processResultsWithChildren
+        }
+    });
+
+    // Include Description's types from API
+    $('.description-type-js').select2({
+        width: '100%',
+        theme: "classic",
+        closeOnSelect: false,
+        ajax: {
+            url: '/api/document-types',
+            dataType: "json",
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function(data) {
+                return data;
+            },
+            cache: true
         }
     });
 });

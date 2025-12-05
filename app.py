@@ -58,6 +58,7 @@ def sample():
         rank = request.form.getlist('ranking')
         includeLang = request.form.getlist('include[]')
         excludeLang = request.form.getlist('exclude[]')
+        documentTypes = request.form.getlist('documentTypes[]')
         
         # Конвертируем ISO коды в glottocodes для include/exclude
         includeLang_glottocodes = iso_to_glottocode(includeLang)

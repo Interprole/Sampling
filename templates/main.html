@@ -112,23 +112,11 @@
                                 </div>
                             </div>
                             <p class="text-form">
-                                <label for="grammarDictionaryPreference"><b>Preference for Descriptions</b>
-                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="This preference modifies any ranking method above and enables you to select the type of descriptions you're interested in (positive values for grammatical descriptions and negative values for dictionaries). For details, see <a href='/manual'>Manual</a> page."><b>?</b></button>
+                                <label for="document-types"><b>Descriptions' Type</b>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="Here you can specify the types of descriptions (as in <a href='glottolog.org'>Glottolog</a>). For example, if you are interested in working only with dictionaries, the algorithm will suggest to you only languages with available dictionaries and make the source list relevant for your query. All types are selected by default."><b>?</b></button>
                                 </label>
-                                <input class="range-input" type="range" min="-2" max="2" value="0" step="1" name="grammarDictionaryPreference" id="grammarDictionaryPreference" list="preferenceValues">
-                                &nbsp;
-                                <datalist id="preferenceValues">
-                                    <span>-2</span>
-                                    <span>-1</span>
-                                    <span>0</span>
-                                    <span>1</span>
-                                    <span>2</span>
-                                </datalist>
-                                &nbsp;
-                                <datalist id="preferenceValues">
-                                    <span>Dictionaries</span>
-                                    <span>Grammars</span>
-                                </datalist>
+                                <select class="description-type-js" name="documentTypes[]" multiple="multiple">
+                                </select>
                             </p>
                         </div>
                     </div>
