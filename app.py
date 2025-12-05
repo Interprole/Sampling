@@ -499,6 +499,42 @@ def api_sources():
     return jsonify({'results': result[:50]})
 
 
+@app.route("/api/document-types")
+def api_document_types():
+    """API endpoint для получения списка типов документов (grammar, dictionary, grammar_sketch, etc.)."""
+    from models import Source
+    
+    # Получаем параметр поиска
+    search_term = request.args.get('q', '').strip().lower()
+    
+    # Получаем уникальные типы документов
+    doc_types = global_session.query(Source.document_type).filter(
+        Source.document_type != None,
+        Source.document_type != ''
+    ).distinct().all()
+    
+    # Собираем уникальные типы (некоторые могут быть через запятую)
+    unique_types = set()
+    for (doc_type,) in doc_types:
+        if doc_type:
+            # Разбиваем по запятой если есть несколько типов
+            for t in doc_type.split(','):
+                t = t.strip()
+                if t:
+                    unique_types.add(t)
+    
+    # Сортируем и фильтруем
+    result = []
+    for doc_type in sorted(unique_types):
+        if not search_term or search_term in doc_type.lower():
+            result.append({
+                'id': doc_type,
+                'text': doc_type
+            })
+    
+    return jsonify({'results': result})
+
+
 def code_to_text(codes, mode):
     languageNames = set()
     for code in codes:
