@@ -371,6 +371,66 @@ class GenusScoreCache(Base):
     genus = relationship("Genus", foreign_keys=[genus_id])
 
 
+class DynamicRankingCache(Base):
+    """
+    A class used to cache ranking scores for languages with specific filters.
+    Cache key includes ranking method, document types, and doc languages.
+    
+    Attributes
+    ----------
+    cache_key : str
+        Hash of (ranking_method, document_types, doc_languages)
+    language_glottocode : str
+        Foreign key to Group (Language)
+    score : float
+        The computed score for this language
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'dynamic_ranking_cache'
+    
+    cache_key = Column(String, primary_key=True)
+    language_glottocode = Column(String, ForeignKey('groups.glottocode'), primary_key=True)
+    score = Column(Float, default=0.0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+    
+    # Relationships
+    language = relationship("Group", foreign_keys=[language_glottocode])
+
+
+class DynamicGenusScoreCache(Base):
+    """
+    A class used to cache genus scores with specific filters.
+    
+    Includes macroarea_id because a genus can be in multiple macroareas,
+    and its score depends on which languages from it passed the macroarea filter.
+    
+    Attributes
+    ----------
+    cache_key : str
+        Hash of (ranking_method, document_types, doc_languages)
+    genus_id : int
+        Foreign key to Genus
+    macroarea_id : int
+        Foreign key to Macroarea (nullable for genera spanning multiple macroareas)
+    score : float
+        The computed score for this genus
+    last_updated : int
+        Timestamp of last cache update (Unix timestamp)
+    """
+    __tablename__ = 'dynamic_genus_score_cache'
+    
+    cache_key = Column(String, primary_key=True)
+    genus_id = Column(Integer, ForeignKey('genera.id'), primary_key=True)
+    macroarea_id = Column(Integer, ForeignKey('macroareas.id'), primary_key=True, nullable=True)
+    score = Column(Float, default=0.0)
+    last_updated = Column(Integer, default=0)  # Unix timestamp
+    
+    # Relationships
+    genus = relationship("Genus", foreign_keys=[genus_id])
+    macroarea = relationship("Macroarea", foreign_keys=[macroarea_id])
+
+
 def create_tables(engine):
     Base.metadata.create_all(engine)
 

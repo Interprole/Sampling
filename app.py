@@ -48,7 +48,6 @@ def sample():
         title = request.form.get('name', 'Untitled Sample')
         algorithm = request.form.get('sampling-algorithm', 'genus-macroarea')
         size = int(request.form.get('sample-size', 50))
-        gramDictPref = int(request.form.get('grammarDictionaryPreference', 0))
         is_Spoken = request.form.get('isSpoken') is not None
         is_Sign = request.form.get('isSign') is not None
         
@@ -131,7 +130,7 @@ def sample():
             grambank_features=grambank_features if grambank_features else None,
             doc_languages=docLang if docLang else None,
             ranking_key=ranking_key,
-            grammar_dict_preference=float(gramDictPref)
+            document_types=documentTypes if documentTypes else None
         )
         
         # Выбираем алгоритм сэмплинга
@@ -224,9 +223,9 @@ def sample():
                     details.append(f"{s.pages}pp")
                 
                 # Добавляем языки документации для этого источника
+                doc_names = []
                 if s.doc_language_codes:
                     doc_codes = s.doc_language_codes.split(',')
-                    doc_names = []
                     for code in doc_codes:
                         lang_obj = global_session.query(Language).filter_by(iso=code).first()
                         if lang_obj:
@@ -280,7 +279,7 @@ def sample():
             "Excluded Languages": ', '.join(code_to_text(excludeLang, "iso")),
             "Included Descriptions' Languages": ', '.join(code_to_text(docLang, "iso")),
             "Select Languages By": "Random" if ranking_key == 'random' else ("Extensiveness of description (2 * pages + 0.5 * year)" if ranking_key == 'descriptive_ranking' else ("Total number of Descriptions" if ranking_key == 'source_count' else ("Descriptions' publication year" if ranking_key == 'year_ranking' else "Descriptions' page count"))),
-            "Preference for Descriptions": "Dictionaries (-2)" if gramDictPref == -2 else ("Dictionaries rather than grammars (-1)" if gramDictPref == -1 else ("Neutral (0)" if gramDictPref == 0 else "Grammars rather than dictionaries (1)" if gramDictPref == 1 else "Grammars (2)"))
+            "Document Types Filter": ', '.join(documentTypes) if documentTypes else "All document types"
         }
 
         sample_data_json = []
@@ -317,7 +316,7 @@ def sample():
             includeLang=code_to_text(includeLang, "iso"),
             excludeLang=code_to_text(excludeLang, "iso"),
             ranking_key=ranking_key,
-            gramDictPref=gramDictPref,
+            documentTypes=documentTypes,
             languages_by_macroarea=sorted(languages_by_macroarea.items()),
             total_languages=len(result.languages),
             total_genera=len(result.included_genera),
