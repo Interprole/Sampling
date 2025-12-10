@@ -268,6 +268,14 @@ def sample():
                 'sources_languages': sources_languages,
                 'doc_languages': doc_lang_names
             })
+
+        modalityString = []
+        if is_Sign:
+            modalityString.append('Sign Languages are included')
+        if is_Spoken:
+            modalityString.append('Spoken Languages are included')
+        if not is_Sign and not is_Spoken:
+            modalityString.append('None')
         
         meta_data_json = {
             "Title": title,
@@ -278,7 +286,7 @@ def sample():
             "Included Languages": ', '.join(code_to_text(includeLang, "iso")),
             "Excluded Languages": ', '.join(code_to_text(excludeLang, "iso")),
             "Included Descriptions' Languages": ', '.join(code_to_text(docLang, "iso")),
-            "Select Languages By": "Random" if ranking_key == 'random' else ("Extensiveness of description (2 * pages + 0.5 * year)" if ranking_key == 'descriptive_ranking' else ("Total number of Descriptions" if ranking_key == 'source_count' else ("Descriptions' publication year" if ranking_key == 'year_ranking' else "Descriptions' page count"))),
+            "Modality": ', '.join(modalityString),
             "Document Types Filter": ', '.join(documentTypes) if documentTypes else "All document types"
         }
 
@@ -317,6 +325,7 @@ def sample():
             excludeLang=code_to_text(excludeLang, "iso"),
             ranking_key=ranking_key,
             documentTypes=documentTypes,
+            modality=', '.join(modalityString),
             languages_by_macroarea=sorted(languages_by_macroarea.items()),
             total_languages=len(result.languages),
             total_genera=len(result.included_genera),

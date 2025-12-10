@@ -67,6 +67,11 @@
         {% if docLang %}
             <p><strong>Included Descriptions' Languages</strong>: {{ ', '.join(docLang) }} </p>
         {% endif %}
+        {% if documentTypes %}
+            <p><strong>Included Descriptions' Types </strong>: {{ ', '.join(documentTypes) }} </p>
+        {% else %}
+        <p><strong>Included Descriptions' Types </strong>: {{ "All document types" }} </p>
+        {% endif %}
         <p><strong>Select Languages By</strong>:
         {% if ranking_key == 'random' %}
             Random
@@ -80,18 +85,8 @@
             Descriptions' page count
         {% endif %}
     </p>
-    <p><strong>Preference for Descriptions</strong>:
-        {% if gramDictPref == -2 %}
-            Dictionaries (-2)
-        {% elif gramDictPref == -1 %}
-            Dictionaries rather than grammars (-1)
-        {% elif gramDictPref == 1 %}
-            Grammars rather than dictionaries (1)
-        {% elif gramDictPref == 2 %}
-            Grammars (2)
-        {% elif gramDictPref == 0 %}
-            Neutral (0)
-        {% endif %}
+    <p><strong>Modality</strong>:
+        {{ modality }}
     </p>
 </div>
 
